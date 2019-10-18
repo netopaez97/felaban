@@ -17,17 +17,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _cuerpoDeLaVista(){
-    return ListView(
-      shrinkWrap: true,
-      children: <Widget>[
-        _stackSuperior(),
-        _textoAccesoConHuellaDigitalOReconocimientoFacial(),
-        _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
-        Container(height: MediaQuery.of(context).size.width*0.02),
-        _botonCorreoElectronico(),
-        _botonContrasena(),
-        _botonNext(),
-      ],
+    return Form(
+      key: _formKey,
+      child: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          _stackSuperior(),
+          _textoAccesoConHuellaDigitalOReconocimientoFacial(),
+          _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
+          Container(height: MediaQuery.of(context).size.width*0.02),
+          _botonCorreoElectronico(),
+          _botonContrasena(),
+          _botonNext(),
+        ],
+      ),
     );
   }
 
@@ -122,15 +125,18 @@ class _HomePageState extends State<HomePage> {
         decoration: const InputDecoration(
           border: InputBorder.none,
           icon: Icon(Icons.person_outline),
-          hintText: 'Example: felaban@feleaban.com',
+          //hintText: 'Example: felaban@feleaban.com',
           labelText: 'Username (your email)',
         ),
         onSaved: (String value) {
           
         },
         validator: (String value) {
-          if(value.isEmpty)
-            return "Ingrese un valor";
+          if (value.isEmpty ||
+              !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                  .hasMatch(value)) {
+            return 'Please, type a correct email';
+          }
           return null;
         },
       ),
@@ -154,82 +160,37 @@ class _HomePageState extends State<HomePage> {
           
         },
         validator: (String value) {
-          if (value.isEmpty ||
-              !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                  .hasMatch(value)) {
-            return 'Por favor, ingrese un email válido';
-          }
+          if (value.isEmpty) 
+            return 'Please, type something';
           return null;
         },
       )
     );
   }
 
-  Widget _usuarioContrasena(){
-    return Container(
-      alignment: Alignment.center,
-      height: MediaQuery.of(context).size.height*0.2,
-      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width*0.02),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            Container(
-              color: Colors.black12,
-              child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  icon: Icon(Icons.person_outline),
-                  hintText: 'Example: felaban@feleaban.com',
-                  labelText: 'Username (your email)',
-                ),
-                onSaved: (String value) {
-                  
-                },
-                validator: (String value) {
-                  if(value.isEmpty)
-                    return "Ingrese un valor";
-                  return null;
-                },
-              ),
-            ),
-            Container(
-              color: Colors.black12,
-              child: TextFormField(
-                
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  icon: Icon(Icons.vpn_key),
-                  labelText: 'Password',
-                ),
-                obscureText: true,
-                onSaved: (String value) {
-                  
-                },
-                validator: (String value) {
-                  if (value.isEmpty ||
-                      !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                          .hasMatch(value)) {
-                    return 'Por favor, ingrese un email válido';
-                  }
-                  return null;
-                },
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
+  
   Widget _botonNext(){
     return Container(
       height: MediaQuery.of(context).size.height*0.1,
       child: RaisedButton(
         child: Text("Next", style: TextStyle(color: Colors.white),),
         onPressed: (){
-
+          if(!_formKey.currentState.validate())
+            return null;
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Center(child: Text("Alright"),),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            )
+          );
         },
         color: Colors.blue,
         elevation: 0,
