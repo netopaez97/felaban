@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -12,8 +13,24 @@ class _HomePageState extends State<HomePage> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  AppBar _barraSuperior(){
-    return AppBar();
+  Widget _barraSuperior(){
+    return CupertinoNavigationBar(
+      automaticallyImplyMiddle:true,
+      backgroundColor: Color(0xff8C8C8C),
+      leading: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: (){
+              print("object");
+            },
+            color:Colors.white
+          ),
+          Text("Back",style:TextStyle(fontFamily: "Roboto",color: Colors.white))
+        ],
+      ),
+    );
   }
 
   Widget _cuerpoDeLaVista(){
@@ -35,6 +52,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _stackSuperior(){
+
+    final double _paddingParaLogosYTexto = MediaQuery.of(context).size.width*0.05;
+
     return Container(
       height: MediaQuery.of(context).size.height*0.3,
       child: Stack(
@@ -49,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width*0.05),
+            padding: EdgeInsets.symmetric(horizontal: _paddingParaLogosYTexto, vertical: _paddingParaLogosYTexto),
             alignment: Alignment.bottomCenter,
             width: double.infinity,
             child: Text(
@@ -58,24 +78,30 @@ class _HomePageState extends State<HomePage> {
             )
           ),
           Container(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03),
-            alignment: Alignment.topCenter,
+            width: double.infinity,
+            padding: EdgeInsets.only(top: _paddingParaLogosYTexto,left: _paddingParaLogosYTexto),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Expanded(
-                    child: Image.asset(
+                  child: Image.asset(
                     "assets/felabanLogo.png"
                   ),
                 ),
                 Expanded(
-                    child: Image.asset(
+                  child: Image.asset(
                     "assets/IFCLogo.png",
                   ),
-                ),
+                )
               ],
             ),
           ),
+          Positioned(
+            left: MediaQuery.of(context).size.width*0.62,
+            child: Container(
+              padding: EdgeInsets.only(top: _paddingParaLogosYTexto),
+              child: Text("FEALABAN app Sponsored By", style: TextStyle(color: Colors.white,fontSize: 9),),
+            ),
+          )
         ],
       ),
     );
@@ -83,17 +109,20 @@ class _HomePageState extends State<HomePage> {
 
   Widget _textoAccesoConHuellaDigitalOReconocimientoFacial(){
     return Container(
-      padding: EdgeInsets.symmetric(horizontal:  MediaQuery.of(context).size.width*0.03), 
       height: MediaQuery.of(context).size.height*0.1,
       alignment: Alignment.center,
       child: Text(
         "Log in to access your networking profile and customize the app for your event experience",
         textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 17),
       ),
     );
   }
 
   Widget _imagenAccesoConHuellaDigitalOReconocimientoFacial(){
+
+    final double tamanoIconos = MediaQuery.of(context).size.width*0.18;
+
     return Container(
       height: MediaQuery.of(context).size.height*0.1,
       alignment: Alignment.center,
@@ -103,12 +132,12 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.face),
             onPressed: (){},
-            iconSize: MediaQuery.of(context).size.width*0.18,
+            iconSize: tamanoIconos,
           ),
           IconButton(
             icon: Icon(Icons.fingerprint),
             onPressed: (){},
-            iconSize: MediaQuery.of(context).size.width*0.18,
+            iconSize: tamanoIconos,
           ),
         ],
       ),
@@ -172,8 +201,8 @@ class _HomePageState extends State<HomePage> {
   Widget _botonNext(){
     return Container(
       height: MediaQuery.of(context).size.height*0.1,
-      child: RaisedButton(
-        child: Text("Next", style: TextStyle(color: Colors.white),),
+      child: CupertinoButton(
+        child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
         onPressed: (){
           if(!_formKey.currentState.validate())
             return null;
@@ -192,8 +221,8 @@ class _HomePageState extends State<HomePage> {
             )
           );
         },
-        color: Colors.blue,
-        elevation: 0,
+        color: Color(0xff489ED2),
+        borderRadius: BorderRadius.all(Radius.zero),
       ),
     );
   }
