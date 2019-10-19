@@ -49,7 +49,6 @@ class _HomePageState extends State<HomePage> {
           _botonContrasena(),
           _botonNext(),
           _nuevoUsuarioOlvidoPass(),
-          Icon(LoginIcons.key),
         ],
       ),
     );
