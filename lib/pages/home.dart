@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       height: MediaQuery.of(context).size.height*0.3,
       child: Stack(
         children: <Widget>[
-          Image.asset("assets/logo.JPG")
+          Expanded(child: Image.asset("assets/logo.JPG"),)
         ],
       ),
     );
