@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
+      padding: EdgeInsetsDirectional.zero,
       automaticallyImplyMiddle:true,
       backgroundColor: Color(0xff8C8C8C),
       leading: Row(
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
             },
             color:Colors.white
           ),
-          Text("Back",style:TextStyle(fontFamily: "Roboto",color: Colors.white))
+          Text("Back",style:TextStyle(color: Colors.white))
         ],
       ),
     );
@@ -42,7 +43,6 @@ class _HomePageState extends State<HomePage> {
           _stackSuperior(),
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
-          Container(height: MediaQuery.of(context).size.width*0.02),
           _botonCorreoElectronico(),
           _botonContrasena(),
           _botonNext(),
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _textoAccesoConHuellaDigitalOReconocimientoFacial(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.1,
+      height: MediaQuery.of(context).size.height*0.09,
       alignment: Alignment.center,
       child: Text(
         "Log in to access your networking profile and customize the app for your event experience",
@@ -124,7 +124,6 @@ class _HomePageState extends State<HomePage> {
     final double tamanoIconos = MediaQuery.of(context).size.width*0.18;
 
     return Container(
-      height: MediaQuery.of(context).size.height*0.1,
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -146,7 +145,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _botonCorreoElectronico(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.09,
       alignment: Alignment.center,
       color: Colors.black12,
       child: TextFormField(
@@ -174,7 +172,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _botonContrasena(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.09,
       alignment: Alignment.center,
       color: Colors.black12,
       child: TextFormField(
@@ -228,7 +225,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _nuevoUsuarioOlvidoPass(){
-    return Row(
+    return Container(
+      padding: EdgeInsets.only(top: 3),
+      alignment: Alignment.topCenter,
+      height: MediaQuery.of(context).size.height*0.1,
+      child: Row(
       children: <Widget>[
       Expanded(
         child:  FlatButton(
@@ -243,13 +244,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       ],
+    ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _barraSuperior(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height*0.065),
+        child: _barraSuperior()
+      ),
       body: _cuerpoDeLaVista(),
       bottomNavigationBar: _nuevoUsuarioOlvidoPass(),
     );
