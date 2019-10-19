@@ -46,6 +46,8 @@ flutter:
   - assets/background.png
   - assets/felabanLogo.png
   - assets/IFCLogo.png
+  - assets/huellaDigital.png
+  - assets/reconocimientoFacial.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

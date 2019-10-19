@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           IconButton(
-            icon: Icon(Icons.face),
+            icon: Image.asset("assets/huellaDigital.png"),
             onPressed: (){},
             iconSize: tamanoIconos,
           ),
