@@ -134,6 +134,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Expanded(
             child: Container(
+              padding: EdgeInsets.only(left: 30),
               height: tamanoIconos,
               child: IconButton(
                 icon: Image.asset("assets/reconocimientoFacial.png",width: tamanoIconos,fit: BoxFit.fitHeight,),
@@ -144,6 +145,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.only(right: 30),
               height: tamanoIconos,
               child: IconButton(
                 icon: Image.asset("assets/huellaDigital.png",width: tamanoIconos, fit: BoxFit.fitHeight,),
