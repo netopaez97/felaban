@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
           _botonCorreoElectronico(),
+          SizedBox(height: 1,),
           _botonContrasena(),
           _botonNext(),
         ],
@@ -109,32 +110,34 @@ class _HomePageState extends State<HomePage> {
 
   Widget _textoAccesoConHuellaDigitalOReconocimientoFacial(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.09,
+      height: MediaQuery.of(context).size.height*0.15,
       alignment: Alignment.center,
       child: Text(
         "Log in to access your networking profile and customize the app for your event experience",
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 17),
+        textDirection: TextDirection.rtl,
       ),
     );
   }
 
   Widget _imagenAccesoConHuellaDigitalOReconocimientoFacial(){
 
-    final double tamanoIconos = MediaQuery.of(context).size.width*0.18;
+    final double tamanoIconos = MediaQuery.of(context).size.width*0.15;
 
     return Container(
+      height: MediaQuery.of(context).size.height*0.130,
       alignment: Alignment.center,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           IconButton(
-            icon: Image.asset("assets/huellaDigital.png"),
+            icon: Image.asset("assets/reconocimientoFacial.png"),
             onPressed: (){},
             iconSize: tamanoIconos,
           ),
           IconButton(
-            icon: Icon(Icons.fingerprint),
+            icon: Image.asset("assets/huellaDigital.png"),
             onPressed: (){},
             iconSize: tamanoIconos,
           ),
@@ -145,13 +148,14 @@ class _HomePageState extends State<HomePage> {
 
   Widget _botonCorreoElectronico(){
     return Container(
+      padding: EdgeInsets.only(left:10),
       alignment: Alignment.center,
       color: Colors.black12,
       child: TextFormField(
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
           border: InputBorder.none,
-          icon: Icon(Icons.person_outline),
+          icon: Icon(CupertinoIcons.person),
           //hintText: 'Example: felaban@feleaban.com',
           labelText: 'Username (your email)',
         ),
@@ -172,6 +176,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _botonContrasena(){
     return Container(
+      padding: EdgeInsets.only(left:10),
       alignment: Alignment.center,
       color: Colors.black12,
       child: TextFormField(
@@ -197,7 +202,6 @@ class _HomePageState extends State<HomePage> {
   
   Widget _botonNext(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.1,
       child: CupertinoButton(
         child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
         onPressed: (){
@@ -226,25 +230,22 @@ class _HomePageState extends State<HomePage> {
 
   Widget _nuevoUsuarioOlvidoPass(){
     return Container(
-      padding: EdgeInsets.only(top: 3),
-      alignment: Alignment.topCenter,
-      height: MediaQuery.of(context).size.height*0.1,
       child: Row(
-      children: <Widget>[
-      Expanded(
-        child:  FlatButton(
-          child: Text("New user?",style: TextStyle(color: Colors.grey),),
-          onPressed: (){},
-        ),
+        children: <Widget>[
+          Expanded(
+            child:  FlatButton(
+              child: Text("New user?",style: TextStyle(color: Colors.grey),),
+              onPressed: (){},
+            ),
+          ),
+          Expanded(
+            child:  FlatButton(
+              child: Text("Forgot password?",style: TextStyle(color: Colors.grey),),
+              onPressed: (){},
+            ),
+          ),
+        ],
       ),
-      Expanded(
-        child:  FlatButton(
-          child: Text("Forgot password?",style: TextStyle(color: Colors.grey),),
-          onPressed: (){},
-        ),
-      ),
-      ],
-    ),
     );
   }
 
