@@ -1,3 +1,4 @@
+import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -47,6 +48,8 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 1,),
           _botonContrasena(),
           _botonNext(),
+          _nuevoUsuarioOlvidoPass(),
+          Icon(LoginIcons.key),
         ],
       ),
     );
@@ -61,12 +64,11 @@ class _HomePageState extends State<HomePage> {
       child: Stack(
         children: <Widget>[
           Container(
+            color: Colors.black,
             width: double.infinity,
             child: Image.asset(
               "assets/background.png",
               fit: BoxFit.fitWidth,
-              color: Colors.black54,
-              colorBlendMode: BlendMode.colorDodge,
             ),
           ),
           Container(
@@ -75,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             child: Text(
               "Welcome to the FELABAN APP",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
             )
           ),
           Container(
@@ -110,7 +112,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget _textoAccesoConHuellaDigitalOReconocimientoFacial(){
     return Container(
-      height: MediaQuery.of(context).size.height*0.15,
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.05),
+      height: MediaQuery.of(context).size.height*0.13,
       alignment: Alignment.center,
       child: Text(
         "Log in to access your networking profile and customize the app for your event experience",
@@ -123,23 +126,32 @@ class _HomePageState extends State<HomePage> {
 
   Widget _imagenAccesoConHuellaDigitalOReconocimientoFacial(){
 
-    final double tamanoIconos = MediaQuery.of(context).size.width*0.15;
+    final double tamanoIconos = MediaQuery.of(context).size.height*0.1;
 
     return Container(
-      height: MediaQuery.of(context).size.height*0.130,
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width*0.1, left: MediaQuery.of(context).size.width*0.05, right: MediaQuery.of(context).size.width*0.05),
       alignment: Alignment.center,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconButton(
-            icon: Image.asset("assets/reconocimientoFacial.png"),
-            onPressed: (){},
-            iconSize: tamanoIconos,
+          Expanded(
+            child: Container(
+              height: tamanoIconos,
+              child: IconButton(
+                icon: Image.asset("assets/reconocimientoFacial.png",width: tamanoIconos,fit: BoxFit.fitHeight,),
+                onPressed: (){},
+                iconSize: tamanoIconos,
+              ),
+            ),
           ),
-          IconButton(
-            icon: Image.asset("assets/huellaDigital.png"),
-            onPressed: (){},
-            iconSize: tamanoIconos,
+          Expanded(
+            child: Container(
+              height: tamanoIconos,
+              child: IconButton(
+                icon: Image.asset("assets/huellaDigital.png",width: tamanoIconos, fit: BoxFit.fitHeight,),
+                onPressed: (){},
+                iconSize: tamanoIconos,
+              ),
+            ),
           ),
         ],
       ),
@@ -155,7 +167,7 @@ class _HomePageState extends State<HomePage> {
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
           border: InputBorder.none,
-          icon: Icon(CupertinoIcons.person),
+          icon: Icon(LoginIcons.user),
           //hintText: 'Example: felaban@feleaban.com',
           labelText: 'Username (your email)',
         ),
@@ -183,7 +195,7 @@ class _HomePageState extends State<HomePage> {
         
         decoration: const InputDecoration(
           border: InputBorder.none,
-          icon: Icon(Icons.vpn_key),
+          icon: Icon(LoginIcons.key),
           labelText: 'Password',
         ),
         obscureText: true,
@@ -229,23 +241,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _nuevoUsuarioOlvidoPass(){
-    return Container(
-      child: Row(
+    return Row(
         children: <Widget>[
           Expanded(
-            child:  FlatButton(
-              child: Text("New user?",style: TextStyle(color: Colors.grey),),
+            child:  Container(
+              child: FlatButton(
+              child: Text("New user?",style: TextStyle(color: Colors.grey, fontSize: 16),),
               onPressed: (){},
             ),
+            )
           ),
           Expanded(
-            child:  FlatButton(
-              child: Text("Forgot password?",style: TextStyle(color: Colors.grey),),
-              onPressed: (){},
+            child:  Container(
+              child: FlatButton(
+                child: Text("Forgot password?",style: TextStyle(color: Colors.grey, fontSize: 16),),
+                onPressed: (){print(MediaQuery.of(context).size.height);},
+              ),
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -253,11 +267,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height*0.065),
+        preferredSize: Size.fromHeight(44),
         child: _barraSuperior()
       ),
       body: _cuerpoDeLaVista(),
-      bottomNavigationBar: _nuevoUsuarioOlvidoPass(),
     );
   }
 }
