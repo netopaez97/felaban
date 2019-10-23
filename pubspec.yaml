@@ -23,6 +23,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  url_launcher: ^5.1.4
+  font_awesome_flutter: ^8.5.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +50,7 @@ flutter:
   - assets/IFCLogo.png
   - assets/huellaDigital.png
   - assets/reconocimientoFacial.png
+  - assets/images/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -65,11 +68,24 @@ flutter:
     - family: LoginIcons
       fonts:
         - asset: fonts/LoginIcons.ttf
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Roboto-Black
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+    - family: Roboto-Bold
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+    - family: Roboto-Regular
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: Roboto-Regular
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf
+    - family: Roboto-Light
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+    - family: Roboto-Thin
+      fonts:
+        - asset: assets/fonts/Roboto-Thin.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

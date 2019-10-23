@@ -1,16 +1,18 @@
 import 'package:felaban/fonts/login_icons_icons.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class HomePage extends StatefulWidget {
+class LoginView extends StatefulWidget {
 
   //MyHomePage({Key key, this.title}) : super(key: key);
+  static const routeName = '/login';
   
   @override
-  _HomePageState createState() => _HomePageState();
+  _LoginViewState createState() => _LoginViewState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginViewState extends State<LoginView> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -19,19 +21,6 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsetsDirectional.zero,
       automaticallyImplyMiddle:true,
       backgroundColor: Color(0xff8C8C8C),
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: (){
-              print("object");
-            },
-            color:Colors.white
-          ),
-          Text("Back",style:TextStyle(color: Colors.white))
-        ],
-      ),
     );
   }
 
@@ -138,7 +127,9 @@ class _HomePageState extends State<HomePage> {
               height: tamanoIconos,
               child: IconButton(
                 icon: Image.asset("assets/reconocimientoFacial.png",width: tamanoIconos,fit: BoxFit.fitHeight,),
-                onPressed: (){},
+                onPressed: (){
+                  
+                },
                 iconSize: tamanoIconos,
               ),
             ),
@@ -149,7 +140,9 @@ class _HomePageState extends State<HomePage> {
               height: tamanoIconos,
               child: IconButton(
                 icon: Image.asset("assets/huellaDigital.png",width: tamanoIconos, fit: BoxFit.fitHeight,),
-                onPressed: (){},
+                onPressed: (){
+                  
+                },
                 iconSize: tamanoIconos,
               ),
             ),
