@@ -6,8 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatefulWidget {
-
-  //MyHomePage({Key key, this.title}) : super(key: key);
+  
   static const routeName = '/login';
   
   @override
@@ -26,13 +25,13 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget _cuerpoDeLaVista(){
+  Widget _cuerpoDeLaVista(String _titulo){
     return Form(
       key: _formKey,
       child: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          BackgroundSuperiorWidget(titulo: "CLAIN 2019",),
+          BackgroundSuperiorWidget(titulo: _titulo,),
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
           _botonCorreoElectronico(),
@@ -205,13 +204,22 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    final String title = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(44),
         child: _barraSuperior()
       ),
-      body: _cuerpoDeLaVista(),
+      body: _cuerpoDeLaVista(title),
     );
   }
 }

@@ -33,8 +33,8 @@ class _BackgroundSuperiorWidgetState extends State<BackgroundSuperiorWidget> {
             alignment: Alignment.bottomCenter,
             width: double.infinity,
             child: Text(
-              "Welcome to the FELABAN APP",
-              style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+              widget.titulo,
+              style: TextStyle(color: Colors.white, fontSize: 17),
             )
           ),
           Container(

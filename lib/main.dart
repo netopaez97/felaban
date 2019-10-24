@@ -5,6 +5,7 @@ import 'package:felaban/pages/about_ifc_view.dart';
 import 'package:felaban/pages/login_view.dart';
 import 'package:felaban/pages/home_view.dart';
 import 'package:felaban/pages/settings_view.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (BuildContext context) => new SplashView(),
-        LoginView.routeName: (BuildContext context) => LoginView(),
         HomeView.routeName: (BuildContext context) => HomeView(),
+        LoginView.routeName: (BuildContext context) => LoginView(),
         AboutFelabanView.routeName: (BuildContext context) => AboutFelabanView(),
         AboutIFCView.routeName: (BuildContext context) => AboutIFCView(),
         SettingsView.routeName: (BuildContext context) => SettingsView(),

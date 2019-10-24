@@ -1,5 +1,7 @@
 import 'package:felaban/components/app_drawer.dart';
 import 'package:felaban/components/backgroundSuperior.dart';
+import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+  final _eventosProvider = EventosProvider();
+  List<EventosModel> _eventos = EventosProvider().obtenerEventosFelaban();
   
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -29,6 +34,14 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _eventos = _eventosProvider.obtenerEventosFelaban();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
@@ -41,13 +54,13 @@ class _HomeViewState extends State<HomeView> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              BackgroundSuperiorWidget(titulo: "Neto"),
+              BackgroundSuperiorWidget(titulo: "Upcoming Conferences"),
               
               Container(
                 height: MediaQuery.of(context).size.height*0.6,
                 child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 4,
+                itemCount: _eventos.length,
                 itemBuilder: (BuildContext context, int item){
                   return Container(
                     margin: EdgeInsets.all(10),
@@ -60,32 +73,32 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     child: ListTile(
                       leading: Image.asset(
-                        'assets/images/clain_logo.png',
+                        _eventos[item].imagenUbicacion,
                       ),
                       title: Container(
                         padding: EdgeInsets.only(top: 10),
                         child: ListView(
                           children: <Widget>[
-                            Text("CLAIN 2019",style: TextStyle(fontFamily: 'Roboto-Black',fontSize: 16),),
-                            Text("Congreso Latinoamericano de Auditoria Interna",maxLines: 3,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                            Text(_eventos[item].titulo,style: TextStyle(fontFamily: 'Roboto-Black',fontSize: 16),),
+                            Text(_eventos[item].descripcion,maxLines: 3,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
                             Row(children: <Widget>[
                               Padding(
                                 padding: EdgeInsets.only(right: 2),
                                 child: Icon(Icons.location_on, size: 16,),
                               ),
-                              Text("Hollywood - Florida",style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                              Text(_eventos[item].ubicacion,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
                             ],),
                             Row(children: <Widget>[
                               Padding(
                                 padding: EdgeInsets.only(right: 2),
                                 child: Icon(Icons.calendar_today, size: 16,),
                               ),
-                              Text("04 - 06 Sep 2019",style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                              Text(_eventos[item].fecha,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
                             ],),
                           ],
                         ),
                       ),
-                      onTap: ()=> Navigator.pushNamed(context, Routes.login),
+                      onTap: ()=> Navigator.pushNamed(context, Routes.login, arguments: _eventos[item].titulo),
                     ),
                   );
                 }
