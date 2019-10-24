@@ -1,7 +1,9 @@
+import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatefulWidget {
 
@@ -18,9 +20,9 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
-      padding: EdgeInsetsDirectional.zero,
       automaticallyImplyMiddle:true,
       backgroundColor: Color(0xff8C8C8C),
+      actionsForegroundColor: Colors.white,
     );
   }
 
@@ -30,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
       child: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          _stackSuperior(),
+          BackgroundSuperiorWidget(titulo: "CLAIN 2019",),
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
           _botonCorreoElectronico(),
@@ -38,61 +40,6 @@ class _LoginViewState extends State<LoginView> {
           _botonContrasena(),
           _botonNext(),
           _nuevoUsuarioOlvidoPass(),
-        ],
-      ),
-    );
-  }
-
-  Widget _stackSuperior(){
-
-    final double _paddingParaLogosYTexto = MediaQuery.of(context).size.width*0.05;
-
-    return Container(
-      height: MediaQuery.of(context).size.height*0.3,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            color: Colors.black,
-            width: double.infinity,
-            child: Image.asset(
-              "assets/background.png",
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: _paddingParaLogosYTexto, vertical: _paddingParaLogosYTexto),
-            alignment: Alignment.bottomCenter,
-            width: double.infinity,
-            child: Text(
-              "Welcome to the FELABAN APP",
-              style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
-            )
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(top: _paddingParaLogosYTexto,left: _paddingParaLogosYTexto),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Image.asset(
-                    "assets/felabanLogo.png"
-                  ),
-                ),
-                Expanded(
-                  child: Image.asset(
-                    "assets/IFCLogo.png",
-                  ),
-                )
-              ],
-            ),
-          ),
-          Positioned(
-            left: MediaQuery.of(context).size.width*0.62,
-            child: Container(
-              padding: EdgeInsets.only(top: _paddingParaLogosYTexto),
-              child: Text("FEALABAN app Sponsored By", style: TextStyle(color: Colors.white,fontSize: 9),),
-            ),
-          )
         ],
       ),
     );

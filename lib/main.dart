@@ -57,7 +57,7 @@ class _SplashViewState extends State<SplashView> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: ExactAssetImage(
-                  'assets/images/background.png',
+                  'assets/images/backgroundSplash.png',
                 ),
                 fit: BoxFit.cover,
               ),
