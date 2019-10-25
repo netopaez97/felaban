@@ -1,6 +1,7 @@
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:ui' as ui;
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -10,33 +11,29 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: ListView(
-              padding: EdgeInsets.zero,
               children: <Widget>[
-                DrawerHeader(
+                SizedBox(
+                  height: MediaQuery.of(context).size.height*0.1,
                   child: Container(
-                      margin: EdgeInsets.only(
-                        top: 40.0,
-                      ),
-                      child: Text(
-                        "FELABAN APP",
-                        style: TextStyle(
-                            fontSize: 35,
-                            color: Colors.white,
-                            fontFamily: 'Roboto-Light'),
-                      )),
-                  decoration: BoxDecoration(
+                    padding: EdgeInsets.only(left: 15),
+                    alignment: Alignment.centerLeft,
                     color: Color(0xFF004A80),
+                    child: Text('Welcome', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
                   ),
+                  )
                 ),
                 ListTile(
                   title: Text(
-                    'HOME',
+                    'Home',
                     style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto-Medium'),
+                      fontSize: 16,
+                        fontFamily: 'Roboto-Medium'
+                    ),
                   ),
-                  leading: Icon(Icons.home, size: 45),
+                  leading: Icon(
+                    FontAwesomeIcons.home,
+                    color: Color(0xffA1A1A1),
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, Routes.home);
@@ -52,10 +49,7 @@ class AppDrawer extends StatelessWidget {
                       fontFamily: 'Roboto-medium',
                     ),
                   ),
-                  leading: Icon(
-                    Icons.info,
-                    size: 45,
-                  ),
+                  leading: Image.asset("assets/drawerImages/about_felaban.png"),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(
@@ -74,7 +68,7 @@ class AppDrawer extends StatelessWidget {
                       fontFamily: 'Roboto-Medium',
                     ),
                   ),
-                  leading: Icon(Icons.info, size: 45),
+                  leading: Image.asset("assets/drawerImages/about_ifc.png"),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, Routes.about_ifc);
@@ -85,15 +79,14 @@ class AppDrawer extends StatelessWidget {
                   title: Text(
                     'APP Setup',
                     style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF423434),
+                      fontSize: 16.0,
                       fontFamily: 'Roboto-Medium',
                     ),
                   ),
                   leading: Icon(
                     Icons.settings,
-                    size: 45,
+                    color: Color(0xffA1A1A1),
+                    size: 28,
                   ),
                   onTap: () {
                     Navigator.pop(context);
@@ -104,46 +97,38 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            height: 100,
+            padding: EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width,
             color: Color(0xFF818181),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   "Follow FELABAN",
                   style: TextStyle(
                     fontFamily: 'Roboto-Light',
-                    fontSize: 22.0,
+                    fontSize: 16,
                     color: Colors.white,
                   ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Icon(
-                        FontAwesomeIcons.instagram,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Expanded(
-                      child: Icon(
-                        FontAwesomeIcons.twitter,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Expanded(
-                      child: Icon(
-                        FontAwesomeIcons.facebook,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                SizedBox(height: 10,),
+                Image.asset("assets/drawerImages/social_media.png"),
               ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.1,
+            child: Container(
+              padding: EdgeInsets.only(right: 15),
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text("Powered by: ", style: TextStyle(color: Color(0xffA1A1A1)),),
+                  Image.asset("assets/drawerImages/kubilabs_logo.png"),
+                ],
+              )
             ),
           )
         ],

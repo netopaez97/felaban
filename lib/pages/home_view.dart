@@ -74,6 +74,7 @@ class _HomeViewState extends State<HomeView> {
                     child: ListTile(
                       leading: Image.asset(
                         _eventos[item].imagenUbicacion,
+                        width: 73,
                       ),
                       title: Container(
                         padding: EdgeInsets.only(top: 10),

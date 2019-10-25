@@ -50,6 +50,7 @@ flutter:
   - assets/IFCLogo.png
   - assets/huellaDigital.png
   - assets/reconocimientoFacial.png
+  - assets/drawerImages/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 
