@@ -30,9 +30,12 @@ class AppDrawer extends StatelessWidget {
                         fontFamily: 'Roboto-Medium'
                     ),
                   ),
-                  leading: Icon(
-                    FontAwesomeIcons.home,
-                    color: Color(0xffA1A1A1),
+                  leading: Container(
+                    width: 46,
+                    child: Icon(
+                      FontAwesomeIcons.home,
+                      color: Color(0xffA1A1A1),
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);
@@ -49,7 +52,10 @@ class AppDrawer extends StatelessWidget {
                       fontFamily: 'Roboto-medium',
                     ),
                   ),
-                  leading: Image.asset("assets/drawerImages/about_felaban.png"),
+                  leading: Container(
+                    width: 46,
+                    child: Image.asset("assets/drawerImages/about_felaban.png",),
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(
@@ -68,7 +74,10 @@ class AppDrawer extends StatelessWidget {
                       fontFamily: 'Roboto-Medium',
                     ),
                   ),
-                  leading: Image.asset("assets/drawerImages/about_ifc.png"),
+                  leading: Container(
+                    width: 46,
+                    child: Image.asset("assets/drawerImages/about_ifc.png"),
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, Routes.about_ifc);
@@ -83,10 +92,13 @@ class AppDrawer extends StatelessWidget {
                       fontFamily: 'Roboto-Medium',
                     ),
                   ),
-                  leading: Icon(
-                    Icons.settings,
-                    color: Color(0xffA1A1A1),
-                    size: 28,
+                  leading: Container(
+                    width: 46,
+                    child: Icon(
+                      Icons.settings,
+                      color: Color(0xffA1A1A1),
+                      size: 28,
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);

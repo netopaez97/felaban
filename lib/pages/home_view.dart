@@ -26,6 +26,7 @@ class _HomeViewState extends State<HomeView> {
       padding: EdgeInsetsDirectional.zero,
       backgroundColor: Color(0xff8C8C8C),
       leading: CupertinoButton(
+        
         minSize: double.minPositive,
         child: Icon(FontAwesomeIcons.bars, color: Colors.white),
         onPressed: () => _scaffoldKey.currentState.openDrawer(),
