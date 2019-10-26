@@ -8,12 +8,33 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class LoginView extends StatefulWidget {
   
   static const routeName = '/login';
+  final String title;
+
+  LoginView(this.title, {Key key}) : super(key:key);
   
   @override
   _LoginViewState createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(44),
+        child: _barraSuperior()
+      ),
+      body: _cuerpoDeLaVista(widget.title),
+    );
+  }
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -203,26 +224,6 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ],
-    );
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    final String title = ModalRoute.of(context).settings.arguments;
-
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(44),
-        child: _barraSuperior()
-      ),
-      body: _cuerpoDeLaVista(title),
     );
   }
 }

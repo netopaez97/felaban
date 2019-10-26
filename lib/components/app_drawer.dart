@@ -14,12 +14,12 @@ class AppDrawer extends StatelessWidget {
               children: <Widget>[
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.1,
-                  child: Container(
-                    padding: EdgeInsets.only(left: 15),
-                    alignment: Alignment.centerLeft,
-                    color: Color(0xFF004A80),
-                    child: Text('Welcome', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
-                  ),
+                    child: Container(
+                      padding: EdgeInsets.only(left: 15),
+                      alignment: Alignment.centerLeft,
+                      color: Color(0xFF004A80),
+                      child: Text('Welcome', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
+                    ),
                   )
                 ),
                 ListTile(
