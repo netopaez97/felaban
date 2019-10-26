@@ -1,6 +1,7 @@
 import 'package:felaban/components/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsView extends StatefulWidget {
   static const routeName = '/settings';
@@ -17,16 +18,24 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Setup App",
-          style: TextStyle(
-            fontFamily: 'Roboto-Medium',
+      appBar: CupertinoNavigationBar(
+        backgroundColor: Color(0xff8C8C8C),
+        actionsForegroundColor: Colors.white,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Row(
+            children: <Widget>[
+              Icon(CupertinoIcons.back,),
+              Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
           ),
         ),
-        actions: <Widget>[
-          // action button
-        ],
+        border: Border.all(
+          style: BorderStyle.none
+        ),
+        padding: EdgeInsetsDirectional.zero,
       ),
       drawer: AppDrawer(),
       body: Container(
@@ -34,11 +43,34 @@ class _SettingsViewState extends State<SettingsView> {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverToBoxAdapter(
-              child: Image.asset(
-                'assets/images/background_short.png',
-                width: MediaQuery.of(context).size.width,
-                height: 120,
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.15,
+                child: Stack(
+                children: <Widget>[
+                  Container(
+                    color: Colors.black,
+                    height: MediaQuery.of(context).size.height*0.15,
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/images/background_short.png',
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "APP SETUP",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Icon(Icons.settings, color:  Color(0xffA1A1A1), size: 43,),
+                    alignment: Alignment.topRight,
+                  )
+                ],
               ),
+              )
             ),
             SliverToBoxAdapter(
               child: Container(

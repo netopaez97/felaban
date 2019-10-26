@@ -1,4 +1,5 @@
 import 'package:felaban/components/app_drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,61 +12,73 @@ class AboutFelabanView extends StatefulWidget {
 }
 
 class _AboutFelabanViewState extends State<AboutFelabanView> {
+
+
   @override
   Widget build(BuildContext context) {
+
+    final _screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "About Felaban",
-          style: TextStyle(
-            fontFamily: 'Roboto-Medium',
+      appBar: CupertinoNavigationBar(
+        backgroundColor: Color(0xff8C8C8C),
+        actionsForegroundColor: Colors.white,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: Row(
+            children: <Widget>[
+              Icon(CupertinoIcons.back,),
+              Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
           ),
         ),
-        actions: <Widget>[
-          // action button
-        ],
+        border: Border.all(
+          style: BorderStyle.none
+        ),
+        padding: EdgeInsetsDirectional.zero,
       ),
-      drawer: AppDrawer(),
       body: Container(
-        margin: EdgeInsets.all(0),
         color: Colors.white,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverToBoxAdapter(
+        child: ListView(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(10),
+                height: _screenSize.height*0.2,
               child: Image.asset(
                 'assets/images/felaban_logo.png',
-                width: MediaQuery.of(context).size.width,
-                height: 200,
+                width: _screenSize.width
               ),
             ),
-            SliverToBoxAdapter(
+            Container(
               child: Container(
                 padding: EdgeInsets.only(
                   top: 20.0,
                   bottom: 20.0,
                 ),
                 color: Color(0xFFF0F0F0),
-                height: 60.0,
+                height: 70.0,
                 child: Text(
                   "Federación Latinoamericana de Bancos",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontFamily: 'Roboto-Medium',
                       letterSpacing: -0.5),
                 ),
               ),
             ),
-            SliverToBoxAdapter(
+            Divider(height: 6,),
+            Container(
               child: Column(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(30, 40, 20, 30),
+                    margin: EdgeInsets.fromLTRB(15, 40, 15, 30),
                     child: Text(
                       "La Federación Latinoamericana de Bancos, FELABAN, es una institución sin fines de lucro, constituida en 1965 en la ciudad de Mar del Plata, República Argentina. Agrupa, a través de sus respectivas asociaciones en 19 países del continente, a más de 623 bancos y entidades financieras de América Latina.",
-                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontFamily: 'Roboto-Medium', fontSize: 17.0),
+                          fontFamily: 'Roboto-Medium', fontSize: 18.0),
                     ),
                   ),
                   Container(
@@ -94,17 +107,22 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 130.0,right: 20, left: 20),
-                    child: Column(
-                      children: <Widget>[
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.fromLTRB(10, 0, 10, 30),
+                    child: 
                         Row(
                           children: <Widget>[
                             Expanded(
                               child: SizedBox(
                                 height: 50.0,
                                 child: RaisedButton(
-                                  onPressed: null,
+                                  onPressed: (){},
                                   child: Text(
                                     "EMAIL",
                                     style: TextStyle(
@@ -121,7 +139,10 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                               child: SizedBox(
                                 height: 50.0,
                                 child: RaisedButton(
-                                  onPressed: null,
+                                  color: Color(0xffC4C4C4),
+                                  onPressed: (){
+                                    print(_screenSize.height*0.1);
+                                  },
                                   child: Text(
                                     "WEBSITE",
                                     style: TextStyle(
@@ -133,15 +154,7 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                             ),
                           ],
                         )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+                  ),
     );
   }
 }

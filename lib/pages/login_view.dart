@@ -19,7 +19,10 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
-      automaticallyImplyMiddle:true,
+      border: Border.all(
+        style: BorderStyle.none,
+      ),
+      middle: Text("Back", textAlign: TextAlign.left,),
       backgroundColor: Color(0xff8C8C8C),
       actionsForegroundColor: Colors.white,
     );

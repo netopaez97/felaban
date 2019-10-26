@@ -23,13 +23,15 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
-      padding: EdgeInsetsDirectional.zero,
       backgroundColor: Color(0xff8C8C8C),
-      leading: CupertinoButton(
-        
-        minSize: double.minPositive,
-        child: Icon(FontAwesomeIcons.bars, color: Colors.white),
-        onPressed: () => _scaffoldKey.currentState.openDrawer(),
+      border: Border.all(
+        style: BorderStyle.none,
+      ),
+      actionsForegroundColor: Colors.white,
+      //leading: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
+      leading:  GestureDetector(
+        onTap: () => _scaffoldKey.currentState.openDrawer(),
+        child: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
       ),
     );
   }

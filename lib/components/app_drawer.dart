@@ -58,7 +58,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushReplacementNamed(
+                    Navigator.pushNamed(
                       context,
                       Routes.about_felaban,
                     );
@@ -80,7 +80,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, Routes.about_ifc);
+                    Navigator.pushNamed(context, Routes.about_ifc);
                   },
                 ),
                 Divider(),
@@ -102,7 +102,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, Routes.settings);
+                    Navigator.pushNamed(context, Routes.settings);
                   },
                 ),
               ],
