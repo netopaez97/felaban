@@ -24,6 +24,7 @@ class _SplashGeneralViewState extends State<SplashGeneralView> {
     return Scaffold(
       body: Container(
         height: double.infinity,
+        width: double.infinity,
         child: Image.asset("assets/images/splashGeneral.png", fit: BoxFit.cover,),
       )
     );
