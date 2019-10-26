@@ -122,6 +122,7 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                               child: SizedBox(
                                 height: 50.0,
                                 child: RaisedButton(
+                                  color: Color(0xffC4C4C4),
                                   onPressed: (){},
                                   child: Text(
                                     "EMAIL",

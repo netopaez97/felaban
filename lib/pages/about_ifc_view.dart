@@ -92,6 +92,7 @@ class _AboutIFCViewState extends State<AboutIFCView> {
                               child: SizedBox(
                                 height: 50.0,
                                 child: RaisedButton(
+                                  color: Color(0xffC4C4C4),
                                   onPressed: (){},
                                   child: Text(
                                     "EMAIL",
@@ -109,6 +110,7 @@ class _AboutIFCViewState extends State<AboutIFCView> {
                               child: SizedBox(
                                 height: 50.0,
                                 child: RaisedButton(
+                                  color: Color(0xffC4C4C4),
                                   onPressed: (){
                                     print(_screenSize.height*0.1);
                                   },
