@@ -36,7 +36,8 @@ class _LoginPreviewState extends State<LoginPreview> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 child: RaisedButton(
-                  
+                  onPressed: (){},
+                  child: Text("Oprimir"),
                 ),
               )
             ],
