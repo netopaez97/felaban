@@ -1,6 +1,7 @@
 import 'package:felaban/components/app_drawer.dart';
 import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/pages/login_preview.dart';
 import 'package:felaban/pages/login_view.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
@@ -106,7 +107,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       onTap: ()=> Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SplashEventView(_eventos[item].titulo))
+                        MaterialPageRoute(builder: (context) => LoginPreview(_eventos[item].titulo))
                       ),
                     ),
                   );

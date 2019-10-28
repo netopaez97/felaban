@@ -1,13 +1,11 @@
 import 'package:felaban/components/backgroundSuperior.dart';
+import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
-import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatefulWidget {
   
-  static const routeName = '/login';
   final String title;
 
   LoginView(this.title, {Key key}) : super(key:key);
@@ -19,54 +17,23 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(44),
-        child: _barraSuperior()
-      ),
-      body: _cuerpoDeLaVista(widget.title),
+      appBar: barraSuperior(context),
+      body: _cuerpoDeLaVista(),
     );
   }
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Widget _barraSuperior(){
-    return CupertinoNavigationBar(
-      backgroundColor: Color(0xff8C8C8C),
-      actionsForegroundColor: Colors.white,
-      leading: GestureDetector(
-        onTap: (){
-          Navigator.pop(context);
-        },
-        child: Row(
-          children: <Widget>[
-            Icon(CupertinoIcons.back,),
-            Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
-          ],
-        ),
-      ),
-      border: Border.all(
-        style: BorderStyle.none
-      ),
-      padding: EdgeInsetsDirectional.zero,
-    );
-  }
-
-  Widget _cuerpoDeLaVista(String _titulo){
+  Widget _cuerpoDeLaVista(){
     return Form(
       key: _formKey,
       child: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          BackgroundSuperiorWidget(titulo: _titulo,),
+          BackgroundSuperiorWidget(titulo: widget.title,),
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
           _botonCorreoElectronico(),
