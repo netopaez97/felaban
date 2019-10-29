@@ -1,6 +1,8 @@
 import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
+import 'package:felaban/pages/login/login_error.dart';
+import 'package:felaban/splash/splash_evento.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -33,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
       child: ListView(
         shrinkWrap: true,
         children: <Widget>[
-          BackgroundSuperiorWidget(titulo: widget.title,),
+          BackgroundSuperiorWidget(titulo: widget.title, negrita: true,),
           _textoAccesoConHuellaDigitalOReconocimientoFacial(),
           _imagenAccesoConHuellaDigitalOReconocimientoFacial(),
           _botonCorreoElectronico(),
@@ -161,19 +163,13 @@ class _LoginViewState extends State<LoginView> {
         onPressed: (){
           if(!_formKey.currentState.validate())
             return null;
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Center(child: Text("Alright"),),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("Ok"),
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            )
+          
+          _formKey.currentState.save();
+
+          Navigator.push(context, 
+            MaterialPageRoute(
+              builder: (context) => SplashEventView(widget.title)
+            ),
           );
         },
         color: Color(0xff489ED2),
@@ -188,8 +184,12 @@ class _LoginViewState extends State<LoginView> {
           Expanded(
             child:  Container(
               child: FlatButton(
-              child: Text("New user?",style: TextStyle(color: Colors.grey, fontSize: 16),),
-              onPressed: (){},
+                child: Text("New user?",style: TextStyle(color: Colors.grey, fontSize: 16),),
+                onPressed: (){
+                  Navigator.push(context,
+                    MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
+                  );
+                },
             ),
             )
           ),
@@ -197,7 +197,11 @@ class _LoginViewState extends State<LoginView> {
             child:  Container(
               child: FlatButton(
                 child: Text("Forgot password?",style: TextStyle(color: Colors.grey, fontSize: 16),),
-                onPressed: (){print(MediaQuery.of(context).size.height);},
+                onPressed: (){
+                  Navigator.push(context,
+                    MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
+                  );
+                },
               ),
             ),
           ),

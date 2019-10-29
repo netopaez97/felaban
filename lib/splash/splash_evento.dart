@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:felaban/pages/login_view.dart';
 import 'package:flutter/material.dart';
-import 'package:felaban/routes/Routes.dart';
+import 'package:felaban/pages/agenda_on.dart';
 
 class SplashEventView extends StatefulWidget {
 
@@ -25,7 +24,7 @@ class _SplashEventViewState extends State<SplashEventView> {
     timer = Timer(
       Duration(seconds: 3), () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginView(widget.titulo))
+        MaterialPageRoute(builder: (context) => AgendaOnView(widget.titulo))
       )
     );
   }

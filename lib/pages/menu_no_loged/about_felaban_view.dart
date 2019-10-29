@@ -1,17 +1,18 @@
-import 'package:felaban/components/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutIFCView extends StatefulWidget {
-  static const routeName = '/about_ifc';
+class AboutFelabanView extends StatefulWidget {
+  static const routeName = '/about_felaban';
 
   @override
-  _AboutIFCViewState createState() => _AboutIFCViewState();
+  _AboutFelabanViewState createState() => _AboutFelabanViewState();
 }
 
-class _AboutIFCViewState extends State<AboutIFCView> {
+class _AboutFelabanViewState extends State<AboutFelabanView> {
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,7 +38,6 @@ class _AboutIFCViewState extends State<AboutIFCView> {
         ),
         padding: EdgeInsetsDirectional.zero,
       ),
-      drawer: AppDrawer(),
       body: Container(
         color: Colors.white,
         child: ListView(
@@ -46,23 +46,26 @@ class _AboutIFCViewState extends State<AboutIFCView> {
               margin: EdgeInsets.all(10),
                 height: _screenSize.height*0.2,
               child: Image.asset(
-                'assets/images/ifc_logo.png',
+                'assets/images/felaban_logo.png',
                 width: _screenSize.width
               ),
             ),
             Container(
-              padding: EdgeInsets.only(
-                top: 20.0,
-              ),
-              color: Color(0xFFF0F0F0),
-              height: 70.0,
-              child: Text(
-                "International Finance Corporation: IFC",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Roboto-Medium',
-                    letterSpacing: -0.5),
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: 20.0,
+                  bottom: 20.0,
+                ),
+                color: Color(0xFFF0F0F0),
+                height: 70.0,
+                child: Text(
+                  "Federación Latinoamericana de Bancos",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Roboto-Medium',
+                      letterSpacing: -0.5),
+                ),
               ),
             ),
             Divider(height: 6,),
@@ -72,9 +75,35 @@ class _AboutIFCViewState extends State<AboutIFCView> {
                   Container(
                     margin: EdgeInsets.fromLTRB(15, 40, 15, 30),
                     child: Text(
-                      "A strong and engaged private sector is indispensable to ending extreme poverty and boosting shared prosperity. That’s where IFC comes in—we have more than 60 years of experience in unlocking private investment, creating markets and opportunities where they’re needed most. Since 1956, IFC has leveraged \$2.6 billion in capital to deliver more than \$285 billion in financing for businesses in developing countries.",
+                      "La Federación Latinoamericana de Bancos, FELABAN, es una institución sin fines de lucro, constituida en 1965 en la ciudad de Mar del Plata, República Argentina. Agrupa, a través de sus respectivas asociaciones en 19 países del continente, a más de 623 bancos y entidades financieras de América Latina.",
                       style: TextStyle(
                           fontFamily: 'Roboto-Medium', fontSize: 18.0),
+                    ),
+                  ),
+                  Container(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'www.felaban.com',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Black',
+                              fontSize: 18,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                const url = 'http://www.felaban.com';
+                                if (canLaunch(url) != null) {
+                                  launch(url);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

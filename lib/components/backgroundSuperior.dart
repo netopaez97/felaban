@@ -3,14 +3,31 @@ import 'package:flutter/material.dart';
 class BackgroundSuperiorWidget extends StatefulWidget {
 
   final String titulo;
+  final bool negrita;
 
-  BackgroundSuperiorWidget({Key key, this.titulo}) : super(key: key);
+  BackgroundSuperiorWidget({Key key, this.titulo, this.negrita}) : super(key: key);
 
   @override
   _BackgroundSuperiorWidgetState createState() => _BackgroundSuperiorWidgetState();
 }
 
 class _BackgroundSuperiorWidgetState extends State<BackgroundSuperiorWidget> {
+
+  Text _mostrarTextoCentral(){
+    if(widget.negrita){
+      return Text(
+        widget.titulo,
+        style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+      );
+    }
+    else{
+      return Text(
+        widget.titulo,
+        style: TextStyle(color: Colors.white, fontSize: 17),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -32,10 +49,7 @@ class _BackgroundSuperiorWidgetState extends State<BackgroundSuperiorWidget> {
             padding: EdgeInsets.symmetric(horizontal: _paddingParaLogosYTexto, vertical: _paddingParaLogosYTexto),
             alignment: Alignment.bottomCenter,
             width: double.infinity,
-            child: Text(
-              widget.titulo,
-              style: TextStyle(color: Colors.white, fontSize: 17),
-            )
+            child: _mostrarTextoCentral()
           ),
           Container(
             width: double.infinity,

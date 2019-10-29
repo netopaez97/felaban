@@ -1,14 +1,10 @@
-import 'package:felaban/components/app_drawer.dart';
+import 'package:felaban/components/app_drawer_no_loged.dart';
 import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/models/eventosModel.dart';
-import 'package:felaban/pages/login_preview.dart';
-import 'package:felaban/pages/login_view.dart';
+import 'package:felaban/pages/login/login_preview.dart';
 import 'package:felaban/providers/eventos_provider.dart';
-import 'package:felaban/routes/Routes.dart';
-import 'package:felaban/splash/splash_evento.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeView extends StatefulWidget {
   static const routeName = '/home';
@@ -41,7 +37,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _eventos = _eventosProvider.obtenerEventosFelaban();
@@ -60,7 +55,7 @@ class _HomeViewState extends State<HomeView> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              BackgroundSuperiorWidget(titulo: "Upcoming Conferences"),
+              BackgroundSuperiorWidget(titulo: "Upcoming Conferences", negrita: false,),
               
               Container(
                 height: MediaQuery.of(context).size.height*0.6,

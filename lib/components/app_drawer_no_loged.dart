@@ -38,7 +38,6 @@ class AppDrawer extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                     Navigator.pushReplacementNamed(context, Routes.home);
                   },
                 ),
@@ -47,7 +46,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text(
                     'About FELABAN',
                     style: TextStyle(
-                      fontSize: 15.0,
+                      fontSize: 16.0,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto-medium',
                     ),
@@ -57,7 +56,6 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/about_felaban.png",),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                     Navigator.pushNamed(
                       context,
                       Routes.about_felaban,
@@ -69,7 +67,7 @@ class AppDrawer extends StatelessWidget {
                   title: Text(
                     'About IFC',
                     style: TextStyle(
-                      fontSize: 15.0,
+                      fontSize: 16.0,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Roboto-Medium',
                     ),
@@ -79,7 +77,6 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/about_ifc.png"),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.about_ifc);
                   },
                 ),
@@ -101,7 +98,6 @@ class AppDrawer extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.settings);
                   },
                 ),

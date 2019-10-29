@@ -1,7 +1,5 @@
-import 'package:felaban/components/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsView extends StatefulWidget {
   static const routeName = '/settings';
@@ -37,7 +35,6 @@ class _SettingsViewState extends State<SettingsView> {
         ),
         padding: EdgeInsetsDirectional.zero,
       ),
-      drawer: AppDrawer(),
       body: Container(
         margin: EdgeInsets.all(0),
         child: CustomScrollView(
