@@ -3,7 +3,7 @@ import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
 import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/home_view.dart';
 import 'package:felaban/pages/menu_no_loged/settings_view.dart';
-import 'package:felaban/splash/splash_evento.dart';
+import 'package:felaban/pages/splash/splash_evento.dart';
 
 class Routes {
   static const String home = HomeView.routeName;

@@ -4,7 +4,7 @@ import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/home_view.dart';
 import 'package:felaban/pages/menu_no_loged/settings_view.dart';
 import 'package:felaban/providers/eventos_provider.dart';
-import 'package:felaban/splash/splash_general.dart';
+import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

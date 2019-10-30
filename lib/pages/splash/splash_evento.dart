@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
-import 'package:felaban/pages/agenda_on.dart';
 
 class SplashEventView extends StatefulWidget {
 
@@ -23,7 +22,7 @@ class _SplashEventViewState extends State<SplashEventView> {
   void initState() {
     super.initState();
     timer = Timer(
-      Duration(seconds: 3), () => Navigator.pushReplacementNamed(context, Routes.angendaOn)
+      Duration(seconds: 3), () => Navigator.pushNamedAndRemoveUntil(context, Routes.angendaOn, (Route<dynamic> route) => false)
     );
   }
 

@@ -111,8 +111,9 @@ class _SettingsViewState extends State<SettingsView> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                          border: Border.all(color: _colorDropdown),
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))
+                          border: Border(
+                            left: BorderSide(color: _colorDropdown),
+                          ),
                         ),
                         child: Icon(Icons.arrow_drop_down, color: _colorDropdown, size: 40,),
                       ),

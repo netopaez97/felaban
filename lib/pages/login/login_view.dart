@@ -2,7 +2,7 @@ import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:felaban/pages/login/login_error.dart';
-import 'package:felaban/splash/splash_evento.dart';
+import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
