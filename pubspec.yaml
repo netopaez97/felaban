@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.1.4
   font_awesome_flutter: ^8.5.0
+  provider: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ flutter:
   - assets/huellaDigital.png
   - assets/reconocimientoFacial.png
   - assets/drawerImages/
+  - assets/home_loged/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 

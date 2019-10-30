@@ -8,6 +8,8 @@ class AppDrawer extends StatelessWidget {
   final String title;
   AppDrawer(this.title, {Key key}) : super(key:key);
 
+  final bool meetings = true;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,7 +47,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, Routes.home);
+                      
                     },
                   ),
                 ),
@@ -159,6 +161,18 @@ class AppDrawer extends StatelessWidget {
                       width: 46,
                       child: Image.asset("assets/drawerImages/deal.png"),
                     ),
+                    trailing:
+                      meetings == true
+                      ? Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.red),
+                            color: Colors.red
+                          ),
+                          child: Text("5", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),),
+                        )
+                      :   Icon(null),
                     onTap: () {
                     },
                   ),
@@ -220,24 +234,22 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
-                  color: Color(0xffF6F6F6),
-                  child: ListTile(
-                    title: Text(
-                      'Log Out',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Roboto-medium',
-                      ),
+                ListTile(
+                  title: Text(
+                    'Log Out',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Roboto-medium',
                     ),
-                    leading: Container(
-                      width: 46,
-                      child: Image.asset("assets/drawerImages/logout.png"),
-                    ),
-                    onTap: () {
-                    },
                   ),
+                  leading: Container(
+                    width: 46,
+                    child: Image.asset("assets/drawerImages/logout.png"),
+                  ),
+                  onTap: () {
+                    print("object");
+                  },
                 ),
               ],
             ),

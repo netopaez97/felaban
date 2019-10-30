@@ -5,6 +5,7 @@ import 'package:felaban/pages/login/login_preview.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   static const routeName = '/home';
@@ -44,6 +45,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+
+    final eventosInfo = Provider.of<EventosProvider>(context);
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: _barraSuperior(),
@@ -100,10 +104,23 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         ),
                       ),
-                      onTap: ()=> Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPreview(_eventos[item].titulo))
-                      ),
+                      onTap: (){
+
+                        eventosInfo.eventoActual = EventosModel(
+                          titulo: _eventos[item].titulo,
+                          descripcion: _eventos[item].descripcion,
+                          ubicacion: _eventos[item].ubicacion,
+                          fecha: _eventos[item].fecha,
+                          imagenUbicacion: _eventos[item].imagenUbicacion,
+                        );
+
+                        print(eventosInfo.eventoActual.titulo);
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPreview(_eventos[item].titulo))
+                        );
+                      }
                     ),
                   );
                 }

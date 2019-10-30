@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:felaban/pages/agenda_on.dart';
 
@@ -22,10 +23,7 @@ class _SplashEventViewState extends State<SplashEventView> {
   void initState() {
     super.initState();
     timer = Timer(
-      Duration(seconds: 3), () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => AgendaOnView(widget.titulo))
-      )
+      Duration(seconds: 3), () => Navigator.pushReplacementNamed(context, Routes.angendaOn)
     );
   }
 

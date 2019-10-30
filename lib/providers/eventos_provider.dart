@@ -1,7 +1,19 @@
 import 'package:felaban/models/eventosModel.dart';
 import 'package:flutter/material.dart';
 
-class EventosProvider {
+class EventosProvider with ChangeNotifier {
+
+  EventosModel _eventoActual;
+
+  get eventoActual {
+    return _eventoActual;
+  }
+
+  set eventoActual( EventosModel nuevoEveneto){
+    this._eventoActual = nuevoEveneto;
+
+    notifyListeners();
+  }
 
 
   List<EventosModel> obtenerEventosFelaban(){
