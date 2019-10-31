@@ -202,6 +202,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/speaker.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.perfilUsuario);
                   },
                 ),
                 ListTile(

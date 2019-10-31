@@ -1,4 +1,5 @@
 import 'package:felaban/pages/agenda_on.dart';
+import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
 import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/home_view.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           AboutIFCView.routeName: (BuildContext context) => AboutIFCView(),
           SettingsView.routeName: (BuildContext context) => SettingsView(),
           AgendaOnView.routeName: (BuildContext context) => AgendaOnView(),
+          ProfileUserView.routeName: (BuildContext context) => ProfileUserView(),
         },
       ),
     );
