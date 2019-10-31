@@ -27,16 +27,16 @@ class _AgendaOnViewState extends State<AgendaOnView> {
       border: Border.all(
         style: BorderStyle.none,
       ),
-      padding: EdgeInsetsDirectional.only(start: 10),
+      padding: EdgeInsetsDirectional.only(start: 10, end: 10),
       actionsForegroundColor: Colors.white,
       //leading: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
       leading:  GestureDetector(
         onTap: () => _scaffoldKey.currentState.openDrawer(),
         child: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
       ),
-      trailing: IconButton(
-        icon: Icon(Icons.share, color:Colors.white),
-        onPressed: (){},
+      trailing: GestureDetector(
+        child: Icon(Icons.share, color:Colors.white),
+        onTap: (){},
       ),
     );
   }

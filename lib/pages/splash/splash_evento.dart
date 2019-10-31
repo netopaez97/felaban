@@ -7,10 +7,6 @@ class SplashEventView extends StatefulWidget {
 
   static const routeName = "/splashEvent";
 
-  final String titulo;
-
-  SplashEventView(this.titulo, {Key key}) : super(key:key);
-
   @override
   _SplashEventViewState createState() => _SplashEventViewState();
 }

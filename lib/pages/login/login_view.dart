@@ -3,6 +3,7 @@ import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:felaban/pages/login/login_error.dart';
 import 'package:felaban/pages/splash/splash_evento.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -78,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
               child: IconButton(
                 icon: Image.asset("assets/reconocimientoFacial.png",width: tamanoIconos,fit: BoxFit.fitHeight,),
                 onPressed: (){
-                  
+                  Navigator.pushNamed(context, Routes.splashEventos);
                 },
                 iconSize: tamanoIconos,
               ),
@@ -91,7 +92,7 @@ class _LoginViewState extends State<LoginView> {
               child: IconButton(
                 icon: Image.asset("assets/huellaDigital.png",width: tamanoIconos, fit: BoxFit.fitHeight,),
                 onPressed: (){
-                  
+                  Navigator.pushNamed(context, Routes.splashEventos);
                 },
                 iconSize: tamanoIconos,
               ),
@@ -166,11 +167,7 @@ class _LoginViewState extends State<LoginView> {
           
           _formKey.currentState.save();
 
-          Navigator.push(context, 
-            MaterialPageRoute(
-              builder: (context) => SplashEventView(widget.title)
-            ),
-          );
+          Navigator.pushNamed(context, Routes.splashEventos);
         },
         color: Color(0xff489ED2),
         borderRadius: BorderRadius.all(Radius.zero),

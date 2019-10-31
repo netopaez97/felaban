@@ -4,6 +4,7 @@ import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
 import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/home_view.dart';
 import 'package:felaban/pages/menu_no_loged/settings_view.dart';
+import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           SettingsView.routeName: (BuildContext context) => SettingsView(),
           AgendaOnView.routeName: (BuildContext context) => AgendaOnView(),
           ProfileUserView.routeName: (BuildContext context) => ProfileUserView(),
+          SplashEventView.routeName: (BuildContext context) => SplashEventView(),
         },
       ),
     );
