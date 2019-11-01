@@ -99,7 +99,7 @@ class _HomeViewState extends State<HomeView> {
                                 padding: EdgeInsets.only(right: 2),
                                 child: Icon(Icons.calendar_today, size: 16,),
                               ),
-                              Text(_eventos[item].fecha,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                              Text(_eventos[item].fecha[0],style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
                             ],),
                           ],
                         ),

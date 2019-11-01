@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final eventosModel = eventosModelFromJson(jsonString);
+
 import 'dart:convert';
 
 EventosModel eventosModelFromJson(String str) => EventosModel.fromJson(json.decode(str));
@@ -8,7 +12,7 @@ class EventosModel {
     String titulo;
     String descripcion;
     String ubicacion;
-    String fecha;
+    List<dynamic> fecha;
     String imagenUbicacion;
 
     EventosModel({
@@ -23,7 +27,7 @@ class EventosModel {
         titulo: json["titulo"],
         descripcion: json["descripcion"],
         ubicacion: json["ubicacion"],
-        fecha: json["fecha"],
+        fecha: List<dynamic>.from(json["fecha"].map((x) => x)),
         imagenUbicacion: json["imagenUbicacion"],
     );
 
@@ -31,7 +35,7 @@ class EventosModel {
         "titulo": titulo,
         "descripcion": descripcion,
         "ubicacion": ubicacion,
-        "fecha": fecha,
+        "fecha": List<dynamic>.from(fecha.map((x) => x)),
         "imagenUbicacion": imagenUbicacion,
     };
 }

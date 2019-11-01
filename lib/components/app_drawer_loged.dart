@@ -1,17 +1,25 @@
+import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
 
-  final String title;
-  AppDrawer(this.title, {Key key}) : super(key:key);
-
   final bool meetings = true;
+  
 
   @override
   Widget build(BuildContext context) {
+
+    
+    final eventoInfo = Provider.of<EventosProvider>(context);
+    
+    final EventosModel eventoActual = eventoInfo.eventoActual;
+
+
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -30,7 +38,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    'Home $title',
+                    'Home ${eventoActual.titulo}',
                     style: TextStyle(
                       color:  Color(0xff423434),
                       fontSize: 16,
@@ -45,7 +53,11 @@ class AppDrawer extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.angendaOn,
+                      (Route<dynamic> route) => false
+                    );
                   },
                 ),
                 ListTile(
@@ -62,6 +74,11 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/clock.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.agenda,
+                      (Route<dynamic> route)=>false,
+                    );
                   },
                 ),
                 ListTile(

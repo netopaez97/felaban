@@ -3,6 +3,7 @@ import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: _barraSuperior(),
-      drawer: AppDrawer(eventoActual.titulo),
+      drawer: AppDrawer(),
       body: ListView(
         children: <Widget>[
           BackgroundSuperiorPequenoWidget( titulo: eventoActual.titulo, ),
@@ -72,7 +73,11 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Programm / Agenda", style: TextStyle(fontSize: 20),),
               subtitle: Text("September 4 - 6 2019", style: TextStyle(fontSize: 15, color: Color(0xffEF4135),),),
               onTap: (){
-                
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  Routes.agenda,
+                  (Route<dynamic> route) => false
+                );
               },
             ),
           ),
