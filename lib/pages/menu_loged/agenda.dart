@@ -47,6 +47,9 @@ class _AgendaViewState extends State<AgendaView> {
     final eventosInfo = Provider.of<EventosProvider>(context);
     final eventoActual = eventosInfo.eventoActual;
 
+    final double fontSizeTitle = 20;
+    final double fontSizeSubtitle = 15;
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: _barraSuperior(),
@@ -83,7 +86,7 @@ class _AgendaViewState extends State<AgendaView> {
                           }
                         },
                       ),
-                      Text(eventoActual.fecha[fecha], style: TextStyle(color: Colors.white, fontSize: 20),),
+                      Text(eventoActual.fecha[fecha], textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 20),),
                       IconButton(
                         icon: Icon(Icons.arrow_forward_ios, color: Colors.white,),
                         onPressed: (){
@@ -119,8 +122,8 @@ class _AgendaViewState extends State<AgendaView> {
               width: 46,
               child: Image.asset("assets/images/arrival_registration.png", color: Color(0xffC4C4C4),),
             ),
-            title: Text("Arrival & Registration", style: TextStyle(fontSize: 20)),
-            subtitle: Text("Registration Area", style: TextStyle(fontSize: 15, color: Colors.red)),
+            title: Text("Arrival & Registration", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("Registration Area", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
             trailing: IconButton(
               icon: Icon(Icons.favorite_border),
               onPressed: (){},
@@ -138,8 +141,8 @@ class _AgendaViewState extends State<AgendaView> {
               width: 46,
               child: Image.asset("assets/images/breakfast.png", color: Color(0xffC4C4C4),),
             ),
-            title: Text("Breakfast", style: TextStyle(fontSize: 20)),
-            subtitle: Text("Breakfast Area\nSponsor by SPONSOR NAME", style: TextStyle(fontSize: 15, color: Colors.red)),
+            title: Text("Breakfast", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("Breakfast Area\nSponsor by SPONSOR NAME", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
             trailing: IconButton(
               icon: Icon(Icons.favorite_border),
               onPressed: (){},
@@ -157,10 +160,67 @@ class _AgendaViewState extends State<AgendaView> {
               width: 46,
               child: Image.asset("assets/drawerImages/speaker.png", color: Color(0xffC4C4C4),),
             ),
-            title: Text("Opening Remarks", style: TextStyle(fontSize: 20)),
-            subtitle: Text("Main Salon\nFELABAN", style: TextStyle(fontSize: 15, color: Colors.red)),
+            title: Text("Opening Remarks", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("Main Salon\nFELABAN", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
             trailing: IconButton(
               icon: Icon(Icons.favorite, color: Color(0xffD80027),),
+              onPressed: (){},
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            color: Color(0xffF6F6F6),
+            height: 46,
+            alignment: Alignment.centerLeft,
+            child: Text("10:00 AM", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+          ),
+          ListTile(
+            leading: Container(
+              width: 46,
+              child: Image.asset("assets/images/adam_burke.png"),
+            ),
+            title: Text("Session #1", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("AARON LASHER\Chief Marketing Officer - Bread Wallet", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+            trailing: IconButton(
+              icon: Icon(Icons.favorite_border, color: Color(0xffD80027),),
+              onPressed: (){},
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            color: Color(0xffF6F6F6),
+            height: 46,
+            alignment: Alignment.centerLeft,
+            child: Text("12:00 AM", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+          ),
+          ListTile(
+            leading: Container(
+              width: 46,
+              child: Image.asset("assets/images/aaron_lasher.png"),
+            ),
+            title: Text("Session #2", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("ADAM BURKE\nUS Azure Channel Sales Director - Microsoft", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+            trailing: IconButton(
+              icon: Icon(Icons.favorite, color: Color(0xffD80027),),
+              onPressed: (){},
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            color: Color(0xffF6F6F6),
+            height: 46,
+            alignment: Alignment.centerLeft,
+            child: Text("01:00 PM", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+          ),
+          ListTile(
+            leading: Container(
+              width: 46,
+              child: Image.asset("assets/images/breakfast.png", color: Color(0xffC4C4C4),),
+            ),
+            title: Text("Breakfast", style: TextStyle(fontSize: fontSizeTitle)),
+            subtitle: Text("Breakfast Area\nSponsor by SPONSOR NAME", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+            trailing: IconButton(
+              icon: Icon(Icons.favorite_border),
               onPressed: (){},
             ),
           ),
