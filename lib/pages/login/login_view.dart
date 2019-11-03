@@ -185,13 +185,8 @@ class _LoginViewState extends State<LoginView> {
             _formKey.currentState.save();
             if (!await usuario.signIn(   _usuarioContrasena["correo"], _usuarioContrasena["pass"])  )
             {
-              showDialog(
-                context: context,
-                builder: (BuildContext context){
-                  return AlertDialog(
-                    title: Text("No pudiste iniciar sesión"),
-                  );
-                }
+              Navigator.push(context,
+                MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
               );
             }
             else

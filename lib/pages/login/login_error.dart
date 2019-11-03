@@ -38,35 +38,35 @@ class _LoginErrorViewState extends State<LoginErrorView> {
     return Column(
       children: <Widget>[
         BackgroundSuperiorWidget(titulo: widget.title, negrita: true,),
-        Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.1),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text("We’re sorry but you are not participating on this Conference.", textAlign: TextAlign.center, style: TextStyle(fontSize: 17),),
-              SizedBox(height: 29,),
-              Container(
-                height: 52,
-                child: RaisedButton(
-                  elevation: 0,
-                  color: Color(0XFFA1A1A1),
-                  onPressed: (){
-                    const url = 'https://registro.felaban.net/';
-                    if (canLaunch(url) != null) {
-                      launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  child: Text("REGISTER NOW", style: TextStyle(fontSize: 20, color: Colors.white),),
-                ),
-              ),
-            ],
-          )
-        ),
         Expanded(
           child: Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.1),
+            child: ListView(
+              children: <Widget>[
+                Text("We’re sorry but you are not participating on this Conference.", textAlign: TextAlign.center, style: TextStyle(fontSize: 17),),
+                SizedBox(height: 29,),
+                Container(
+                  height: 52,
+                  child: RaisedButton(
+                    elevation: 0,
+                    color: Color(0XFFA1A1A1),
+                    onPressed: (){
+                      const url = 'https://registro.felaban.net/';
+                      if (canLaunch(url) != null) {
+                        launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    child: Text("REGISTER NOW", style: TextStyle(fontSize: 20, color: Colors.white),),
+                  ),
+                ),
+              ],
+            )
+          ),
+        ),
+        Container(
           padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.1),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -82,7 +82,6 @@ class _LoginErrorViewState extends State<LoginErrorView> {
               ],
             )
           ),
-        ),
       ],
     );
   }
