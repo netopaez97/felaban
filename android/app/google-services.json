@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "292302340410",
+    "firebase_url": "https://felaban-app-a8969.firebaseio.com",
+    "project_id": "felaban-app-a8969",
+    "storage_bucket": "felaban-app-a8969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292302340410:android:42e049e3c5153ef29d9003",
+        "android_client_info": {
+          "package_name": "com.kubilabs.felaban"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292302340410-bqk1hmf4un8jiudvrujvjo4ngdrqcqr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMzfkpyIhdlCN4n5YxdT5DCo0mq49dyZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292302340410-bqk1hmf4un8jiudvrujvjo4ngdrqcqr1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "292302340410-rkgsgkb6bpiam66fcg03vvo2jrr490u8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kubilabs.felaban"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

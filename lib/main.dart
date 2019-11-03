@@ -8,6 +8,7 @@ import 'package:felaban/pages/menu_no_loged/settings_view.dart';
 import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/pages/splash/splash_general.dart';
+import 'package:felaban/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider( builder: (context) => EventosProvider() ),
+        ChangeNotifierProvider( builder: (context) => UserProvider.instance() ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.blue,
         ),
         initialRoute: '/',
         debugShowCheckedModeBanner: false,

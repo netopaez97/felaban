@@ -3,9 +3,11 @@ import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:felaban/pages/login/login_error.dart';
 import 'package:felaban/pages/splash/splash_evento.dart';
+import 'package:felaban/providers/user_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   
@@ -29,6 +31,12 @@ class _LoginViewState extends State<LoginView> {
   }
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _key = GlobalKey<ScaffoldState>();
+
+  Map<String,dynamic> _usuarioContrasena = {
+    "correo":String,
+    "pass":String,
+  };
 
   Widget _cuerpoDeLaVista(){
     return Form(
@@ -117,7 +125,9 @@ class _LoginViewState extends State<LoginView> {
           labelText: 'Username (your email)',
         ),
         onSaved: (String value) {
-          
+          setState(() {
+            _usuarioContrasena["correo"] = value;
+          });
         },
         validator: (String value) {
           if (value.isEmpty ||
@@ -145,7 +155,9 @@ class _LoginViewState extends State<LoginView> {
         ),
         obscureText: true,
         onSaved: (String value) {
-          
+          setState(() {
+            _usuarioContrasena["pass"] = value;
+          });
         },
         validator: (String value) {
           if (value.isEmpty) 
@@ -158,21 +170,37 @@ class _LoginViewState extends State<LoginView> {
 
   
   Widget _botonNext(){
-    return Container(
-      child: CupertinoButton(
-        child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
-        onPressed: (){
-          if(!_formKey.currentState.validate())
-            return null;
-          
-          _formKey.currentState.save();
 
-          Navigator.pushNamed(context, Routes.splashEventos);
-        },
-        color: Color(0xff489ED2),
-        borderRadius: BorderRadius.all(Radius.zero),
-      ),
-    );
+    final usuario = Provider.of<UserProvider>(context);
+
+    return usuario.status == Status.Authenticating
+      ? Center(child: CircularProgressIndicator())
+      : Container(
+        child: CupertinoButton(
+          child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
+          onPressed: () async {
+            if(!_formKey.currentState.validate())
+              return null;
+            
+            _formKey.currentState.save();
+            if (!await usuario.signIn(   _usuarioContrasena["correo"], _usuarioContrasena["pass"])  )
+            {
+              showDialog(
+                context: context,
+                builder: (BuildContext context){
+                  return AlertDialog(
+                    title: Text("No pudiste iniciar sesión"),
+                  );
+                }
+              );
+            }
+            else
+              Navigator.pushNamed(context, Routes.splashEventos);
+          },
+          color: Color(0xff489ED2),
+          borderRadius: BorderRadius.all(Radius.zero),
+        ),
+      );
   }
 
   Widget _nuevoUsuarioOlvidoPass(){
