@@ -1,5 +1,6 @@
 import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/user_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class AppDrawer extends StatelessWidget {
 
     
     final eventoInfo = Provider.of<EventosProvider>(context);
+    final usuario = Provider.of<UserProvider>(context);
     
     final EventosModel eventoActual = eventoInfo.eventoActual;
 
@@ -236,6 +238,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/logout.png"),
                   ),
                   onTap: () {
+                    usuario.signOut();
                     Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route) => false);
                   },
                 ),

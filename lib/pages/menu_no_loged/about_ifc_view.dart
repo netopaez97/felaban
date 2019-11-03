@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutIFCView extends StatefulWidget {
   static const routeName = '/about_ifc';
@@ -89,7 +90,19 @@ class _AboutIFCViewState extends State<AboutIFCView> {
                                 height: 50.0,
                                 child: RaisedButton(
                                   color: Color(0xffC4C4C4),
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    const url = 'https://www.addtoany.com/add_to/email?linkurl=https%3A%2F%2Fwww.ifc.org%2Fwps%2Fwcm%2Fconnect%2Fmultilingual_ext_content%2Fifc_external_corporate_site%2Fhome_es&linkname=Acerca%20de%20IFC&linknote=TRABAJAMOS%20CON%20EL%20SECTOR%20PRIVADO%20DE%20LOS%20PA%C3%8DSES%20EN%20DESARROLLO%20PARA%20AYUDAR%20A%20CREAR%20OPORTUNIDADES%20PARA%20TODOS';
+                                    try{
+                                      if (canLaunch(url) != null) {
+                                        launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    }
+                                    catch (e){
+                                      
+                                    }
+                                  },
                                   child: Text(
                                     "EMAIL",
                                     style: TextStyle(
@@ -108,7 +121,17 @@ class _AboutIFCViewState extends State<AboutIFCView> {
                                 child: RaisedButton(
                                   color: Color(0xffC4C4C4),
                                   onPressed: (){
-                                    print(_screenSize.height*0.1);
+                                    const url = 'https://www.ifc.org/wps/wcm/connect/multilingual_ext_content/ifc_external_corporate_site/home_es';
+                                    try{
+                                      if (canLaunch(url) != null) {
+                                        launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    }
+                                    catch (e){
+                                      
+                                    }
                                   },
                                   child: Text(
                                     "WEBSITE",

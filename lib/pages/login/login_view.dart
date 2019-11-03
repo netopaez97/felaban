@@ -209,18 +209,6 @@ class _LoginViewState extends State<LoginView> {
           Expanded(
             child:  Container(
               child: FlatButton(
-                child: Text("New user?",style: TextStyle(color: Colors.grey, fontSize: 16),),
-                onPressed: (){
-                  Navigator.push(context,
-                    MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
-                  );
-                },
-            ),
-            )
-          ),
-          Expanded(
-            child:  Container(
-              child: FlatButton(
                 child: Text("Forgot password?",style: TextStyle(color: Colors.grey, fontSize: 16),),
                 onPressed: (){
                   Navigator.push(context,
