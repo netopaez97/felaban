@@ -12,6 +12,15 @@ class AboutFelabanView extends StatefulWidget {
 
 class _AboutFelabanViewState extends State<AboutFelabanView> {
 
+  _launchURL(String toMailId, String subject, String body) async {
+    var url = 'mailto:$toMailId?subject=$subject&body=$body';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +131,9 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                                 height: 50.0,
                                 child: RaisedButton(
                                   color: Color(0xffC4C4C4),
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    _launchURL('soporte@felaban.net', '', '');
+                                  },
                                   child: Text(
                                     "EMAIL",
                                     style: TextStyle(
@@ -141,7 +152,17 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
                                 child: RaisedButton(
                                   color: Color(0xffC4C4C4),
                                   onPressed: (){
-                                    print(_screenSize.height*0.1);
+                                    const url = 'http://www.felaban.com/';
+                                    try{
+                                      if (canLaunch(url) != null) {
+                                        launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    }
+                                    catch (e){
+                                      
+                                    }
                                   },
                                   child: Text(
                                     "WEBSITE",
