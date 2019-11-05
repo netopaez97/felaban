@@ -1,4 +1,5 @@
 import 'package:felaban/components/app_drawer_loged.dart';
+import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,30 +15,7 @@ class AgendaView extends StatefulWidget {
 
 class _AgendaViewState extends State<AgendaView> {
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int fecha = 0;
-
-
-
-  Widget _barraSuperior(){
-    return CupertinoNavigationBar(
-      backgroundColor: Color(0xff8C8C8C),
-      border: Border.all(
-        style: BorderStyle.none,
-      ),
-      padding: EdgeInsetsDirectional.only(start: 10, end: 10),
-      actionsForegroundColor: Colors.white,
-      //leading: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
-      leading:  GestureDetector(
-        onTap: () => _scaffoldKey.currentState.openDrawer(),
-        child: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
-      ),
-      trailing: GestureDetector(
-        child: Icon(Icons.share, color:Colors.white),
-        onTap: (){},
-      ),
-    );
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -51,9 +29,7 @@ class _AgendaViewState extends State<AgendaView> {
     final double fontSizeSubtitle = 15;
 
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: _barraSuperior(),
-      drawer: AppDrawer(),
+      appBar: barraSuperior(context),
       body: ListView(
         children: <Widget>[
           Container(

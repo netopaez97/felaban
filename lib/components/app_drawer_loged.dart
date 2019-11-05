@@ -34,7 +34,12 @@ class AppDrawer extends StatelessWidget {
                       padding: EdgeInsets.only(left: 15),
                       alignment: Alignment.centerLeft,
                       color: Color(0xFF004A80),
-                      child: Text('Switch Event', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
+                      child: FlatButton(
+                        onPressed: (){
+                          Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route)=>false);
+                        },
+                        child: Text('Switch Event', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
+                      )
                     ),
                   )
                 ),

@@ -9,12 +9,15 @@ Widget barraSuperior(BuildContext context){
         onTap: (){
           Navigator.pop(context);
         },
-        child: Row(
-          children: <Widget>[
-            Icon(CupertinoIcons.back,),
-            Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
-          ],
-        ),
+        child: Container(
+          height: double.maxFinite,
+          child: Row(
+            children: <Widget>[
+              Icon(CupertinoIcons.back,),
+              Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
+          ),
+        )
       ),
       border: Border.all(
         style: BorderStyle.none
