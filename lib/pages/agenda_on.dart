@@ -73,10 +73,9 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Programm / Agenda", style: TextStyle(fontSize: 20),),
               subtitle: Text("September 4 - 6 2019", style: TextStyle(fontSize: 15, color: Color(0xffEF4135),),),
               onTap: (){
-                Navigator.pushNamedAndRemoveUntil(
+                Navigator.pushNamed(
                   context,
                   Routes.agenda,
-                  (Route<dynamic> route) => false
                 );
               },
             ),
