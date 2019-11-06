@@ -186,7 +186,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Container(
                   child: CupertinoSwitch(
                     activeColor: Colors.green,
-                    value: false,
+                    value: true,
                     onChanged: (bool value) {
                       setState(() {});
                     },
@@ -214,7 +214,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Container(
                   child: CupertinoSwitch(
                     activeColor: Colors.green,
-                    value: false,
+                    value: true,
                     onChanged: (bool value) {
                       setState(() {});
                     },

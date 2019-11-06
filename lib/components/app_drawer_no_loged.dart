@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ui' as ui;
 
+import 'package:url_launcher/url_launcher.dart';
+
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,44 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10,),
-                Image.asset("assets/drawerImages/social_media.png"),
+                
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Image.asset("assets/drawerImages/instagramIcon.png"),
+                        onPressed: (){
+                          const url = 'https://www.instagram.com/felaban/?hl=es-la';
+                          if (canLaunch(url) != null) {
+                            launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                      ),
+                      IconButton(
+                        icon: Image.asset("assets/drawerImages/twitterIcon.png"),
+                        onPressed: (){
+                          const url = 'https://twitter.com/FelabanOnline';
+                          if (canLaunch(url) != null) {
+                            launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                      ),
+                      IconButton(
+                        icon: Image.asset("assets/drawerImages/facebookIcon.png"),
+                        onPressed: (){
+                          const url = 'https://www.facebook.com/felabanoficial/';
+                          if (canLaunch(url) != null) {
+                            launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                      ),
+                    ],
+                  )
               ],
             ),
           ),
@@ -134,7 +173,17 @@ class AppDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text("Powered by: ", style: TextStyle(color: Color(0xffA1A1A1)),),
-                  Image.asset("assets/drawerImages/kubilabs_logo.png"),
+                  GestureDetector(
+                    child: Image.asset("assets/drawerImages/kubilabs_logo.png"),
+                    onTap:(){
+                      const url = 'https://kubilabs.com';
+                      if (canLaunch(url) != null) {
+                        launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }
+                  )
                 ],
               )
             ),

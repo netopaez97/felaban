@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
 
@@ -260,7 +261,17 @@ class AppDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text("Powered by: ", style: TextStyle(color: Color(0xffA1A1A1)),),
-                  Image.asset("assets/drawerImages/kubilabs_logo.png"),
+                  GestureDetector(
+                    child: Image.asset("assets/drawerImages/kubilabs_logo.png"),
+                    onTap:(){
+                      const url = 'https://kubilabs.com';
+                      if (canLaunch(url) != null) {
+                        launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    }
+                  ),
                 ],
               )
             ),
