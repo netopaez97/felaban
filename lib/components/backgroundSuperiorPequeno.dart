@@ -5,10 +5,6 @@ import 'package:provider/provider.dart';
 
 class BackgroundSuperiorPequenoWidget extends StatefulWidget {
 
-  final String titulo;
-
-  BackgroundSuperiorPequenoWidget({Key key, this.titulo}) : super(key: key);
-
   @override
   _BackgroundSuperiorPequenoWidgetState createState() => _BackgroundSuperiorPequenoWidgetState();
 }

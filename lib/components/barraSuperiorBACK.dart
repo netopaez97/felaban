@@ -5,19 +5,11 @@ Widget barraSuperior(BuildContext context){
   return CupertinoNavigationBar(
       backgroundColor: Color(0xff8C8C8C),
       actionsForegroundColor: Colors.white,
-      leading: GestureDetector(
-        onTap: (){
+      leading: CupertinoNavigationBarBackButton(
+        previousPageTitle: "Back",
+        onPressed: (){
           Navigator.pop(context);
         },
-        child: Container(
-          height: double.maxFinite,
-          child: Row(
-            children: <Widget>[
-              Icon(CupertinoIcons.back,),
-              Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
-            ],
-          ),
-        )
       ),
       border: Border.all(
         style: BorderStyle.none

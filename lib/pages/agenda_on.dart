@@ -35,10 +35,6 @@ class _AgendaOnViewState extends State<AgendaOnView> {
         onTap: () => _scaffoldKey.currentState.openDrawer(),
         child: Icon(IconData(0xF394, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage)),
       ),
-      trailing: GestureDetector(
-        child: Icon(Icons.share, color:Colors.white),
-        onTap: (){},
-      ),
     );
   }
 
@@ -55,7 +51,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
       drawer: AppDrawer(),
       body: ListView(
         children: <Widget>[
-          BackgroundSuperiorPequenoWidget( titulo: eventoActual.titulo, ),
+          BackgroundSuperiorPequenoWidget(),
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -98,7 +94,10 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Speakers", style: TextStyle(fontSize: 20),),
               subtitle: Text("See all contributors", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(
+                  context,
+                  Routes.speakers,
+                );
               },
             ),
           ),
