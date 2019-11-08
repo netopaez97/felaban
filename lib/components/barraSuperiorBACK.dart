@@ -11,9 +11,6 @@ Widget barraSuperior(BuildContext context){
           Navigator.pop(context);
         },
       ),
-      border: Border.all(
-        style: BorderStyle.none
-      ),
       padding: EdgeInsetsDirectional.zero,
     );
 }

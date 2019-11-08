@@ -1,5 +1,6 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/pages/menu_loged/detalle_speakers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Liz Wiseman", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Executive Strategy and Leadership Consultant", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/liz_wiseman.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -80,7 +83,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Matt Higgins", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Co-founder and CEO RSE Ventures, Shark Tank Panelist", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-                  
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/matt_higgins.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -89,7 +94,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Liz Wiseman", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Executive Strategy and Leadership Consultant", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/liz_wiseman.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -98,7 +105,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Matt Higgins", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Co-founder and CEO RSE Ventures, Shark Tank Panelist", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-                  
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/matt_higgins.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -107,7 +116,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Liz Wiseman", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Executive Strategy and Leadership Consultant", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/liz_wiseman.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -116,7 +127,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Matt Higgins", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Co-founder and CEO RSE Ventures, Shark Tank Panelist", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-                  
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/matt_higgins.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
@@ -125,7 +138,9 @@ class _SpeakersViewState extends State<SpeakersView> {
                 title: Text("Liz Wiseman", style: TextStyle(fontSize: 20),),
                 subtitle: Text("Executive Strategy and Leadership Consultant", style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                 onTap: (){
-
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView("assets/speakers/liz_wiseman.png")
+                  ));
                 },
               ),
               Divider(color: _colorDivider,),
