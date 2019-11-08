@@ -13,14 +13,16 @@ class EventosModel {
     String descripcion;
     String ubicacion;
     List<dynamic> fecha;
-    String imagenUbicacion;
+    String imagenPequena;
+    String imagenGrande;
 
     EventosModel({
         this.titulo,
         this.descripcion,
         this.ubicacion,
         this.fecha,
-        this.imagenUbicacion,
+        this.imagenPequena,
+        this.imagenGrande,
     });
 
     factory EventosModel.fromJson(Map<String, dynamic> json) => EventosModel(
@@ -28,7 +30,8 @@ class EventosModel {
         descripcion: json["descripcion"],
         ubicacion: json["ubicacion"],
         fecha: List<dynamic>.from(json["fecha"].map((x) => x)),
-        imagenUbicacion: json["imagenUbicacion"],
+        imagenPequena: json["imagenPequena"],
+        imagenGrande: json["imagenGrande"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -36,6 +39,7 @@ class EventosModel {
         "descripcion": descripcion,
         "ubicacion": ubicacion,
         "fecha": List<dynamic>.from(fecha.map((x) => x)),
-        "imagenUbicacion": imagenUbicacion,
+        "imagenPequena": imagenPequena,
+        "imagenGrande": imagenGrande,
     };
 }

@@ -78,7 +78,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       child: ListTile(
                         leading: Image.asset(
-                          _eventos[item].imagenUbicacion,
+                          _eventos[item].imagenPequena,
                           width: 73,
                         ),
                         title: Container(
@@ -112,7 +112,8 @@ class _HomeViewState extends State<HomeView> {
                             descripcion: _eventos[item].descripcion,
                             ubicacion: _eventos[item].ubicacion,
                             fecha: _eventos[item].fecha,
-                            imagenUbicacion: _eventos[item].imagenUbicacion,
+                            imagenPequena: _eventos[item].imagenPequena,
+                            imagenGrande: _eventos[item].imagenGrande,
                           );
 
                           print(eventosInfo.eventoActual.titulo);

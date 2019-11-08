@@ -75,11 +75,11 @@ class _BackgroundSuperiorPequenoWidgetState extends State<BackgroundSuperiorPequ
             ), */
             Container(
               width: _sizeScreen.width*0.7,
-              alignment: Alignment.topCenter,
-              padding: EdgeInsets.only(top: _sizeScreen.height*0.02),
+              padding: EdgeInsets.only(top: _sizeScreen.height*0.02, left: 10, bottom: 20),
               child: Image.asset(
-                "assets/images/clab.png",
+                eventoActual.imagenGrande,
                 width: 263,
+                alignment: Alignment.centerLeft,
               ),
             ),
             Container(
