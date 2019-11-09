@@ -55,6 +55,7 @@ flutter:
   - assets/drawerImages/
   - assets/home_loged/
   - assets/speakers/
+  - assets/detalleAgenda/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 

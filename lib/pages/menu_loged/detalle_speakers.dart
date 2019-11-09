@@ -1,4 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/pages/menu_loged/detalle_agenda.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -191,7 +192,9 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
             ),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: (){
-
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) => DetalleAgendaView()
+              ));
             },
           ),
         ),
@@ -212,7 +215,9 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
             ),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: (){
-              
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) => DetalleAgendaView()
+              ));
             },
           ),
         ),
