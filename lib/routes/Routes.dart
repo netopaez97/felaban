@@ -1,5 +1,6 @@
 import 'package:felaban/pages/agenda_on.dart';
 import 'package:felaban/pages/menu_loged/agenda.dart';
+import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/speakers.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
@@ -17,5 +18,6 @@ class Routes {
   static const String angendaOn = AgendaOnView.routeName;
   static const String perfilUsuario = ProfileUserView.routeName;
   static const String agenda = AgendaView.routeName;
+  static const String detalleAgenda = DetalleAgendaView.routeName;
   static const String speakers = SpeakersView.routeName;
 }

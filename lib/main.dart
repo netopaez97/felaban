@@ -1,5 +1,6 @@
 import 'package:felaban/pages/agenda_on.dart';
 import 'package:felaban/pages/menu_loged/agenda.dart';
+import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/speakers.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           ProfileUserView.routeName: (BuildContext context) => ProfileUserView(),
           SplashEventView.routeName: (BuildContext context) => SplashEventView(),
           AgendaView.routeName: (BuildContext context) => AgendaView(),
+          DetalleAgendaView.routeName: (BuildContext context) => DetalleAgendaView(),
           SpeakersView.routeName: (BuildContext context) => SpeakersView(),
         },
       ),

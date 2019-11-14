@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class DetalleAgendaView extends StatefulWidget {
 
+  static const routeName = "/detalleAgenda";
+
   @override
   _DetalleAgendaViewState createState() => _DetalleAgendaViewState();
 }
@@ -25,8 +27,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
     },
   ];
 
-  bool _questionAndAnswerActive = true;
-  bool _livePollsActive = true;
+  bool _eventoActivo = true;
 
   Widget _cuerpoDeLaPagina(){
     return ListView(
@@ -47,88 +48,131 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _informacionCeremonia(){
-    return Container(
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _eventoActivo = !_eventoActivo;
+        });
+      },
+      child: Container(
       height: 110,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            color: Colors.black,
-            width: double.infinity,
-            child: Image.asset("assets/background.png", fit: BoxFit.cover,),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 10, right: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(_nombreAgenda, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
-                Text("Wednesday 09:30 - 10:00 am", style: TextStyle(color: Colors.white, fontSize: 16),),
-                Text("Sep 01, 2019", style: TextStyle(color: Colors.white, fontSize: 16),),
-              ],
+        child: Stack(
+          children: <Widget>[
+            Container(
+              color: Colors.black,
+              width: double.infinity,
+              child: Image.asset("assets/background.png", fit: BoxFit.cover,),
             ),
-          ),
-          Container(
-            height: double.infinity,
-            margin: EdgeInsets.only(bottom: 10, right: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Icon(Icons.place, color:Colors.white),
-                Text("Main Central Area", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold))
-              ],
+            Container(
+              margin: EdgeInsets.only(left: 10, top: 10, right: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(_nombreAgenda, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                  Text("Wednesday 09:30 - 10:00 am", style: TextStyle(color: Colors.white, fontSize: 16),),
+                  Text("Sep 01, 2019", style: TextStyle(color: Colors.white, fontSize: 16),),
+                ],
+              ),
             ),
-          )
-        ],
+            Container(
+              height: double.infinity,
+              margin: EdgeInsets.only(bottom: 10, right: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Icon(Icons.place, color:Colors.white),
+                  Text("Main Central Area", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold))
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget _pasarelaOpciones(){
+
+    double anchoBotones = MediaQuery.of(context).size.width*0.22;
+
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: MediaQuery.of(context).size.width*0.04),
       color: Color(0xff489ED2),
-      height: 76,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Add to calendar", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+            child: Container(
+              width: anchoBotones,
+              child: Column(
+                children: <Widget>[
+                  IconButton(
+                    icon: _eventoActivo == false
+                    
+                    ? Image.asset("assets/detalleAgenda/calendario.png")
+                    : Image.asset("assets/detalleAgenda/calendario.png", color: Colors.white.withOpacity(0.34),),
+
+                    onPressed: (){},
+                  ),
+                    _eventoActivo == false
+
+                    ? Text("Add to calendar", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,)
+                    : Text("Add to calendar", style: TextStyle(color: Colors.white.withOpacity(0.34), fontSize: 12), textAlign: TextAlign.center,),
+                ],
+              ),
             ),
             onTap: (){},
           ),
           GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Reminder", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+            child: Container(
+              width: anchoBotones,
+              child: Column(
+                children: <Widget>[
+
+                  IconButton(
+                      icon: _eventoActivo == false
+                      
+                      ? Icon(IconData(0xF35A, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+                      : Icon(IconData(0xF35A, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white.withOpacity(0.34), size: 34,),
+                      onPressed: (){},
+                    ),
+                    _eventoActivo == false
+
+                    ? Text("Reminder", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,)
+                    : Text("Reminder", style: TextStyle(color: Colors.white.withOpacity(0.34), fontSize: 12), textAlign: TextAlign.center,),  
+                ],
+              ),
             ),
             onTap: (){},
           ),
           GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+            child: Container(
+              width: anchoBotones,
+              child: Column(
+                children: <Widget>[
+                  IconButton(
+                    icon: Image.asset("assets/detalleAgenda/camera.png"),
+                    onPressed: null,
+                  ),
+                  Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
+                ],
+              ),
             ),
             onTap: (){},
           ),
           GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+            child: Container(
+              width: anchoBotones,
+              child: Column(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
+                    onPressed: (){},
+                  ),
+                  Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
+                ],
+              ),
             ),
             onTap: (){},
           ),
@@ -202,30 +246,23 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _sessionQyATituloBarra(){
-    return GestureDetector(
-      onTap: (){
-        setState(() {
-          _questionAndAnswerActive = !_questionAndAnswerActive;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        color: Color(0xffC4C4C4),
-        height: 53,
-        alignment: Alignment.centerLeft,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text("SESSION Q&A", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
-            Image.asset("assets/detalleAgenda/qya.png", color: Colors.white,)
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      color: Color(0xffC4C4C4),
+      height: 53,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("SESSION Q&A", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+          Image.asset("assets/detalleAgenda/qya.png", color: Colors.white,)
+        ],
       ),
     );
   }
 
   Widget _sessionQyADescription(){
-    if(_questionAndAnswerActive == false)
+    if(_eventoActivo == false)
       return Container(
         margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
         child: Text("Questions can be submitted one hour before and Up to thirty minutes after this sesion.", style: TextStyle(fontSize: 16), )
@@ -246,30 +283,23 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _livePollsTituloBarra(){
-    return GestureDetector(
-      onTap: (){
-        setState(() {
-          _livePollsActive = !_livePollsActive;
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        color: Color(0xffC4C4C4),
-        height: 53,
-        alignment: Alignment.centerLeft,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text("LIVE POLLS", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
-            Image.asset("assets/detalleAgenda/live_polls.png",)
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      color: Color(0xffC4C4C4),
+      height: 53,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("LIVE POLLS", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+          Image.asset("assets/detalleAgenda/live_polls.png",)
+        ],
       ),
     );
   }
 
   Widget _livePollsDescripcion(){
-    if(_livePollsActive == false)
+    if(_eventoActivo == false)
       return Container(
         margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
         child: Text("No active Polls at this moment, please come back when session is Live.", style: TextStyle(fontSize: 16), )

@@ -1,6 +1,7 @@
 import 'package:felaban/components/app_drawer_loged.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -104,6 +105,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite_border),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -123,6 +127,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite_border),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -142,6 +149,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite, color: Color(0xffD80027),),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -161,6 +171,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite_border, color: Color(0xffD80027),),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -180,6 +193,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite, color: Color(0xffD80027),),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -199,6 +215,9 @@ class _AgendaViewState extends State<AgendaView> {
               icon: Icon(Icons.favorite_border),
               onPressed: (){},
             ),
+            onTap: (){
+              Navigator.pushNamed(context, Routes.detalleAgenda);
+            },
           ),
         ],
       ),
