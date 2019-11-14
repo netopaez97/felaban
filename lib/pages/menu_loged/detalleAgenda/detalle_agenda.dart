@@ -122,7 +122,6 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 ],
               ),
             ),
-            onTap: (){},
           ),
           GestureDetector(
             child: Container(
@@ -144,7 +143,6 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 ],
               ),
             ),
-            onTap: (){},
           ),
           GestureDetector(
             child: Container(
@@ -159,7 +157,6 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 ],
               ),
             ),
-            onTap: (){},
           ),
           GestureDetector(
             child: Container(
@@ -174,7 +171,6 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 ],
               ),
             ),
-            onTap: (){},
           ),
         ],
       ),

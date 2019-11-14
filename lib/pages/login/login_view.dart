@@ -179,7 +179,7 @@ class _LoginViewState extends State<LoginView> {
         child: CupertinoButton(
           child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
           onPressed: () async {
-            if(!_formKey.currentState.validate())
+            /* if(!_formKey.currentState.validate())
               return null;
             
             _formKey.currentState.save();
@@ -189,7 +189,7 @@ class _LoginViewState extends State<LoginView> {
                 MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
               );
             }
-            else
+            else */
               Navigator.pushNamed(context, Routes.splashEventos);
           },
           color: Color(0xff489ED2),
