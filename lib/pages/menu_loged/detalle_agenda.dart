@@ -10,11 +10,38 @@ class DetalleAgendaView extends StatefulWidget {
 
 class _DetalleAgendaViewState extends State<DetalleAgendaView> {
 
+  final String _nombreAgenda = "Opening ceremony";
+
+  final List _listaDeSpeakers = [
+    {
+      "nombre":"Laura Bommer",
+      "cargo":"Moderator",
+      "imagenUbicacion":"assets/detalleAgenda/laura_bommer.png",
+    },
+    {
+      "nombre":"Giorgio Trettenero Castro",
+      "cargo":"Secretary General FELABAN",
+      "imagenUbicacion":"assets/images/profile_face.png",
+    },
+  ];
+
+  bool _questionAndAnswerActive = true;
+  bool _livePollsActive = true;
+
   Widget _cuerpoDeLaPagina(){
     return ListView(
       children: <Widget>[
         _informacionCeremonia(),
         _pasarelaOpciones(),
+        _descripcion(),
+        _speakersTituloBarra(),
+        _speakersContenido(),
+        _sessionQyATituloBarra(),
+        _sessionQyADescription(),
+        _livePollsTituloBarra(),
+        _livePollsDescripcion(),
+        _photosTituloBarra(),
+        _photosDescripcion(),
       ],
     );
   }
@@ -34,7 +61,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Opening Ceremony", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                Text(_nombreAgenda, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
                 Text("Wednesday 09:30 - 10:00 am", style: TextStyle(color: Colors.white, fontSize: 16),),
                 Text("Sep 01, 2019", style: TextStyle(color: Colors.white, fontSize: 16),),
               ],
@@ -119,6 +146,191 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _descripcion(){
+    return Container(
+      margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(_nombreAgenda.toUpperCase(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+          SizedBox(height: 5,),
+          Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", style: TextStyle(fontSize: 16), )
+        ],
+      )
+    );
+  }
+
+  Widget _speakersTituloBarra(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      color: Color(0xffC4C4C4),
+      height: 53,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("SPEAKERS", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+          Image.asset("assets/drawerImages/speaker.png", color: Colors.white,)
+        ],
+      ),
+    );
+  }
+
+  Widget _speakersContenido(){
+
+    List<Widget> _speakersAMostrar = [];
+    _listaDeSpeakers.map((speaker) => _speakersAMostrar.add(
+      Container(
+        color: Color(0xffEEEEEE),
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              leading: Container(
+                width: 71,
+                height: 71,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(speaker["imagenUbicacion"]),
+                  )
+                )
+              ),
+              title: Text(speaker["nombre"], style: TextStyle(fontSize: 20),),
+              subtitle: Text(speaker["cargo"], style: TextStyle(fontSize: 17),),
+              trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
+            ),
+            Divider(color: Colors.white, height: 1,)
+          ],
+        )
+      ),
+    )).toList();
+
+    return Column(
+      children: _speakersAMostrar,
+    );
+  }
+
+  Widget _sessionQyATituloBarra(){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _questionAndAnswerActive = !_questionAndAnswerActive;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        color: Color(0xffC4C4C4),
+        height: 53,
+        alignment: Alignment.centerLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("SESSION Q&A", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+            Image.asset("assets/detalleAgenda/qya.png", color: Colors.white,)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sessionQyADescription(){
+    if(_questionAndAnswerActive == false)
+      return Container(
+        margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+        child: Text("Questions can be submitted one hour before and Up to thirty minutes after this sesion.", style: TextStyle(fontSize: 16), )
+      );
+    else
+      return Container(
+        margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+        child: GestureDetector(
+          child: Text("Click here to ask a Question.", style: TextStyle(fontSize: 16),),
+          onTap: (){
+            print("Neto");
+          },
+          onDoubleTap: (){
+            print("object");
+          },
+        ),
+      );
+  }
+
+  Widget _livePollsTituloBarra(){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _livePollsActive = !_livePollsActive;
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        color: Color(0xffC4C4C4),
+        height: 53,
+        alignment: Alignment.centerLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("LIVE POLLS", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+            Image.asset("assets/detalleAgenda/live_polls.png",)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _livePollsDescripcion(){
+    if(_livePollsActive == false)
+      return Container(
+        margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+        child: Text("No active Polls at this moment, please come back when session is Live.", style: TextStyle(fontSize: 16), )
+      );
+    else
+      return Container(
+        margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+        child: GestureDetector(
+          child: Text("Click here to Participate.", style: TextStyle(fontSize: 16),),
+          onTap: (){
+            print("Neto");
+          },
+          onDoubleTap: (){
+            print("object");
+          },
+        ),
+      );
+  }
+
+  Widget _photosTituloBarra(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      color: Color(0xffC4C4C4),
+      height: 53,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("PHOTOS", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+          Image.asset("assets/detalleAgenda/camera.png", color: Colors.white,)
+        ],
+      ),
+    );
+  }
+
+  Widget _photosDescripcion(){
+    return Container(
+      margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
+      child: GridView.count(
+        shrinkWrap: true,
+        crossAxisCount: 3,
+        children: <Widget>[
+          Image.asset("assets/detalleAgenda/photo1.png"),
+          Image.asset("assets/detalleAgenda/photo2.png"),
+          Image.asset("assets/detalleAgenda/photo3.png"),
+          Image.asset("assets/detalleAgenda/photo4.png"),
+          Image.asset("assets/detalleAgenda/photo5.png"),
+        ],
+      )
     );
   }
 

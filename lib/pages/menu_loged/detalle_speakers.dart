@@ -169,7 +169,7 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
       color: Color(0xffC4C4C4),
       height: 53,
       alignment: Alignment.centerLeft,
-      child: Text("Presenting at:", style: TextStyle( fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),),
+      child: Text("Presenting at:", style: TextStyle( fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
     );
   }
 
