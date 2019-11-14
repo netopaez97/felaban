@@ -58,52 +58,64 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _pasarelaOpciones(){
+
+    final double _anchoDeCadaRecuadro = MediaQuery.of(context).size.width*0.25;
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       color: Color(0xff489ED2),
-      height: 76,
+      height: 73,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          GestureDetector(
+          Container(
+            padding: EdgeInsets.only(left: 2),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Add to calendar", style: TextStyle(color: Colors.white, fontSize: 12),),
+                Image.asset("assets/detalleAgenda/calendario.png", height: 37, fit: BoxFit.contain,),
+                FittedBox(
+                  child: Text("Add to Calendar", style: TextStyle(fontSize: 12),),
+                )
               ],
             ),
-            onTap: (){},
           ),
-          GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Reminder", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+          Container(
+            child: GestureDetector(
+              child: Column(
+                children: <Widget>[
+                  Icon(IconData(0xf35a, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
+                  SizedBox(height: 3,),
+                  Text("Reminder", style: TextStyle(color: Colors.white, fontSize: 12),),
+                ],
+              ),
+              onTap: (){},
             ),
-            onTap: (){},
           ),
-          GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+          Container(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              child: Column(
+                children: <Widget>[
+                  Image.asset("assets/detalleAgenda/camera.png"),
+                  SizedBox(height: 3,),
+                  Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12),),
+                ],
+              ),
+              onTap: (){},
             ),
-            onTap: (){},
           ),
-          GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Image.asset("assets/detalleAgenda/calendario.png"),
-                SizedBox(height: 3,),
-                Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12),),
-              ],
+          Container(
+            child: GestureDetector(
+              child: Column(
+                children: <Widget>[
+                  Icon(IconData(0xf387, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
+                  SizedBox(height: 3,),
+                  Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12),),
+                ],
+              ),
+              onTap: (){},
             ),
-            onTap: (){},
           ),
         ],
       ),
