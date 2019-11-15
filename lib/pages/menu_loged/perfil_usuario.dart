@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileUserView extends StatefulWidget {
 
@@ -17,6 +20,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int detalles = 0;
   double _margenesDeTextos = 5;
+
+  File _image;
 
   Widget _personalInformation(){
     return Column(
@@ -458,6 +463,61 @@ class _ProfileUserViewState extends State<ProfileUserView> {
     );
   }
 
+  Future _galeriaOFoto(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text("What do you want?"),
+          actions: <Widget>[
+            CupertinoButton(
+              child: Text("Gallery"),
+              onPressed: (){
+                _getImageFromCamera();
+              },
+            ),
+            CupertinoButton(
+              child: Text("Take a picture"),
+              onPressed: (){
+                _getImageFromGallery();
+              },
+            ),
+          ],
+        );
+      }
+    );
+  }
+
+  Future _getImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    try{
+      setState(() {
+        _image = image;
+        print(_image);
+      });
+    }
+    catch (e) {
+      print(e);
+    }
+    
+  }
+
+   Future _getImageFromGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    try{
+      setState(() {
+        _image = image;
+        print(_image);
+      });
+    }
+    catch (e) {
+      print(e);
+    }
+    
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -489,9 +549,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 ],
               ),
               GestureDetector(
-                onTap: (){
-                  print("Has oprimido la imagen del señor");
-                },
+                onTap: _galeriaOFoto,
                 child: Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height*0.2,

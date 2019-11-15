@@ -2,7 +2,6 @@ import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/fonts/login_icons_icons.dart';
 import 'package:felaban/pages/login/login_error.dart';
-import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
@@ -179,7 +178,7 @@ class _LoginViewState extends State<LoginView> {
         child: CupertinoButton(
           child: Text("NEXT", style: TextStyle(color: Colors.white, fontSize: 25),),
           onPressed: () async {
-            /* if(!_formKey.currentState.validate())
+            if(!_formKey.currentState.validate())
               return null;
             
             _formKey.currentState.save();
@@ -189,7 +188,7 @@ class _LoginViewState extends State<LoginView> {
                 MaterialPageRoute( builder: (context) => LoginErrorView(widget.title) )
               );
             }
-            else */
+            else
               Navigator.pushNamed(context, Routes.splashEventos);
           },
           color: Color(0xff489ED2),
