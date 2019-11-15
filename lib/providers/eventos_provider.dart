@@ -4,13 +4,24 @@ import 'package:flutter/material.dart';
 class EventosProvider with ChangeNotifier {
 
   EventosModel _eventoActual;
+  bool _eventoActivo;
 
   get eventoActual {
     return _eventoActual;
   }
 
+  get eventoActivo {
+    return _eventoActivo;
+  }
+
   set eventoActual( EventosModel nuevoEveneto){
     this._eventoActual = nuevoEveneto;
+
+    notifyListeners();
+  }
+
+  set eventoActivo( bool cambioEstado ) {
+    _eventoActivo = cambioEstado;
 
     notifyListeners();
   }

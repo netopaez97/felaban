@@ -1,4 +1,7 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/pages/menu_loged/detalleAgenda/gallery.dart';
+import 'package:felaban/pages/menu_loged/detalle_speakers.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -229,6 +232,11 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
               title: Text(speaker["nombre"], style: TextStyle(fontSize: 20),),
               subtitle: Text(speaker["cargo"], style: TextStyle(fontSize: 17),),
               trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (BuildContext context) => DetalleSpeakersView(speaker["imagenUbicacion"])
+                ));
+              },
             ),
             Divider(color: Colors.white, height: 1,)
           ],
@@ -269,7 +277,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
         child: GestureDetector(
           child: Text("Click here to ask a Question.", style: TextStyle(fontSize: 16),),
           onTap: (){
-            print("Neto");
+            Navigator.pushNamed(context, Routes.qyaAgendaDetalles);
           },
           onDoubleTap: (){
             print("object");
@@ -306,10 +314,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
         child: GestureDetector(
           child: Text("Click here to Participate.", style: TextStyle(fontSize: 16),),
           onTap: (){
-            print("Neto");
-          },
-          onDoubleTap: (){
-            print("object");
+            Navigator.pushNamed(context, Routes.livePollAgendaDetalles);
           },
         ),
       );
@@ -332,18 +337,50 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _photosDescripcion(){
+
+    List _direccionesImagenes = [
+      "assets/detalleAgenda/photo1.png",
+      "assets/detalleAgenda/photo2.png",
+      "assets/detalleAgenda/photo3.png",
+      "assets/detalleAgenda/photo4.png",
+      "assets/detalleAgenda/photo5.png",
+    ];
+
     return Container(
       margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
-      child: GridView.count(
+      child: GridView.builder(
+        itemCount: _direccionesImagenes.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 7),
+        itemBuilder: (context,direccion){
+          return GestureDetector(
+            child: Image.asset(_direccionesImagenes[direccion]),
+            onTap: (){
+              Navigator.push(context, 
+                MaterialPageRoute(
+                  builder: (BuildContext context) => GalleryAgendaDetallesView(_direccionesImagenes[direccion]),
+                )
+              );
+            },
+          );
+        },
         shrinkWrap: true,
-        crossAxisCount: 3,
+        /* crossAxisCount: 3,
         children: <Widget>[
-          Image.asset("assets/detalleAgenda/photo1.png"),
+          GestureDetector(
+            child: Image.asset("assets/detalleAgenda/photo1.png"),
+            onTap: (){
+              Navigator.push(context, 
+                MaterialPageRoute(
+                  builder: (BuildContext context) => GalleryAgendaDetallesView("assets/detalleAgenda/photo1.png"),
+                )
+              );
+            },
+          ),
           Image.asset("assets/detalleAgenda/photo2.png"),
           Image.asset("assets/detalleAgenda/photo3.png"),
           Image.asset("assets/detalleAgenda/photo4.png"),
           Image.asset("assets/detalleAgenda/photo5.png"),
-        ],
+        ], */
       )
     );
   }

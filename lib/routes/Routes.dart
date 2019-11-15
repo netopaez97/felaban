@@ -1,6 +1,8 @@
 import 'package:felaban/pages/agenda_on.dart';
 import 'package:felaban/pages/menu_loged/agenda.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
+import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
+import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/speakers.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
@@ -20,4 +22,6 @@ class Routes {
   static const String agenda = AgendaView.routeName;
   static const String detalleAgenda = DetalleAgendaView.routeName;
   static const String speakers = SpeakersView.routeName;
+  static const String qyaAgendaDetalles = QuestionAndAnswerView.routeName;
+  static const String livePollAgendaDetalles = LivePollAgendaDetallesView.routeName;
 }

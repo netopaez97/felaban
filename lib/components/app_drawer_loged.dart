@@ -82,10 +82,9 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/clock.png"),
                   ),
                   onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
+                    Navigator.pushNamed(
                       context,
                       Routes.agenda,
-                      (Route<dynamic> route)=>false,
                     );
                   },
                 ),
@@ -103,6 +102,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/speaker.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.speakers);
                   },
                 ),
                 ListTile(
