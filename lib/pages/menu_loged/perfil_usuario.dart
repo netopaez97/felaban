@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,6 +24,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
   double _margenesDeTextos = 5;
 
   File _image;
+
+  final StorageReference storageReference = FirebaseStorage().ref().child("fotos");
+  final DatabaseReference db = FirebaseDatabase.instance.reference();
 
   Widget _personalInformation(){
     return Column(
@@ -473,13 +478,13 @@ class _ProfileUserViewState extends State<ProfileUserView> {
             CupertinoButton(
               child: Text("Gallery"),
               onPressed: (){
-                _getImageFromCamera();
+                _getImageFromGallery();
               },
             ),
             CupertinoButton(
               child: Text("Take a picture"),
               onPressed: (){
-                _getImageFromGallery();
+                _getImageFromCamera();
               },
             ),
           ],
@@ -494,7 +499,18 @@ class _ProfileUserViewState extends State<ProfileUserView> {
     try{
       setState(() {
         _image = image;
-        print(_image);
+        StorageUploadTask uploadTask = storageReference.putFile(_image);
+        uploadTask.onComplete.then(
+          (res){
+            storageReference.getDownloadURL().then(
+              (url){
+                db.update({
+                  "fotoPerfil":url
+                });
+              }
+            );
+          }
+        );
       });
     }
     catch (e) {
@@ -504,12 +520,23 @@ class _ProfileUserViewState extends State<ProfileUserView> {
   }
 
    Future _getImageFromGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: 200, maxHeight: 200);
 
     try{
       setState(() {
         _image = image;
-        print(_image);
+        StorageUploadTask uploadTask = storageReference.putFile(_image);
+        uploadTask.onComplete.then(
+          (res){
+            storageReference.getDownloadURL().then(
+              (url){
+                db.update({
+                  "fotoPerfil":url
+                });
+              }
+            );
+          }
+        );
       });
     }
     catch (e) {
@@ -554,21 +581,31 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height*0.2,
                   alignment: Alignment.center,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: _sizeImage,
-                    height: _sizeImage,
-                    decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage(
-                          "assets/images/profile_face.png",
-                        )
-                      ),
-                      border: Border.all(color: Colors.white)
-                    ),
-                    child: Icon(Icons.add, color: Colors.white,),
+                  child: StreamBuilder(
+                    stream: db.onValue,
+                    builder: (context, snapshot){
+                      if(!snapshot.hasData){
+                        CircularProgressIndicator();
+                      }
+                      if(snapshot.data == null || snapshot.data.snapshot.value == null){
+                        return Text("Sin imagen");
+                      }
+                      print(snapshot.data.snapshot.value);
+                      return Container(
+                        alignment: Alignment.center,
+                        width: _sizeImage,
+                        height: _sizeImage,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(snapshot.data.snapshot.value["fotoPerfil"])
+                          ),
+                          border: Border.all(color: Colors.white)
+                        ),
+                        child: Icon(Icons.add)
+                      );
+                    }
                   ),
                 ),
               ),
@@ -617,7 +654,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 value: profileState,
                 onChanged: (val){
                   setState(() {
-                    _formKey.currentState.validate();
                     profileState = !profileState; 
                   });
                 },

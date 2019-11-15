@@ -54,7 +54,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
       body: ListView(
         children: <Widget>[
           BackgroundSuperiorPequenoWidget(),
-          _separador,
+          SizedBox(height: 5),
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
