@@ -84,8 +84,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
+                    return "Ingrese un email válido";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -105,8 +105,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 obscureText: true,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(value.isEmpty)
+                    return "Ingrese un email";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -125,8 +125,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               ),TextFormField(
                 keyboardType: TextInputType.number,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(!RegExp(r'/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/').hasMatch(value))
+                    return "Debe ingresar números";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -338,7 +338,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.symmetric(vertical: _margenesDeTextos),
-                child: Row(children: <Widget>[Text("Company Name", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],)
+                child: Row(children: <Widget>[Text("Instagram", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],)
               ),
               TextFormField(
                 textCapitalization: TextCapitalization.words,
@@ -424,13 +424,62 @@ class _ProfileUserViewState extends State<ProfileUserView> {
 
                 },
               ),
-              SizedBox(
-                height: 46,
-              )
             ],
           ),
         )
       ],
+    );
+  }
+
+  
+
+  Widget _botonSubmit(){
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 25),
+          child: CupertinoButton(
+            child: Text("UPDATE", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+            onPressed: (){
+              if(!_formKey.currentState.validate()){
+                return "Verifique los campos";
+              }
+              _dialogoDeEnvio();
+              return null;
+            },
+            color: Color(0xff489ED2),
+            borderRadius: BorderRadius.all(Radius.zero),
+          ),
+        ),
+      ]
+    );
+  }
+  Future _dialogoDeEnvio(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return CupertinoAlertDialog(
+          content: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                child: Text("Your profile has been updated.", style: TextStyle(fontSize: 25, color: Color(0xff8C8C8C)),),
+              ),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  child: CupertinoButton(
+                    child: Text("OK", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    color: Color(0xff29983A),
+                    borderRadius: BorderRadius.all(Radius.zero),
+                  ),
+                ),
+            ],
+          ),
+        );
+      }
     );
   }
 
@@ -578,6 +627,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 _personalInformation(),
                 _bussinessInformation(),
                 _socialMedia(),
+                _botonSubmit(),
               ],
             )
           ),
