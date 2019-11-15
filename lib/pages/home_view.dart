@@ -21,6 +21,8 @@ class _HomeViewState extends State<HomeView> {
   
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  List<Widget> _tilesDeEventos;
+
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
       backgroundColor: Color(0xff8C8C8C),
@@ -36,6 +38,76 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  void _cargarEventos(){
+
+    final eventosInfo = Provider.of<EventosProvider>(context);
+
+    _tilesDeEventos = [];
+
+    for(int item =0; item<_eventos.length;item++){
+      _tilesDeEventos.add(
+        Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+          child: ListTile(
+            leading: Image.asset(
+              _eventos[item].imagenPequena,
+              width: 73,
+            ),
+            title: Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(_eventos[item].titulo,style: TextStyle(fontFamily: 'Roboto-Black',fontSize: 16),),
+                  Text(_eventos[item].descripcion,maxLines: 3,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                  Row(children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(right: 2),
+                      child: Icon(Icons.location_on, size: 16,),
+                    ),
+                    Text(_eventos[item].ubicacion,style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                  ],),
+                  Row(children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(right: 2),
+                      child: Icon(Icons.calendar_today, size: 16,),
+                    ),
+                    Text(_eventos[item].fecha[0],style: TextStyle(fontFamily: 'Roboto-Medium',fontSize: 14),),
+                  ],),
+                  SizedBox(height: 5,),
+                ],
+              ),
+            ),
+            onTap: (){
+
+              eventosInfo.eventoActual = EventosModel(
+                titulo: _eventos[item].titulo,
+                descripcion: _eventos[item].descripcion,
+                ubicacion: _eventos[item].ubicacion,
+                fecha: _eventos[item].fecha,
+                imagenPequena: _eventos[item].imagenPequena,
+                imagenGrande: _eventos[item].imagenGrande,
+              );
+
+              print(eventosInfo.eventoActual.titulo);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPreview(_eventos[item].titulo))
+              );
+            }
+          ),
+        )
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +119,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
 
     final eventosInfo = Provider.of<EventosProvider>(context);
+
+    _cargarEventos();
 
     return Scaffold(
       key: _scaffoldKey,
@@ -61,7 +135,11 @@ class _HomeViewState extends State<HomeView> {
             children: <Widget>[
               BackgroundSuperiorWidget(titulo: "Upcoming Conferences", negrita: false,),
               
-              Container(
+              Column(
+                children: _tilesDeEventos,
+              ),
+              
+              /* Container(
                 height: MediaQuery.of(context).size.height*0.6,
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -128,7 +206,7 @@ class _HomeViewState extends State<HomeView> {
                   }
               ),
             
-              )
+              ) */
             ],
           ),
         )
