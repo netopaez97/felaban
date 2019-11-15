@@ -42,8 +42,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 textCapitalization: TextCapitalization.sentences,
                 keyboardType: TextInputType.text,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(value.isEmpty)
+                    return "We need your name";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -63,8 +63,8 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 textCapitalization: TextCapitalization.sentences,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(value.isEmpty)
+                    return "We need your last name";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -85,7 +85,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 keyboardType: TextInputType.emailAddress,
                 validator: (String value){
                   if(!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
-                    return "Ingrese un email válido";
+                    return "Type a valid email";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -106,7 +106,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 obscureText: true,
                 validator: (String value){
                   if(value.isEmpty)
-                    return "Ingrese un email";
+                    return "Password is required";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -123,10 +123,10 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 margin: EdgeInsets.symmetric(vertical: _margenesDeTextos),
                 child: Row(children: <Widget>[Text("Mobile Phone Number", style: TextStyle(fontSize: 16),), Text("*", style: TextStyle(color: Colors.red),)],),
               ),TextFormField(
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 validator: (String value){
-                  if(!RegExp(r'/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/').hasMatch(value))
-                    return "Debe ingresar números";
+                  if(value.length != 10 || !RegExp(r'^[0-9]*$').hasMatch(value))
+                    return "Type a valid phone number";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -172,9 +172,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
-                validator: (String value){
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -188,13 +185,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: _margenesDeTextos),
                 child:Row(children: <Widget>[Text("Job Title", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
-              ),TextFormField(
+              ),
+              TextFormField(
                 textCapitalization: TextCapitalization.words,
-                validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -213,11 +206,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 keyboardType: TextInputType.multiline,
                 textCapitalization: TextCapitalization.sentences,
                 maxLines: 4,
-                validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -234,9 +222,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
-                validator: (String value){
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -252,12 +237,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 child:Row(children: <Widget>[Text("City", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
               ),
               TextFormField(
-                textCapitalization: TextCapitalization.words,
-                validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -274,11 +253,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               ),
               TextFormField(
                 textCapitalization: TextCapitalization.words,
-                validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -296,8 +270,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 validator: (String value){
-                  if(value.length < 5)
-                    return "Debe ser mayor a 4";
+                  if(value.isNotEmpty)
+                    if(!RegExp(r'^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$').hasMatch(value))
+                      return "Type a valid website: www.something.aa";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -343,9 +318,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
-                validator: (String value){
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -365,9 +337,6 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               TextFormField(
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
-                validator: (String value){
-                  return null;
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -388,6 +357,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
                 validator: (String value){
+                  if(value.isNotEmpty)
+                    if(!RegExp(r'^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$').hasMatch(value))
+                      return "Type a valid linkedIn url: www.something.aa";
                   return null;
                 },
                 decoration: InputDecoration(
@@ -410,6 +382,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
                 validator: (String value){
+                  if(value.isNotEmpty)
+                    if(!RegExp(r'^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$').hasMatch(value))
+                      return "Type a valid facebook url: www.something.aa";
                   return null;
                 },
                 decoration: InputDecoration(

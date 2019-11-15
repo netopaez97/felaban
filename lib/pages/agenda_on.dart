@@ -22,6 +22,8 @@ class _AgendaOnViewState extends State<AgendaOnView> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  final Divider _separador = Divider(color: Color(0xffC4C4C4),);
+
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
       backgroundColor: Color(0xff8C8C8C),
@@ -52,6 +54,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
       body: ListView(
         children: <Widget>[
           BackgroundSuperiorPequenoWidget(),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -76,6 +79,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -101,6 +105,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -123,6 +128,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -145,6 +151,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -178,6 +185,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -200,6 +208,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -222,6 +231,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -244,6 +254,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
           Container(
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height*0.1,
@@ -266,6 +277,8 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               },
             ),
           ),
+          _separador,
+          SizedBox(height: 40),
         ],
       )
     );
