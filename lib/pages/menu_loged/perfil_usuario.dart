@@ -603,7 +603,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
                           ),
                           border: Border.all(color: Colors.white)
                         ),
-                        child: Icon(Icons.add)
+                        child: Icon(Icons.add, color: Colors.white,)
                       );
                     }
                   ),
