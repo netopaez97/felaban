@@ -73,7 +73,7 @@ class _BackgroundSuperiorWidgetState extends State<BackgroundSuperiorWidget> {
             left: MediaQuery.of(context).size.width*0.62,
             child: Container(
               padding: EdgeInsets.only(top: _paddingParaLogosYTexto),
-              child: Text("FEALABAN APP Sponsored By", style: TextStyle(color: Colors.white,fontSize: 9), textAlign: TextAlign.end),
+              child: Text("FELABAN APP Sponsored By", style: TextStyle(color: Colors.white,fontSize: 9), textAlign: TextAlign.end),
             ),
           )
         ],

@@ -1,3 +1,4 @@
+import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -28,25 +29,7 @@ class _AboutFelabanViewState extends State<AboutFelabanView> {
     final _screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: CupertinoNavigationBar(
-        backgroundColor: Color(0xff8C8C8C),
-        actionsForegroundColor: Colors.white,
-        leading: GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child: Row(
-            children: <Widget>[
-              Icon(CupertinoIcons.back,),
-              Text("Back", style: TextStyle(fontSize: 16, color: Colors.white),)
-            ],
-          ),
-        ),
-        border: Border.all(
-          style: BorderStyle.none
-        ),
-        padding: EdgeInsetsDirectional.zero,
-      ),
+      appBar: barraSuperior(context),
       body: Container(
         color: Colors.white,
         child: ListView(
