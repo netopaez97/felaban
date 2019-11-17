@@ -124,7 +124,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Sponsors", style: TextStyle(fontSize: 20),),
               subtitle: Text("Their contribution is what helps make our conference possible.", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.sponsors);
               },
             ),
           ),

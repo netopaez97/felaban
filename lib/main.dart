@@ -5,11 +5,13 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/speakers.dart';
+import 'package:felaban/pages/menu_loged/sponsors.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
 import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/home_view.dart';
 import 'package:felaban/pages/menu_no_loged/settings_view.dart';
 import 'package:felaban/pages/splash/splash_evento.dart';
+import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (BuildContext context) => HomeView(),
+          '/': (BuildContext context) => SplashGeneralView(),
+          HomeView.routeName: (context) => HomeView(),
           AboutFelabanView.routeName: (BuildContext context) => AboutFelabanView(),
           AboutIFCView.routeName: (BuildContext context) => AboutIFCView(),
           SettingsView.routeName: (BuildContext context) => SettingsView(),
@@ -46,6 +49,7 @@ class MyApp extends StatelessWidget {
           SpeakersView.routeName: (BuildContext context) => SpeakersView(),
           QuestionAndAnswerView.routeName: (BuildContext context) => QuestionAndAnswerView(),
           LivePollAgendaDetallesView.routeName: (BuildContext context) => LivePollAgendaDetallesView(),
+          SponsorsView.routeName: (BuildContext context) => SponsorsView()
         },
       ),
     );
