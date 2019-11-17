@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (BuildContext context) => SplashGeneralView(),
-          HomeView.routeName: (context) => HomeView(),
+          // '/': (BuildContext context) => SplashGeneralView(),
+          '/': (context) => HomeView(),
           AboutFelabanView.routeName: (BuildContext context) => AboutFelabanView(),
           AboutIFCView.routeName: (BuildContext context) => AboutIFCView(),
           SettingsView.routeName: (BuildContext context) => SettingsView(),
