@@ -39,7 +39,7 @@ class _SplashEventViewState extends State<SplashEventView> {
             ),
           ),
           Positioned(
-            top: 150,
+            top: MediaQuery.of(context).size.height*0.15,
             width: MediaQuery.of(context).size.width,
             child: Container(
               child: Center(
@@ -47,14 +47,12 @@ class _SplashEventViewState extends State<SplashEventView> {
               ),
             ),
           ),
-          Positioned(
-            top: 400,
-            width: MediaQuery.of(context).size.width,
-            child: Container(
+          Container(
+              width: double.infinity,
+              height: double.infinity,
               child: Center(
-                child: Image.asset('assets/images/sponsor2.png',),
+                child: Image.asset('assets/images/sponsor2.png', color: Colors.red.withOpacity(0.65),),
               ),
-            ),
           ),
         ],
       ),

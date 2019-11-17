@@ -21,6 +21,7 @@ class _SponsorsViewState extends State<SponsorsView> {
         BackgroundSuperiorPequenoWidget(),
         _agradecimientos(),
         _barraAPPSponsors(),
+        _bacCredomatic(),
       ],
     );
   }
@@ -42,6 +43,16 @@ class _SponsorsViewState extends State<SponsorsView> {
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.symmetric(horizontal: _paddingHorizontalCajas),
       child: Text("APP Sponsor", style: TextStyle(color: Colors.white)),
+    );
+  }
+
+  Widget _bacCredomatic(){
+    return Container(
+      child: ListTile(
+        leading: Image.asset("assets/images/sponsor2.png", height: 48, color: Colors.red[100],),
+        title: Text("BAC Credomatic Guatemala", style: TextStyle(fontSize: 18)),
+        subtitle: Text("Room 220", style: TextStyle(fontSize: 18)),
+      ),
     );
   }
 
