@@ -60,6 +60,7 @@ flutter:
   - assets/home_loged/
   - assets/speakers/
   - assets/detalleAgenda/
+  - assets/sponsors/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 
