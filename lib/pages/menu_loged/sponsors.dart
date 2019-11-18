@@ -1,6 +1,6 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/pages/menu_loged/detalle_sponsors.dart';
+import 'package:felaban/pages/menu_loged/sponsors_detalle.dart';
 import 'package:flutter/material.dart';
 
 class SponsorsView extends StatefulWidget {
@@ -93,7 +93,11 @@ class _SponsorsViewState extends State<SponsorsView> {
           title: Text("BANRURAL", style: TextStyle(fontSize: 18)),
           subtitle: Text("Booth 23", style: TextStyle(fontSize: 18)),
           onTap: (){
-            
+            Navigator.push(context, 
+              MaterialPageRoute(
+                builder: (BuildContext context) => DetalleSponsorView("assets/sponsors/banrural.png")
+              )
+            );
           },
         ),
         Divider(color: Color(0xffC4C4C4),),
@@ -102,7 +106,11 @@ class _SponsorsViewState extends State<SponsorsView> {
           title: Text("Banco Centroamericano de Integracion Economica", style: TextStyle(fontSize: 18)),
           subtitle: Text("Booth 20", style: TextStyle(fontSize: 18)),
           onTap: (){
-            
+            Navigator.push(context, 
+              MaterialPageRoute(
+                builder: (BuildContext context) => DetalleSponsorView("assets/sponsors/bcie.png")
+              )
+            );
           },
         ),
         Divider(color: Color(0xffC4C4C4),),
@@ -111,7 +119,11 @@ class _SponsorsViewState extends State<SponsorsView> {
           title: Text("FEBRABAN Brasil", style: TextStyle(fontSize: 18)),
           subtitle: Text("Booth 39", style: TextStyle(fontSize: 18)),
           onTap: (){
-            
+            Navigator.push(context, 
+              MaterialPageRoute(
+                builder: (BuildContext context) => DetalleSponsorView("assets/sponsors/febraban.png")
+              )
+            );
           },
         ),
         Divider(color: Color(0xffC4C4C4),),
@@ -120,7 +132,11 @@ class _SponsorsViewState extends State<SponsorsView> {
           title: Text("BANTRAB", style: TextStyle(fontSize: 18)),
           subtitle: Text("Booth 40", style: TextStyle(fontSize: 18)),
           onTap: (){
-            
+            Navigator.push(context, 
+              MaterialPageRoute(
+                builder: (BuildContext context) => DetalleSponsorView("assets/sponsors/bantrab.png")
+              )
+            );
           },
         ),
         SizedBox(height: 10,)
@@ -143,11 +159,15 @@ class _SponsorsViewState extends State<SponsorsView> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: ListTile(
-        leading: Image.asset("assets/images/sponsor2.png", width: _sizeScreen.width*0.35,),
+        leading: Image.asset("assets/sponsors/banco_industrial.png", width: _sizeScreen.width*0.35,),
         title: Text("Banco Industrial Panamá", style: TextStyle(fontSize: 18)),
         subtitle: Text("Booth 02", style: TextStyle(fontSize: 18)),
         onTap: (){
-
+          Navigator.push(context, 
+            MaterialPageRoute(
+              builder: (BuildContext context) => DetalleSponsorView("assets/sponsors/banco_industrial.png")
+            )
+          );
         },
       ),
     );

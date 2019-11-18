@@ -1,6 +1,6 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/pages/menu_loged/detalle_speakers.dart';
+import 'package:felaban/pages/menu_loged/speakers_detalle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
