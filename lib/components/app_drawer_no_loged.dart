@@ -1,7 +1,6 @@
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:ui' as ui;
 
 import 'package:url_launcher/url_launcher.dart';
 

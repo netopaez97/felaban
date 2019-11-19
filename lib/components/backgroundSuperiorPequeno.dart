@@ -18,7 +18,6 @@ class _BackgroundSuperiorPequenoWidgetState extends State<BackgroundSuperiorPequ
     final eventoInfo = Provider.of<EventosProvider>(context);
     final EventosModel eventoActual = eventoInfo.eventoActual;
     
-    final double _paddingParaLogosYTexto = MediaQuery.of(context).size.width*0.05;
     final _sizeScreen = MediaQuery.of(context).size;
 
     return Container(

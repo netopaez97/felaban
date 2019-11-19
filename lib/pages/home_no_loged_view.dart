@@ -95,8 +95,6 @@ class _HomeViewState extends State<HomeView> {
                 imagenGrande: _eventos[item].imagenGrande,
               );
 
-              print(eventosInfo.eventoActual.titulo);
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => LoginPreview(_eventos[item].titulo))
@@ -117,8 +115,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-
-    final eventosInfo = Provider.of<EventosProvider>(context);
 
     _cargarEventos();
 

@@ -18,7 +18,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     _selectedLocation = _languages[0];
   }

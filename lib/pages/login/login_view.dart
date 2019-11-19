@@ -30,7 +30,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _key = GlobalKey<ScaffoldState>();
 
   Map<String,dynamic> _usuarioContrasena = {
     "correo":String,

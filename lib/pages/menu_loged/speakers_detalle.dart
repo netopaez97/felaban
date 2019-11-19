@@ -30,8 +30,6 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
 
   Widget _profileInformation(BuildContext context){
 
-    Size _sizeScreen = MediaQuery.of(context).size;
-
     final double _sizeImage = MediaQuery.of(context).size.height*0.17;
 
     return Stack(

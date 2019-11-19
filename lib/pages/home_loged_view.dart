@@ -1,12 +1,8 @@
 import 'package:felaban/components/app_drawer_loged.dart';
-import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
-import 'package:felaban/models/eventosModel.dart';
-import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AgendaOnView extends StatefulWidget {
 
@@ -42,10 +38,6 @@ class _AgendaOnViewState extends State<AgendaOnView> {
 
   @override
   Widget build(BuildContext context) {
-
-    final eventoInfo = Provider.of<EventosProvider>(context);
-    
-    final EventosModel eventoActual = eventoInfo.eventoActual;
 
     return Scaffold(
       key: _scaffoldKey,
