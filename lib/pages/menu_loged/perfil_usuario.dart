@@ -473,7 +473,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text("What do you want?"),
+          title: Text("Would you like to add/update your picture?"),
           actions: <Widget>[
             CupertinoButton(
               child: Text("Gallery"),
