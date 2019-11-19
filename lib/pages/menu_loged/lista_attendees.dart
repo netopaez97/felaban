@@ -1,7 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:speech_bubble/speech_bubble.dart';
 
 class ListaAttendeesView extends StatefulWidget {
 
@@ -39,7 +37,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     'Matt Higgins',
     'Matt Higgins',
     'Matt Higgins',
-    'Matt Higgins',
+    'Zal Higgins',
   ];
 
   List _alphabet = [
@@ -113,11 +111,10 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   }
 
   Widget _cuerpoDeLaPagina(){
-    return Column(
+    return ListView(
       children: <Widget>[
         _barraAttendees(),
         _searchNavigation(),
-        _barraFelaban(),
         _infoFelaban(),
       ],
     );
@@ -169,8 +166,29 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   }
 
   Widget _infoFelaban(){
+
+    List<Widget> _personas = [];
+
+    for(int i = 0; i<exampleList.length; i++){
+      _personas.add(
+        ListTile(
+          leading: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle
+            ),
+            child: Image.asset("assets/speakers/liz_wiseman.png"),
+          ),
+          title: Text("${exampleList[i]}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+          onTap: (){
+            
+          },
+        )
+      );
+    }
+
     return Container(
-      height: MediaQuery.of(context).size.height*0.5,
+      height: MediaQuery.of(context).size.height*0.7,
       child: new LayoutBuilder(
         builder: (context, contrainsts) {
           diff = height - contrainsts.biggest.height;
@@ -178,28 +196,134 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
           _sizeheightcontainer = (contrainsts.biggest.height); //NO
           return new Stack(
             children: <Widget>[
-              ListView.builder(
+              ListView(
                 shrinkWrap: true,
-                itemCount: exampleList.length,
                 controller: _controller,
                 itemExtent: _itemsizeheight,
-                itemBuilder: (context, i){
-                  return ListTile(
+                children: <Widget>[
+                  _barraFelaban(),
+                  ListTile(
                     leading: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle
                       ),
                       child: Image.asset("assets/speakers/liz_wiseman.png"),
                     ),
-                    title: Text("${exampleList[i]}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
                       
                     },
-                  );
-                }
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    color: Color(0xffF0F0F0),
+                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
+                    height: 53,
+                    child: Text("KUBILABS", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    color: Color(0xffF0F0F0),
+                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
+                    height: 53,
+                    child: Text("ORACLE", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      
+                    },
+                  ),
+                ],
               ),
               _barraVerticalDerecha(),
+              
             ],
           );
         }
@@ -214,7 +338,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
         onVerticalDragUpdate: _onVerticalDragUpdate,
         onVerticalDragStart: _onVerticalDragStart,
         child: Container(
-          height: MediaQuery.of(context).size.height*0.5,
           width: 22,
           //height: 20.0 * 26,
           color: Color(0xff8C8C8C).withOpacity(.3),
