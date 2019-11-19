@@ -139,7 +139,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Attendees", style: TextStyle(fontSize: 20),),
               subtitle: Text("List of Conference Participants", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.attendees);
               },
             ),
           ),

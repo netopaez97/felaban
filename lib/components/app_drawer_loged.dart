@@ -151,7 +151,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/group.png"),
                   ),
                   onTap: () {
-                    
+                    Navigator.pushNamed(context, Routes.attendees);
                   },
                 ),
                 ListTile(

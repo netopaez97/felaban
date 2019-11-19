@@ -31,7 +31,8 @@ dependencies:
   firebase_storage: ^3.0.8
   firebase_auth: ^0.14.0+9
   firebase_database: ^3.0.9
-
+  speech_bubble: ^0.0.6
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -68,6 +69,7 @@ flutter:
   - assets/speakers/
   - assets/detalleAgenda/
   - assets/sponsors/
+  - assets/attendees/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 
