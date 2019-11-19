@@ -494,7 +494,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
   }
 
   Future _getImageFromCamera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await ImagePicker.pickImage(source: ImageSource.camera, maxWidth: 400, maxHeight: 400);
 
     try{
       setState(() {
@@ -520,7 +520,7 @@ class _ProfileUserViewState extends State<ProfileUserView> {
   }
 
    Future _getImageFromGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: 200, maxHeight: 200);
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: 400, maxHeight: 400);
 
     try{
       setState(() {
