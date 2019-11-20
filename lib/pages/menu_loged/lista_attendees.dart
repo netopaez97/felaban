@@ -1,4 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 
 class ListaAttendeesView extends StatefulWidget {
@@ -167,26 +168,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
 
   Widget _infoFelaban(){
 
-    List<Widget> _personas = [];
-
-    for(int i = 0; i<exampleList.length; i++){
-      _personas.add(
-        ListTile(
-          leading: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle
-            ),
-            child: Image.asset("assets/speakers/liz_wiseman.png"),
-          ),
-          title: Text("${exampleList[i]}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-          onTap: (){
-            
-          },
-        )
-      );
-    }
-
     return Container(
       height: MediaQuery.of(context).size.height*0.7,
       child: new LayoutBuilder(
@@ -212,7 +193,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   Container(

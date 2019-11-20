@@ -6,6 +6,7 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
+import 'package:felaban/pages/menu_loged/perfil_usuario/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/speakers.dart';
 import 'package:felaban/pages/menu_loged/sponsors.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
@@ -51,7 +52,8 @@ class MyApp extends StatelessWidget {
           QuestionAndAnswerView.routeName: (BuildContext context) => QuestionAndAnswerView(),
           LivePollAgendaDetallesView.routeName: (BuildContext context) => LivePollAgendaDetallesView(),
           SponsorsView.routeName: (BuildContext context) => SponsorsView(),
-          ListaAttendeesView.routeName: (BuildContext context) => ListaAttendeesView()
+          ListaAttendeesView.routeName: (BuildContext context) => ListaAttendeesView(),
+          PerfilUsuarioPublicoView.routeName: (BuildContext context) => PerfilUsuarioPublicoView(),
         },
       ),
     );
