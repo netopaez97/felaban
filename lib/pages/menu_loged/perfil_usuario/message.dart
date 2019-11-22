@@ -14,7 +14,7 @@ class MessageListaAttendeesView extends StatefulWidget {
 
 class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
 
-  double _margenPaginaHorizontal = 15;
+  final double _margenPaginaHorizontal = 15;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -22,8 +22,8 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
       actionsForegroundColor: Colors.white,
       leading: CupertinoNavigationBarBackButton(
         previousPageTitle: "Back",
-        onPressed: (){
-          Navigator.pop(context);
+        onPressed: () async {
+          await _dialogoDeEnvio();
         },
       ),
       padding: EdgeInsetsDirectional.zero,
@@ -144,7 +144,9 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
           margin: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal, vertical: 25),
           child: CupertinoButton(
             child: Text("SUBMIT", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
-            onPressed: _dialogoDeEnvio,
+            onPressed: (){
+              Navigator.pop(context);
+            },
             color: Color(0xff489ED2),
             borderRadius: BorderRadius.all(Radius.zero),
           ),
@@ -163,13 +165,14 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
             CupertinoButton(
               child: Text("NO", style: TextStyle(color: Colors.black),),
               onPressed: (){
-
+                Navigator.pop(context);
               },
             ),
             CupertinoButton(
               child: Text("YES", style: TextStyle(color: Colors.black)),
               onPressed: (){
-
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           ],

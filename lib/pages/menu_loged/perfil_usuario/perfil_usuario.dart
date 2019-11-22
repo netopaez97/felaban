@@ -274,7 +274,7 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
             ),
           ),
           onTap: (){
-            Navigator.pushNamed(context, Routes.mensajePerfilUsario);
+            Navigator.pushNamed(context, Routes.invitacionReunionPerfilUsario);
           },
         ),
       ],
