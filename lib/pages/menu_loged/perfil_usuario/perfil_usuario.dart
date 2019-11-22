@@ -1,4 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,8 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
         Divider(height: 0, color: Color(0xffC4C4C4),),
         _redesSociales(),
         _descripcionPerfil(),
+        _messageAndMeeting(),
+        SizedBox(height: 20,)
       ],
     );
   }
@@ -220,8 +223,61 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
     double _margenes  = 15;
 
     return Container(
-      padding: EdgeInsets.all(_margenes),
+      padding: EdgeInsets.only(left: _margenes, right: _margenes, bottom: _margenes),
       child: Text("Secretario General de la Federación Latinoamericana de Bancos, FELABAN. Agrupa a más de 600 Bancos en 19 países, a través de los presidentes de los Bancos de las 19 asociaciones bancarias de América Latina. con sede en la ciudad de Bogotá, Republica de Colombia.",style: TextStyle(fontSize: 16)),
+    );
+  }
+
+  Widget _messageAndMeeting(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        GestureDetector(
+          child: Container(
+            width: 103,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Color(0xff004A80),
+              borderRadius: BorderRadius.all(Radius.circular(10))
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset("assets/perfil_usuario/comments.png",),
+                  Text("Message", style: TextStyle(color: Colors.white),),
+                ],
+              ),
+            ),
+          ),
+          onTap: (){
+            Navigator.pushNamed(context, Routes.mensajePerfilUsario);
+          },
+        ),
+        SizedBox(width: 27,),
+        GestureDetector(
+          child: Container(
+            width: 103,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Color(0xff004A80),
+              borderRadius: BorderRadius.all(Radius.circular(10))
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset("assets/perfil_usuario/calendar.png",),
+                  Text("Meeting", style: TextStyle(color: Colors.white),),
+                ],
+              ),
+            ),
+          ),
+          onTap: (){
+            Navigator.pushNamed(context, Routes.mensajePerfilUsario);
+          },
+        ),
+      ],
     );
   }
 
