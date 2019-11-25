@@ -1,4 +1,3 @@
-import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +11,20 @@ class InvitacionReunionPerfilUsuarioView extends StatefulWidget {
 
 class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPerfilUsuarioView> {
 
-  final double _margenPaginaHorizontal = 15;
+  final double _margenPaginaHorizontal = 10;
   DateTime dateTime;
+
+  Widget _barraSuperior(){
+    return CupertinoNavigationBar(
+      backgroundColor: Color(0xff8C8C8C),
+      actionsForegroundColor: Colors.white,
+      leading: CupertinoNavigationBarBackButton(
+        previousPageTitle: "Back",
+        onPressed: _dialogoParaRegresar
+      ),
+      padding: EdgeInsetsDirectional.zero,
+    );
+  }
 
   Widget _cuerpoDeLaPagina(){
     return ListView(
@@ -23,6 +34,11 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         _barraAsunto(),
         _barraDeDivision(),
         _dateProposal(),
+        _location(),
+        _startedTime(),
+        _listaHorizontalHoras(),
+        _messageText(),
+        _botonSubmit(),
       ],
     );
   }
@@ -86,19 +102,20 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         _dialogDateTimePicker();
       },
       child: Container(
+        height: 58,
         decoration: BoxDecoration(
           border: Border.all(color: Color(0xffA1A1A1)),
           borderRadius: BorderRadius.circular(10),
           color: Color(0xffF6F6F6)
         ),
-        margin: EdgeInsets.all(_margenPaginaHorizontal),
-        padding: EdgeInsets.all(_margenPaginaHorizontal),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: _margenPaginaHorizontal),
+        padding: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal),
         child: Row(
           children: <Widget>[
             Icon(Icons.date_range, color: Color(0xffA1A1A1),),
             dateTime == null
             ? Text("  Date proposal", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-            : Text("  ${dateTime.toString()}"),
+            : Text("  ${dateTime.toString()}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
           ],
         ),
       ),
@@ -139,10 +156,190 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     );
   }
 
+  Widget _location(){
+    return GestureDetector(
+      onTap: (){
+        
+      },
+      child: Container(
+        height: 58,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffA1A1A1)),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xffF6F6F6)
+        ),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: _margenPaginaHorizontal),
+        padding: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal),
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.location_on, color: Color(0xffA1A1A1),),
+            Text("  Location", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _startedTime(){
+    return GestureDetector(
+      onTap: (){
+        
+      },
+      child: Container(
+        height: 58,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffA1A1A1)),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xffF6F6F6)
+        ),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: _margenPaginaHorizontal),
+        padding: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal),
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.access_time, color: Color(0xffA1A1A1),),
+            Text("  Started Time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _listaHorizontalHoras(){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal),
+        height: 58,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          children: <Widget>[
+            _timeMinutes("15"),
+            _timeMinutes("30"),
+            _timeMinutes("60"),
+          ],
+        ),
+    );
+  }
+
+  Widget _timeMinutes( String _hora){
+    return GestureDetector(
+      onTap: (){
+        
+      },
+      child: Container(
+        height: 58,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffA1A1A1)),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xffF6F6F6)
+        ),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.access_time, color: Color(0xffA1A1A1),),
+            Text("  $_hora Min  ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _messageText(){
+    return Container(
+      padding: EdgeInsets.all(_margenPaginaHorizontal),
+      child: TextFormField(
+        
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xffA1A1A1)
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(10),)
+          ),
+          fillColor: Color(0xffF6F6F6),
+          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10),)),
+          filled: true,
+          labelText: "Message",
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold
+          )
+        ),
+        textCapitalization: TextCapitalization.sentences,
+        maxLines: null,
+        autovalidate: true,
+      ),
+    );
+  }
+
+
+
+  Widget _botonSubmit(){
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal, vertical: 25),
+          child: CupertinoButton(
+            child: Text("SUBMIT", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+            onPressed: _dialogoParaEnviar,
+            color: Color(0xff489ED2),
+            borderRadius: BorderRadius.all(Radius.zero),
+          ),
+        ),
+      ]
+    );
+  }
+
+  Future _dialogoParaRegresar(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return CupertinoAlertDialog(
+          title: Text("Discard your Invitation?"),
+          actions: <Widget>[
+            CupertinoButton(
+              child: Text("Yes", style: TextStyle(color: Colors.black)),
+              onPressed: (){
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+            CupertinoButton(
+              child: Text("No", style: TextStyle(color: Colors.black)),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      }
+    );
+  }
+
+  Future _dialogoParaEnviar(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return CupertinoAlertDialog(
+          title: Text("Your meeting request has been sent.", style: TextStyle(fontWeight: FontWeight.normal)),
+          content: Text("You will be notified once the recipient accept or decline your proposal."),
+          actions: <Widget>[
+            CupertinoButton(
+              child: Text("OK", style: TextStyle(color: Colors.black)),
+              onPressed: (){
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            )
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: barraSuperior(context),
+      backgroundColor: Colors.white,
+      appBar: _barraSuperior(),
       body: _cuerpoDeLaPagina(),
     );
   }
