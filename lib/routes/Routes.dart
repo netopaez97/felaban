@@ -5,6 +5,7 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
+import 'package:felaban/pages/menu_loged/networking.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/message.dart';
@@ -34,4 +35,5 @@ class Routes {
   static const String perfilUsuarioPublico = PerfilUsuarioPublicoView.routeName;
   static const String mensajePerfilUsario = MessageListaAttendeesView.routeName;
   static const String invitacionReunionPerfilUsario = InvitacionReunionPerfilUsuarioView.routeName;
+  static const String networking = NetworkingArea.routeName;
 }

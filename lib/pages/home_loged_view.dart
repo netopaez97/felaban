@@ -173,7 +173,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Networking", style: TextStyle(fontSize: 20),),
               subtitle: Text("Engage with attendees and boost interactions ", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.networking);
               },
             ),
           ),
