@@ -1,5 +1,6 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
+import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
   Widget _bienvenida(){
     return Container(
       padding: EdgeInsets.all(_margenHorizontal),
-      child: Text("Welcome to the Networking Area.\nUse the FELABAN matchmaking and meeting platform before and during the Conference."),
+      child: Text("Welcome to the Networking Area.\nUse the FELABAN matchmaking and meeting platform before and during the Conference.", style: TextStyle(fontSize: 18),),
     );
   }
 
@@ -53,12 +54,14 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     return Container(
       color: Color(0xffF0F0F0),
       child: ExpansionTile(
+        initiallyExpanded: true,
         title: Row(
           children: <Widget>[
             Text("Meeting Requests ", style: TextStyle(fontSize: 18, color: Colors.black)),
             Text("Sent by You", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
           ],
         ),
+        trailing: Icon(Icons.navigate_next, color: Colors.black),
         children: <Widget>[
           Container(
             color: Colors.grey[50],
@@ -66,7 +69,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _presentacionInvitaciones("You have sent the following invitations:"),
+                _presentacionInvitaciones(),
                 _actividadSentByYou(),
               ],
             ),
@@ -76,24 +79,23 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     );
   }
 
-  Widget _presentacionInvitaciones(String mensaje){
+  Widget _presentacionInvitaciones(){
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(_margenHorizontal),
-      child: Text(mensaje, style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)),)
+      padding: EdgeInsets.fromLTRB(_margenHorizontal, _margenHorizontal, _margenHorizontal,0),
+      child: Text("You have sent 18 Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
     );
   }
 
   Widget _actividadSentByYou(){
 
     return Container(
-      padding: EdgeInsets.all(_margenHorizontal),
-      child: ListTile(
-        onTap: (){
+      padding: EdgeInsets.fromLTRB(_margenHorizontal, 5, 0, _margenHorizontal),
+      child: FlatButton(
+        onPressed: (){
           Navigator.pushNamed(context, Routes.networkingSentByYou);
         },
-        title: Text("You have sent 18 Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
-        subtitle: Table(
+        child: Table(
           children: [
             TableRow(
               children: [
@@ -145,99 +147,49 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             color: Colors.grey[50],
             width: double.infinity,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _presentacionInvitaciones("You have received the following invitations:"),
-                _actividadesRecived(),
+                _textoInvitacionesRecividas(),
+                _setUpMatchMaking(),
               ],
             )
-          )
+          ),
         ]
       )
     );
   }
 
-  Widget _actividadesRecived(){
-    return Column(
-      children: _requestRecived.map(
-        (solicitud) => Column(
-          children: <Widget>[
-            Divider(height: 5, color: Color(0xffC4C4C4),),
-            Container(
-              alignment: Alignment.centerLeft,
-              width: double.infinity,
-              color: Color(0xffF6F6F6),
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(solicitud["de"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                      Text(solicitud["empresa"], style: TextStyle(fontSize: 16),),
-                    ],
-                  ),
-                  solicitud["estado"] == "confirmado"
-                  ? GestureDetector(
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset("assets/networking/add_to_calendar.png"),
-                        Text("Add to Calendar", style: TextStyle(fontSize: 12, color: Color(0xff423434)))
-                      ],
-                    ),
-                  )
-                  : Container(),
-                ],
-              )
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Table(
-                children: [
-                  TableRow(
-                    children: [
-                      Text(solicitud["fecha"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["hora"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                    ]
-                  ),
-                  TableRow(
-                    children: [
-                      Text(solicitud["lugar"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["duracion"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                    ]
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Text(solicitud["mensaje"], style: TextStyle(fontSize: 16),),
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                children: <Widget>[
-                  solicitud["estado"] == "confirmado"
-                  ? CupertinoButton(
-                    color: Color(0xff29983A),
-                    child: Text("CONFIRMED", style: TextStyle(fontWeight: FontWeight.bold),),
-                    onPressed: (){
+  Widget _textoInvitacionesRecividas(){
+    return Container(
+      alignment: Alignment.centerLeft,
+      width: double.infinity,
+      color: Colors.grey[50],
+      child: FlatButton(
+        child: Text("You have received 2 invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => NetworkingRecived(_requestRecived)
+          ));
+        },
+      ),
+    );
+  }
 
-                    },
-                  )
-                  : CupertinoButton(
-                    color: Color(0xffF6F6F6),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Text("ACCEPT", style: TextStyle(color: Colors.black),),
-                    onPressed: (){
-
-                    },
-                  ),
-                ],
-              ),
-            )
-          ],
-        )
-      ).toList()
+  Widget _setUpMatchMaking(){
+    return Container(
+      color: Color(0xffEAFEEA),
+      padding: EdgeInsets.symmetric(vertical: _margenHorizontal),
+      child: ListTile(
+        title: Text("Set up your matchmaking.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff404040)),),
+        subtitle: Text("Define your profile and Networking interests.", style: TextStyle(fontSize: 18, color: Color(0xff404040)),),
+        trailing: IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: (){
+            print("object");
+          },
+        ),
+        onTap: (){},
+      ),
     );
   }
 

@@ -1,6 +1,8 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NetwrokingSentByYou extends StatefulWidget {
 
@@ -20,8 +22,75 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
     return ListView(
       children: <Widget>[
         barraNetworking(_margenHorizontal),
+        _searchAndFilters(),
+        _barraMeetingRequest(),
+        _presentacionInvitaciones(),
         _invitaciones(),
       ],
+    );
+  }
+
+  Widget _searchAndFilters(){
+    return Container(
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: _searchNavigation(),
+          ),
+          SizedBox(width: 10,),
+          Text("Filters", style: TextStyle(fontSize: 18),),
+          IconButton(
+            icon: Icon(IconData(0xF39D, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), size: 34, color: Color(0xffA1A1A1),),
+            onPressed: (){},
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _searchNavigation(){
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 60,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        color: Color(0xffE9E6E6),
+      ),
+      child: TextField(
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          labelText: "search...",
+          labelStyle: TextStyle(fontSize: 20),
+          icon: Icon(Icons.search),
+        ),
+      ),
+    );
+  }
+
+  Widget _barraMeetingRequest(){
+    return Container(
+      height: 70,
+      color: Color(0xffF0F0F0),
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Row(
+        children: <Widget>[
+          Text("Meeting Requests ", style: TextStyle(fontSize: 18, color: Colors.black)),
+          Text("Sent by You", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
+        ],
+      ),
+    );
+  }
+
+
+
+  Widget _presentacionInvitaciones(){
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Text("You have sent the following invitations:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
     );
   }
 

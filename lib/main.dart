@@ -5,7 +5,6 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
-import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';
@@ -64,7 +63,6 @@ class MyApp extends StatelessWidget {
           InvitacionReunionPerfilUsuarioView.routeName: (BuildContext context) => InvitacionReunionPerfilUsuarioView(),
           NetworkingArea.routeName: (BuildContext context) => NetworkingArea(),
           NetwrokingSentByYou.routeName: (BuildContext context) => NetwrokingSentByYou(),
-          NetworkingRecived.routeName: (BuildContext context) => NetworkingRecived(),
         },
       ),
     );
