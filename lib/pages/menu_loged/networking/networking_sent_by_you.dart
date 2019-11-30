@@ -1,5 +1,6 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
+import 'package:felaban/pages/menu_loged/networking/filtros.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,7 +43,11 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
           Text("Filters", style: TextStyle(fontSize: 18),),
           IconButton(
             icon: Icon(IconData(0xF39D, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), size: 34, color: Color(0xffA1A1A1),),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) => NetWorkingFiltros()
+              ));
+            },
           )
         ],
       ),
@@ -115,73 +120,81 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                         ],
                       ),
                       invitacionEnviada["estado"] == "espera"
-                      ? GestureDetector(
-                        onTap: (){
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context){
-                              return AlertDialog(
-                                title: Text("Meeting request EDIT"),
-                              );
-                            }
-                          );
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffC4C4C4)),
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color(0xffF6F6F6)
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
-                          margin: EdgeInsets.only(top: 5, bottom: _margenHorizontal),
-                          child: Text("Modify / Cancel", style: TextStyle(fontSize: 16),)
-                        )
+                      ? Container(
+                        margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                        child: CupertinoButton(
+                          child: Text("Modify / Cancel", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                          color: Color(0xff7B98A0),
+                          padding: EdgeInsets.all(0),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  title: Text("Meeting request EDIT"),
+                                );
+                              }
+                            );
+                          },
+                        ),
                       )
                       : invitacionEnviada["estado"] == "confirmado"
-                        ? GestureDetector(
-                          onTap: (){
-                            
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff29983A)),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xffF6F6F6)
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
-                            margin: EdgeInsets.only(top: 5, bottom: _margenHorizontal),
-                            child: Text("CONFIRMED", style: TextStyle(fontSize: 16),)
-                          )
-                        )
-                        : GestureDetector(
-                          onTap: (){
-                            
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xffEF4135)),
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xffF6F6F6)
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
-                            margin: EdgeInsets.only(top: 5, bottom: _margenHorizontal),
-                            child: Text("DECLINED", style: TextStyle(fontSize: 16),)
+                        ?Container(
+                          margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                          child: CupertinoButton(
+                            child: Text("Confirmed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                            color: Color(0xff60B842),
+                            padding: EdgeInsets.all(0),
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            onPressed: (){
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    title: Text("Meeting request EDIT"),
+                                  );
+                                }
+                              );
+                            },
                           ),
-                        ),
+                        )
+                        : Container(
+                          margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                          child: CupertinoButton(
+                            child: Text("Declined", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                            color: Color(0xffD80027),
+                            padding: EdgeInsets.all(0),
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            onPressed: (){
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    title: Text("Meeting request EDIT"),
+                                  );
+                                }
+                              );
+                            },
+                          ),
+                        )
                     ]
                   ),
                   TableRow(
                     children: [
-                      Text(invitacionEnviada["fecha"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C))),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Text(invitacionEnviada["fecha"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
+                      ),
                       Text(invitacionEnviada["hora"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
                     ]
                   ),
                   TableRow(
                     children: [
-                      Text(invitacionEnviada["lugar"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C))),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Text(invitacionEnviada["lugar"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C))),
+                      ),
                       Text(invitacionEnviada["duracion"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
                     ]
                   ),

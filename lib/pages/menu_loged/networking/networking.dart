@@ -161,11 +161,11 @@ class _NetworkingAreaState extends State<NetworkingArea> {
 
   Widget _textoInvitacionesRecividas(){
     return Container(
+      color: Colors.grey[50],
       alignment: Alignment.centerLeft,
       width: double.infinity,
-      color: Colors.grey[50],
       child: FlatButton(
-        child: Text("You have received 2 invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
+        child: Text("You have recived 2 invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) => NetworkingRecived(_requestRecived)
