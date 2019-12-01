@@ -1,5 +1,6 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
+import 'package:felaban/pages/menu_loged/networking/filtros.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,16 +22,43 @@ class _NetworkingRecivedState extends State<NetworkingRecived> {
     return ListView(
       children: <Widget>[
         barraNetworking(_margenHorizontal),
-        _searchNavigation(),
+        _searchAndFilters(),
+        _barraMeetingRequest(),
+        _presentacionInvitaciones(),
         _actividadesRecived(),
+        Divider(color: Color(0xffC4C4C4), height: 0,),
       ],
+    );
+  }
+
+  Widget _searchAndFilters(){
+    return Container(
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: _searchNavigation(),
+          ),
+          SizedBox(width: 10,),
+          Text("Filters", style: TextStyle(fontSize: 18),),
+          IconButton(
+            icon: Icon(IconData(0xF39D, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), size: 34, color: Color(0xffA1A1A1),),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) => NetWorkingFiltros()
+              ));
+            },
+          )
+        ],
+      ),
     );
   }
 
   Widget _searchNavigation(){
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 18),
       padding: EdgeInsets.symmetric(horizontal: 10),
+      height: 60,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Color(0xffE9E6E6),
@@ -47,85 +75,122 @@ class _NetworkingRecivedState extends State<NetworkingRecived> {
     );
   }
 
+  Widget _barraMeetingRequest(){
+
+    return Container(
+      alignment: Alignment.center,
+      height: 70,
+      color: Color(0xffF0F0F0),
+      child: ListTile(
+        title: Row(
+          children: <Widget>[
+            Text("Meeting Requests ", style: TextStyle(fontSize: 18, color: Colors.black)),
+            Text("Recived", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
+          ],
+        ),
+        trailing: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.red,
+          ),
+          width: 33,
+          alignment: Alignment.center,
+          child: Text(widget.requestRecived.length.toString(), style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),),
+        ),
+      ),
+    );
+  }
+
+  Widget _presentacionInvitaciones(){
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Text("You have received the following invitations:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
+    );
+  }
+
   Widget _actividadesRecived(){
     return Column(
       children: widget.requestRecived.map(
         (solicitud) => Column(
           children: <Widget>[
-            Divider(height: 5, color: Color(0xffC4C4C4),),
-            Container(
-              alignment: Alignment.centerLeft,
-              width: double.infinity,
-              color: Color(0xffF6F6F6),
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(solicitud["de"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                      Text(solicitud["empresa"], style: TextStyle(fontSize: 16),),
-                    ],
-                  ),
-                  solicitud["estado"] == "confirmado"
-                  ? GestureDetector(
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset("assets/networking/add_to_calendar.png"),
-                        Text("Add to Calendar", style: TextStyle(fontSize: 12, color: Color(0xff423434)))
-                      ],
-                    ),
-                  )
-                  : Container(),
-                ],
-              )
-            ),
+            Divider(color: Color(0xffC4C4C4), height: 0,),
             Container(
               padding: EdgeInsets.all(_margenHorizontal),
               child: Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 children: [
                   TableRow(
                     children: [
-                      Text(solicitud["fecha"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["hora"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(solicitud["de"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                          Text(solicitud["empresa"], style: TextStyle(fontSize: 16),),
+                        ],
+                      ),
+                      solicitud["estado"] == "espera"
+                      ? Container(
+                        margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                        child: CupertinoButton(
+                          child: Text("View Details", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                          color: Color(0xffC4C4C4),
+                          padding: EdgeInsets.all(0),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  title: Text("Meeting request EDIT"),
+                                );
+                              }
+                            );
+                          },
+                        ),
+                      )
+                      : Container(
+                        margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                        child: CupertinoButton(
+                          child: Text("Confirmed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                          color: Color(0xff60B842),
+                          padding: EdgeInsets.all(0),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  title: Text("Meeting request EDIT"),
+                                );
+                              }
+                            );
+                          },
+                        ),
+                      ),
                     ]
                   ),
                   TableRow(
                     children: [
-                      Text(solicitud["lugar"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["duracion"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Text(solicitud["fecha"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
+                      ),
+                      Text(solicitud["hora"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
+                    ]
+                  ),
+                  TableRow(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Text(solicitud["lugar"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C))),
+                      ),
+                      Text(solicitud["duracion"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
                     ]
                   ),
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Text(solicitud["mensaje"], style: TextStyle(fontSize: 16),),
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                children: <Widget>[
-                  solicitud["estado"] == "confirmado"
-                  ? CupertinoButton(
-                    color: Color(0xff29983A),
-                    child: Text("CONFIRMED", style: TextStyle(fontWeight: FontWeight.bold),),
-                    onPressed: (){
-
-                    },
-                  )
-                  : CupertinoButton(
-                    color: Color(0xffF6F6F6),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Text("ACCEPT", style: TextStyle(color: Colors.black),),
-                    onPressed: (){
-
-                    },
-                  ),
-                ],
-              ),
-            )
           ],
         )
       ).toList()
