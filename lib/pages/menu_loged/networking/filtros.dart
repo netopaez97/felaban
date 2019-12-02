@@ -13,7 +13,8 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
   bool _filtroDeclined = true;
   bool _filtroPending = true;
 
-    DateTime _time = DateTime.now();
+  DateTime _initTime;
+  DateTime _endTime;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -45,6 +46,41 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
           _meetingStatus(),
           SizedBox(height: 20,),
           _chooseDate(),
+          SizedBox(height: 20,),
+          Column(
+            children: <Widget>[
+              CupertinoButton(
+                padding: EdgeInsets.symmetric(horizontal: 50),
+                color: Color(0xffFF595F),
+                child: Text("Apply Filters", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,)),
+                onPressed: (){
+                  if(_initTime==null || _endTime == null){
+                    return showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return CupertinoAlertDialog(
+                          title: Text("Please, choose dates."),
+                          actions: <Widget>[
+                            CupertinoButton(
+                              borderRadius: BorderRadius.zero,
+                              padding: EdgeInsets.all(0),
+                              child: Text("Ok"),
+                              color: Color(0xff29983A),
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    );
+                  }
+
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -64,10 +100,18 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
                 value: _filtroAll,
                 onChanged: (val){
                   setState(() {
-                    _filtroAll = !_filtroAll;
-                    _filtroApproved = !_filtroApproved;
-                    _filtroDeclined = !_filtroDeclined;
-                    _filtroPending = !_filtroPending;
+                    if(_filtroAll == true){
+                      _filtroAll = false;
+                      _filtroApproved = false;
+                      _filtroDeclined = false;
+                      _filtroPending = false;
+                    }
+                    else{
+                      _filtroAll = true;
+                      _filtroApproved = true;
+                      _filtroDeclined = true;
+                      _filtroPending = true;
+                    }
                   });
                 },
               ),
@@ -91,6 +135,9 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
                         _filtroAll = true;
                         _filtroDeclined = true;
                       }
+                    }
+                    else{
+                      
                     }
                   });
                 },
@@ -122,53 +169,94 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
           subtitle: Container(
             padding: EdgeInsets.all(10),
             child: Table(
+              columnWidths: {1:FractionColumnWidth(.1)},
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
                 TableRow(
                   children: [
                     Text("From date", style: TextStyle(fontSize: 20)),
+                    SizedBox(),
                     Text("To date", style: TextStyle(fontSize: 20)),
                   ]
                 ),
                 TableRow(
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(right: 10),
-                      height: 80,
-                      child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.date,
-                        onDateTimeChanged: (newDate){
-
-                        },
-                      ),
-                    ),
                     GestureDetector(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide())
-                        ),
-                        child: Text(_time.toString()),
-                      ),
                       onTap: () async {
-
-                        DateTime _date = await showDatePicker(
+                        await showDatePicker(
                           context: context,
                           lastDate: DateTime(2100),
                           initialDate: DateTime.now().add(Duration(seconds: 1)),
                           firstDate: DateTime.now(),
+                        ).then(
+                          (newDate){
+                            setState(() {
+                            _initTime = DateTime(
+                                newDate.year,
+                                newDate.month,
+                                newDate.day,
+                                newDate.hour,
+                                newDate.minute
+                              );
+                            });
+                            _endTime = null;
+                          }
+                        ).catchError(
+                          (e){
+                            print(e);
+                          }
                         );
+                      },
+                      child: Container(
+                        height: 40,
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Color(0xff999999)))
+                        ),
+                        child: _initTime == null
+                        ? Text("MM/dd/yyyy", style: TextStyle(fontSize: 16, color: Color(0xff999999)),)
+                        : Text("${_initTime.month.toString()}-${_initTime.day.toString()}-${_initTime.year.toString()}", style: TextStyle(fontSize: 16, color: Color(0xff999999)),),
+                      ),
+                    ),
+                    SizedBox(),
+                    GestureDetector(
+                      child: Container(
+                        height: 40,
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Color(0xff999999)))
+                        ),
+                        child: _endTime == null
+                        ? Text("MM/dd/yyyy", style: TextStyle(fontSize: 16, color: Color(0xff999999)),)
+                        : Text("${_endTime.month.toString()}-${_endTime.day.toString()}-${_endTime.year.toString()}", style: TextStyle(fontSize: 16, color: Color(0xff999999)),),
+                      ),
+                      onTap: () async {
 
-                        print(_date);
-
-                        setState(() {
-                          _time = DateTime(
-                            _date.year,
-                            _date.month,
-                            _date.day,
-                            _date.hour,
-                            _date.minute
+                        if(_initTime != null){
+                          await showDatePicker(
+                            context: context,
+                            lastDate: DateTime(2100),
+                            initialDate: _initTime.add(Duration(seconds: 1)),
+                            firstDate: _initTime,
+                          ).then(
+                            (newDate){
+                              setState(() {
+                              _endTime = DateTime(
+                                  newDate.year,
+                                  newDate.month,
+                                  newDate.day,
+                                );
+                              });
+                            }
+                          ).catchError(
+                            (e){
+                              print(e);
+                            }
                           );
-                        });
-                        print(_time);
+                        }
+
                       },
                     )
                   ]
@@ -178,6 +266,40 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
           )
         )
       ),
+    );
+  }
+
+  Future _dialogDateTimePicker(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          content: Container(
+            width: double.infinity,
+            height: 200,
+            child: CupertinoDatePicker(
+              minimumDate: DateTime.now(),
+              mode: CupertinoDatePickerMode.date,
+              initialDateTime: _initTime,
+              onDateTimeChanged: (newDate){
+                setState(() {
+                  _initTime = newDate;
+                });
+              },
+            ),
+          ),
+          actions: <Widget>[
+            CupertinoButton(
+              child: Text("OK"),
+              color: Color(0xff29983A),
+              borderRadius: BorderRadius.zero,
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            )
+          ],
+        );
+      }
     );
   }
 

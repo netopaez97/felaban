@@ -1,6 +1,8 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
 import 'package:felaban/pages/menu_loged/networking/filtros.dart';
+import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_confirmed.dart';
+import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_espera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -128,14 +130,9 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                           padding: EdgeInsets.all(0),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           onPressed: (){
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context){
-                                return AlertDialog(
-                                  title: Text("Meeting request EDIT"),
-                                );
-                              }
-                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext context) => RequestEditPageEspera()
+                            ));
                           },
                         ),
                       )
@@ -148,14 +145,9 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                             padding: EdgeInsets.all(0),
                             borderRadius: BorderRadius.all(Radius.circular(15)),
                             onPressed: (){
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context){
-                                  return AlertDialog(
-                                    title: Text("Meeting request EDIT"),
-                                  );
-                                }
-                              );
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (BuildContext context) => RequestEditConfirmedDeclinedPage()
+                              ));
                             },
                           ),
                         )
