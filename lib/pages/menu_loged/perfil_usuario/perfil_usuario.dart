@@ -284,6 +284,7 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: barraSuperior(context),
       body: _cuerpoDeLaPagina(),
     );

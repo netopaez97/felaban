@@ -30,17 +30,26 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
   }
 
   Widget _cuerpoDeLaPagina(){
-    return ListView(
+    return Stack(
       children: <Widget>[
-        _barraMessageTitulo(),
-        _presentacionDelDestinatarioTile(),
-        _barraDeDivision(),
-        _barraNombreDestinatario(),
-        _barraDeDivision(),
-        _barraAsunto(),
-        _barraDeDivision(),
-        _contenidoMensaje(),
-        _botonSubmit(),
+        ListView(
+          children: <Widget>[
+            _barraMessageTitulo(),
+            _presentacionDelDestinatarioTile(),
+            _barraDeDivision(),
+            _barraNombreDestinatario(),
+            _barraDeDivision(),
+            _barraAsunto(),
+            _barraDeDivision(),
+            _contenidoMensaje(),
+          ],
+        ),
+        Positioned(
+          bottom: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: _barraEnviarMensaje(),
+        ),
       ],
     );
   }
@@ -132,6 +141,46 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
         textCapitalization: TextCapitalization.sentences,
         keyboardType: TextInputType.text,
         maxLines: 6,
+      ),
+    );
+  }
+
+  Widget _barraEnviarMensaje(){
+    return Container(
+      color: Colors.grey[200],
+      padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.white,
+              ),
+              child: TextField(
+                minLines: 1,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))
+                  )
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: FlatButton(
+              padding: EdgeInsets.all(0),
+              child: Text("Send", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+              onPressed: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(title: Text("Message sent"),)
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }
