@@ -32,8 +32,8 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
       children: <Widget>[
         SizedBox(height: 10,),
         _nombreYcalendario(),
-        _barraDeDivision(),
         _meetingDetails(),
+        _barraDeDivision(),
         _messageText(),
         _botonesModificarOlvidar(),
         _botonReSchedule(),
@@ -47,7 +47,12 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
       child: ListTile(
         title: Text("Alfredo Cubillos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
         subtitle: Text("CEO Microsoft", style: TextStyle(fontSize: 16),),
-        trailing: Image.asset("assets/detalleAgenda/calendario.png", color: Colors.black)
+        trailing: Column(
+          children: <Widget>[
+            Image.asset("assets/detalleAgenda/calendario.png", color: Colors.black),
+            Text("Add to calendar")
+          ],
+        )
       ),
     );
   }
@@ -126,15 +131,16 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
       child: TextFormField(
         
         decoration: InputDecoration(
-          fillColor: Color(0xffF6F6F6),
-          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10),)),
+          fillColor: Colors.white,
+          border: InputBorder.none,
           filled: true,
-          labelText: "Message",
+          labelText: "Message:",
           labelStyle: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black 
           )
         ),
+        keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.sentences,
         maxLines: null,
         autovalidate: true,
@@ -149,7 +155,7 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
         children: <Widget>[
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               borderRadius: BorderRadius.zero,
               child: Text("Confirmed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xff29983A),
@@ -161,7 +167,7 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
           SizedBox(width: 10,),
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               borderRadius: BorderRadius.zero,
               child: Text("Decline", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xffEF4135),
@@ -179,7 +185,7 @@ class _RequestEditConfirmedDeclinedPageState extends State<RequestEditConfirmedD
     return Column(
       children: <Widget>[
         CupertinoButton(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           borderRadius: BorderRadius.zero,
           color: Color(0xffA1A1A1),
           child: Text("Re Schedule", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),

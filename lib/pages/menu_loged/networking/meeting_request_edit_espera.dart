@@ -281,7 +281,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         children: <Widget>[
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               borderRadius: BorderRadius.zero,
               child: Text("Modify and Send", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xff29983A),
@@ -293,7 +293,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           SizedBox(width: 10,),
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               borderRadius: BorderRadius.zero,
               child: Text("Dismiss", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xffEF4135),
