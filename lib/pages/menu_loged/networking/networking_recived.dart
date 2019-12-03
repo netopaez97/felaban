@@ -86,7 +86,7 @@ class _NetworkingRecivedState extends State<NetworkingRecived> {
         title: Row(
           children: <Widget>[
             Text("Meeting Requests ", style: TextStyle(fontSize: 18, color: Colors.black)),
-            Text("Recived", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
+            Text("Received", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
           ],
         ),
         trailing: Container(
@@ -153,14 +153,9 @@ class _NetworkingRecivedState extends State<NetworkingRecived> {
                           padding: EdgeInsets.all(0),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           onPressed: (){
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context){
-                                return AlertDialog(
-                                  title: Text("Meeting request EDIT"),
-                                );
-                              }
-                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext context) => RequestEditDetailsPage()
+                            ));
                           },
                         ),
                       ),

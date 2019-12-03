@@ -94,7 +94,7 @@ class _RequestEditDetailsPageState extends State<RequestEditDetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("MeetingDetails", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+            Text("Meeting Details", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
             SizedBox(height: 10,),
             Container(
               padding: EdgeInsets.all(5),
