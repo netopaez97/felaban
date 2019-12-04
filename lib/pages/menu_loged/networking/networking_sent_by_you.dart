@@ -11,6 +11,9 @@ class NetwrokingSentByYou extends StatefulWidget {
 
   static const routeName = "/networkingSentByYou";
 
+  final List requestSentByYou;
+  NetwrokingSentByYou(this.requestSentByYou,{Key key}) : super(key:key);
+
   @override
   _NetwrokingSentByYouState createState() => _NetwrokingSentByYouState();
 }
@@ -18,8 +21,6 @@ class NetwrokingSentByYou extends StatefulWidget {
 class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
 
   double _margenHorizontal = 15;
-
-  List _requestSentByYou;
 
   Widget _cuerpoDeLaPagina(){
     return ListView(
@@ -103,7 +104,7 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
 
   Widget _invitaciones(){
     return Column(
-      children: _requestSentByYou.map(
+      children: widget.requestSentByYou.map(
         (invitacionEnviada) => Column(
           children: <Widget>[
             Divider(height: 1, color: Color(0xffC4C4C4),),
@@ -202,46 +203,6 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
   @override
   void initState() {
     super.initState();
-
-
-    _requestSentByYou = [
-      {
-        "para":"Matt Higgins1",
-        "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
-        "lugar":"Lobby Area",
-        "hora":"8:30 AM",
-        "duracion":"30 Min",
-        "estado":"espera"
-      },
-      {
-        "para":"Matt Higgins2",
-        "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
-        "lugar":"Lobby Area",
-        "hora":"8:30 AM",
-        "duracion":"30 Min",
-        "estado":"confirmado"
-      },
-      {
-        "para":"Matt Higgins3",
-        "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
-        "lugar":"Lobby Area",
-        "hora":"8:30 AM",
-        "duracion":"30 Min",
-        "estado":"espera"
-      },
-      {
-        "para":"Matt Higgins4",
-        "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
-        "lugar":"Lobby Area",
-        "hora":"8:30 AM",
-        "duracion":"30 Min",
-        "estado":"rechazado"
-      },
-    ];
   }
 
   @override

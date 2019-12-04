@@ -1,6 +1,7 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
+import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,14 +50,6 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         _setUpMatchMaking(),
         _whatYouAreOffering(),
         _lookingFor(),
-        RaisedButton(
-          onPressed: (){
-            var rta = _requestSentByYou.where( (solicitud) => 
-              solicitud["estado"] == "confirmado"
-            );
-            print(rta);
-          }
-        )
       ],
     );
   }
@@ -73,7 +66,6 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     return Container(
       color: Color(0xffF0F0F0),
       child: ExpansionTile(
-        initiallyExpanded: true,
         title: Row(
           children: <Widget>[
             Text("Meeting Requests ", style: TextStyle(fontSize: 18, color: Colors.black)),
@@ -124,7 +116,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       padding: EdgeInsets.fromLTRB(_margenHorizontal, 5, 0, _margenHorizontal),
       child: FlatButton(
         onPressed: (){
-          Navigator.pushNamed(context, Routes.networkingSentByYou);
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => NetwrokingSentByYou(_requestSentByYou)
+          ));
         },
         child: Table(
           children: [
