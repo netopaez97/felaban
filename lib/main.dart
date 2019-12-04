@@ -62,7 +62,6 @@ class MyApp extends StatelessWidget {
           MessageListaAttendeesView.routeName: (BuildContext context) => MessageListaAttendeesView(),
           InvitacionReunionPerfilUsuarioView.routeName: (BuildContext context) => InvitacionReunionPerfilUsuarioView(),
           NetworkingArea.routeName: (BuildContext context) => NetworkingArea(),
-          NetwrokingSentByYou.routeName: (BuildContext context) => NetwrokingSentByYou(),
         },
       ),
     );
