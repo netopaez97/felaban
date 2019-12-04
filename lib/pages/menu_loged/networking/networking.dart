@@ -35,6 +35,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     false,//16
   ];
   List _requestRecived;
+  List _requestSentByYou;
 
   double _margenHorizontal = 15;
 
@@ -48,6 +49,14 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         _setUpMatchMaking(),
         _whatYouAreOffering(),
         _lookingFor(),
+        RaisedButton(
+          onPressed: (){
+            var rta = _requestSentByYou.where( (solicitud) => 
+              solicitud["estado"] == "confirmado"
+            );
+            print(rta);
+          }
+        )
       ],
     );
   }
@@ -71,7 +80,15 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             Text("Sent by You", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
           ],
         ),
-        trailing: Icon(Icons.navigate_next, color: Colors.black),
+        trailing: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.red,
+          ),
+          width: 33,
+          alignment: Alignment.center,
+          child: Text(_requestSentByYou.length.toString(), style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),),
+        ),
         children: <Widget>[
           Container(
             color: Colors.grey[50],
@@ -93,11 +110,15 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.fromLTRB(_margenHorizontal, _margenHorizontal, _margenHorizontal,0),
-      child: Text("You have sent 18 Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
+      child: Text("You have sent ${_requestSentByYou.length} Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
     );
   }
 
   Widget _actividadSentByYou(){
+
+    int _cantidadEspera = _requestSentByYou.where((solicitud) => solicitud["estado"]=="espera").length;
+    int _cantidadConfirmados = _requestSentByYou.where((solicitud) => solicitud["estado"]=="confirmado").length;
+    int _cantidadRechazados = _requestSentByYou.where((solicitud) => solicitud["estado"]=="rechazado").length;
 
     return Container(
       padding: EdgeInsets.fromLTRB(_margenHorizontal, 5, 0, _margenHorizontal),
@@ -116,7 +137,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             TableRow(
               children: [
                 Text("Approved:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("05", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadEspera.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
               ]
             ),
             TableRow(
@@ -128,7 +149,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             TableRow(
               children: [
                 Text("Declined:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("10", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadConfirmados.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
               ]
             ),
             TableRow(
@@ -140,7 +161,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             TableRow(
               children: [
                 Text("Waiting for approval:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("03", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadRechazados.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
               ]
             ),
           ],
@@ -192,7 +213,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       alignment: Alignment.centerLeft,
       width: double.infinity,
       child: FlatButton(
-        child: Text("You have received 2 invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
+        child: Text("You have received ${_requestRecived.length} invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) => NetworkingRecived(_requestRecived)
@@ -676,6 +697,45 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "duracion":"30 Min",
         "estado":"confirmado",
         "mensaje":"I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400)."
+      },
+    ];
+
+    _requestSentByYou = [
+      {
+        "para":"Matt Higgins1",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"espera"
+      },
+      {
+        "para":"Matt Higgins2",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"confirmado"
+      },
+      {
+        "para":"Matt Higgins3",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"espera"
+      },
+      {
+        "para":"Matt Higgins4",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"rechazado"
       },
     ];
 
