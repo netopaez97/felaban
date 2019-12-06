@@ -71,6 +71,7 @@ flutter:
   - assets/attendees/
   - assets/perfil_usuario/
   - assets/networking/
+  - assets/exhibitors/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 
