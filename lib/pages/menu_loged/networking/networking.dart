@@ -146,13 +146,22 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             width: double.infinity,
             child: Column(
               children: <Widget>[
-                _presentacionInvitaciones("You have received the following invitations:"),
+                _presentacionInvitaciones("You have received 2 invitations"),
                 _actividadesRecived(),
               ],
             )
           )
         ]
       )
+    );
+  }
+
+  Widget _setUpYourMatchmaking(){
+    return Container(
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Column(
+        children: <Widget>[],
+      ),
     );
   }
 

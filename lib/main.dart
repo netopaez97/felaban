@@ -4,6 +4,7 @@ import 'package:felaban/pages/menu_loged/agenda.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
+import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           NetworkingArea.routeName: (BuildContext context) => NetworkingArea(),
           NetwrokingSentByYou.routeName: (BuildContext context) => NetwrokingSentByYou(),
           NetworkingRecived.routeName: (BuildContext context) => NetworkingRecived(),
+          ExhibitorListPage.routeName: (BuildContext context) => ExhibitorListPage(),
         },
       ),
     );

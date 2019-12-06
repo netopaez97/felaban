@@ -196,7 +196,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Exhibitors", style: TextStyle(fontSize: 20),),
               subtitle: Text("List of vendors and booths", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.exhibitorList);
               },
             ),
           ),
