@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class InvitacionReunionPerfilUsuarioView extends StatefulWidget {
-
-  static const String routeName = "/invitacionReunionPerfilUsuario";
+class RequestEditPageEspera extends StatefulWidget {
 
   @override
-  _InvitacionReunionPerfilUsuarioViewState createState() => _InvitacionReunionPerfilUsuarioViewState();
+  _RequestEditPageEsperaState createState() => _RequestEditPageEsperaState();
 }
 
-class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPerfilUsuarioView> {
-
+class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
+  
   final double _margenPaginaHorizontal = 10;
   DateTime dateTime;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
+      middle: Text("Meeting Request", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
       backgroundColor: Color(0xff8C8C8C),
       actionsForegroundColor: Colors.white,
       leading: CupertinoNavigationBarBackButton(
         previousPageTitle: "Back",
-        onPressed: _dialogoParaRegresar
+        onPressed: (){
+          Navigator.pop(context);
+        },
       ),
       padding: EdgeInsetsDirectional.zero,
     );
@@ -38,7 +39,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         _startedTime(),
         _listaHorizontalHoras(),
         _messageText(),
-        _botonSubmit(),
+        _botonesModificarOlvidar()
       ],
     );
   }
@@ -48,6 +49,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     double _anchoTOySUBJECT = MediaQuery.of(context).size.width*0.25;
 
     return Container(
+      alignment: Alignment.center,
       padding: EdgeInsets.all(_margenPaginaHorizontal),
       child: Row(
         children: <Widget>[
@@ -243,6 +245,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
       ),
     );
   }
+
   Widget _messageText(){
     return Container(
       padding: EdgeInsets.all(_margenPaginaHorizontal),
@@ -260,7 +263,8 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
           filled: true,
           labelText: "Message",
           labelStyle: TextStyle(
-            fontWeight: FontWeight.bold
+            fontWeight: FontWeight.bold,
+            color: Colors.black 
           )
         ),
         textCapitalization: TextCapitalization.sentences,
@@ -270,68 +274,36 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     );
   }
 
+  Widget _botonesModificarOlvidar(){
+    return Container(
+      padding: EdgeInsets.all(_margenPaginaHorizontal),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+              borderRadius: BorderRadius.zero,
+              child: Text("Modify and Send", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+              color: Color(0xff29983A),
+              onPressed: (){
 
-
-  Widget _botonSubmit(){
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: _margenPaginaHorizontal, vertical: 25),
-          child: CupertinoButton(
-            child: Text("SUBMIT", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
-            onPressed: _dialogoParaEnviar,
-            color: Color(0xff489ED2),
-            borderRadius: BorderRadius.all(Radius.zero),
+              },
+            ),
           ),
-        ),
-      ]
-    );
-  }
-
-  Future _dialogoParaRegresar(){
-    return showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return CupertinoAlertDialog(
-          title: Text("Discard your Invitation?"),
-          actions: <Widget>[
-            CupertinoButton(
-              child: Text("Yes", style: TextStyle(color: Colors.black)),
+          SizedBox(width: 10,),
+          Expanded(
+            child: CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+              borderRadius: BorderRadius.zero,
+              child: Text("Dismiss", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+              color: Color(0xffEF4135),
               onPressed: (){
-                Navigator.pop(context);
-                Navigator.pop(context);
+
               },
             ),
-            CupertinoButton(
-              child: Text("No", style: TextStyle(color: Colors.black)),
-              onPressed: (){
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      }
-    );
-  }
-
-  Future _dialogoParaEnviar(){
-    return showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return CupertinoAlertDialog(
-          title: Text("Your meeting request has been sent.", style: TextStyle(fontWeight: FontWeight.normal)),
-          content: Text("You will be notified once the recipient accept or decline your proposal."),
-          actions: <Widget>[
-            CupertinoButton(
-              child: Text("OK", style: TextStyle(color: Colors.black)),
-              onPressed: (){
-                Navigator.pop(context);
-                Navigator.pop(context);
-              },
-            )
-          ],
-        );
-      }
+          ),
+        ],
+      ),
     );
   }
 

@@ -1,5 +1,7 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
+import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
+import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,19 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     false,//4
     false,//5
     false,//6
-    false,//6
+    false,//7
+    false,//8
+    false,//9
+    false,//10
+    false,//11
+    false,//12
+    false,//13
+    false,//14
+    false,//15
+    false,//16
   ];
   List _requestRecived;
+  List _requestSentByYou;
 
   double _margenHorizontal = 15;
 
@@ -35,6 +47,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         _bienvenida(),
         _sentByYou(),
         _requestsRecived(),
+        _setUpMatchMaking(),
         _whatYouAreOffering(),
         _lookingFor(),
       ],
@@ -44,7 +57,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
   Widget _bienvenida(){
     return Container(
       padding: EdgeInsets.all(_margenHorizontal),
-      child: Text("Welcome to the Networking Area.\nUse the FELABAN matchmaking and meeting platform before and during the Conference."),
+      child: Text("Welcome to the Networking Area.\nUse the FELABAN matchmaking and meeting platform before and during the Conference.", style: TextStyle(fontSize: 18),),
     );
   }
 
@@ -59,6 +72,15 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             Text("Sent by You", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),)
           ],
         ),
+        trailing: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.red,
+          ),
+          width: 33,
+          alignment: Alignment.center,
+          child: Text(_requestSentByYou.length.toString(), style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),),
+        ),
         children: <Widget>[
           Container(
             color: Colors.grey[50],
@@ -66,7 +88,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _presentacionInvitaciones("You have sent the following invitations:"),
+                _presentacionInvitaciones(),
                 _actividadSentByYou(),
               ],
             ),
@@ -76,41 +98,64 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     );
   }
 
-  Widget _presentacionInvitaciones(String mensaje){
+  Widget _presentacionInvitaciones(){
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(_margenHorizontal),
-      child: Text(mensaje, style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)),)
+      padding: EdgeInsets.fromLTRB(_margenHorizontal, _margenHorizontal, _margenHorizontal,0),
+      child: Text("You have sent ${_requestSentByYou.length} Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
     );
   }
 
   Widget _actividadSentByYou(){
 
+    int _cantidadEspera = _requestSentByYou.where((solicitud) => solicitud["estado"]=="espera").length;
+    int _cantidadConfirmados = _requestSentByYou.where((solicitud) => solicitud["estado"]=="confirmado").length;
+    int _cantidadRechazados = _requestSentByYou.where((solicitud) => solicitud["estado"]=="rechazado").length;
+
     return Container(
-      padding: EdgeInsets.all(_margenHorizontal),
-      child: ListTile(
-        onTap: (){
-          Navigator.pushNamed(context, Routes.networkingSentByYou);
+      padding: EdgeInsets.fromLTRB(_margenHorizontal, 5, 0, _margenHorizontal),
+      child: FlatButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => NetwrokingSentByYou(_requestSentByYou)
+          ));
         },
-        title: Text("You have sent 18 Invitations", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16)),
-        subtitle: Table(
+        child: Table(
           children: [
             TableRow(
               children: [
+                SizedBox(height: 10,),
+                SizedBox(),
+              ]
+            ),
+            TableRow(
+              children: [
                 Text("Approved:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("05", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadEspera.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+              ]
+            ),
+            TableRow(
+              children: [
+                SizedBox(height: 10,),
+                SizedBox(),
               ]
             ),
             TableRow(
               children: [
                 Text("Declined:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("10", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadConfirmados.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+              ]
+            ),
+            TableRow(
+              children: [
+                SizedBox(height: 10,),
+                SizedBox(),
               ]
             ),
             TableRow(
               children: [
                 Text("Waiting for approval:", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16)),
-                Text("03", style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
+                Text(_cantidadRechazados.toString(), style: TextStyle(color: Color(0xff8C8C8C), fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.end,),
               ]
             ),
           ],
@@ -145,108 +190,50 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             color: Colors.grey[50],
             width: double.infinity,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _presentacionInvitaciones("You have received 2 invitations"),
-                _actividadesRecived(),
+                _textoInvitacionesRecividas(),
               ],
             )
-          )
+          ),
         ]
       )
     );
   }
 
-  Widget _setUpYourMatchmaking(){
+  Widget _textoInvitacionesRecividas(){
     return Container(
-      padding: EdgeInsets.all(_margenHorizontal),
-      child: Column(
-        children: <Widget>[],
+      color: Colors.grey[50],
+      alignment: Alignment.centerLeft,
+      width: double.infinity,
+      child: FlatButton(
+        child: Text("You have received ${_requestRecived.length} invitations", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 16),),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => NetworkingRecived(_requestRecived)
+          ));
+        },
       ),
     );
   }
 
-  Widget _actividadesRecived(){
-    return Column(
-      children: _requestRecived.map(
-        (solicitud) => Column(
-          children: <Widget>[
-            Divider(height: 5, color: Color(0xffC4C4C4),),
-            Container(
-              alignment: Alignment.centerLeft,
-              width: double.infinity,
-              color: Color(0xffF6F6F6),
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(solicitud["de"], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                      Text(solicitud["empresa"], style: TextStyle(fontSize: 16),),
-                    ],
-                  ),
-                  solicitud["estado"] == "confirmado"
-                  ? GestureDetector(
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset("assets/networking/add_to_calendar.png"),
-                        Text("Add to Calendar", style: TextStyle(fontSize: 12, color: Color(0xff423434)))
-                      ],
-                    ),
-                  )
-                  : Container(),
-                ],
-              )
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Table(
-                children: [
-                  TableRow(
-                    children: [
-                      Text(solicitud["fecha"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["hora"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                    ]
-                  ),
-                  TableRow(
-                    children: [
-                      Text(solicitud["lugar"], style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                      Text(solicitud["duracion"], textAlign: TextAlign.center, style: TextStyle(fontSize: 16 ,color: Color(0xff888888)),),
-                    ]
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Text(solicitud["mensaje"], style: TextStyle(fontSize: 16),),
-            ),
-            Container(
-              padding: EdgeInsets.all(_margenHorizontal),
-              child: Row(
-                children: <Widget>[
-                  solicitud["estado"] == "confirmado"
-                  ? CupertinoButton(
-                    color: Color(0xff29983A),
-                    child: Text("CONFIRMED", style: TextStyle(fontWeight: FontWeight.bold),),
-                    onPressed: (){
-
-                    },
-                  )
-                  : CupertinoButton(
-                    color: Color(0xffF6F6F6),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Text("ACCEPT", style: TextStyle(color: Colors.black),),
-                    onPressed: (){
-
-                    },
-                  ),
-                ],
-              ),
-            )
-          ],
-        )
-      ).toList()
+  Widget _setUpMatchMaking(){
+    return Container(
+      color: Color(0xffEAFEEA),
+      padding: EdgeInsets.symmetric(vertical: _margenHorizontal),
+      child: ListTile(
+        title: Text("Set up your matchmaking.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff404040)),),
+        subtitle: Text("Define your profile and Networking interests.", style: TextStyle(fontSize: 18, color: Color(0xff404040)),),
+        trailing: IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: (){
+            print("object");
+          },
+        ),
+        onTap: (){
+          
+        },
+      ),
     );
   }
 
@@ -268,7 +255,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Our algorith uses your interests to match you with the right people", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 18),),
+                Text("Our algorithm uses your interests to match you with the right people", style: TextStyle(color: Color(0xff8C8C8C), fontSize: 18),),
                 _softwareDevelopment(),
                 _marketingYBigData(),
                 _productDesign(),
@@ -482,16 +469,200 @@ class _NetworkingAreaState extends State<NetworkingArea> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _softwareDevelopment(),
-                _marketingYBigData(),
-                _productDesign(),
-                _bankingAndSecurity(),
-                _artificialIntelligenceAndOther(),
+                _softwareDevelopment1(),
+                _marketingYBigData1(),
+                _productDesign1(),
+                _bankingAndSecurity1(),
+                _artificialIntelligenceAndOther1(),
               ],
             ),
           )
         ],
       ),
+    );
+  }
+
+
+
+  Widget _softwareDevelopment1(){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _etiquetasOprimidas[8] = !_etiquetasOprimidas[8];
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffC4C4C4)),
+          borderRadius: BorderRadius.circular(10),
+          color: _etiquetasOprimidas[8] == false
+          ? Color(0xffF6F6F6)
+          : Color(0xffA1A1A1)
+        ),
+        padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+        margin: EdgeInsets.only(top: _margenHorizontal, bottom: 5),
+        child: Text("Software Develoment", style: TextStyle(fontSize: 16),)
+      ),
+    );
+  }
+
+  Widget _marketingYBigData1(){
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[9] = !_etiquetasOprimidas[9];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[9] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.symmetric(vertical: 5),
+            child: Text("Marketing", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+        SizedBox(width: 10,),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[10] = !_etiquetasOprimidas[10];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[10] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.symmetric(vertical: 5),
+            child: Text("Big Data", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _productDesign1(){
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          _etiquetasOprimidas[11] = !_etiquetasOprimidas[11];
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffC4C4C4)),
+          borderRadius: BorderRadius.circular(10),
+          color: _etiquetasOprimidas[11] == false
+          ? Color(0xffF6F6F6)
+          : Color(0xffA1A1A1)
+        ),
+        padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+        margin: EdgeInsets.symmetric(vertical: 5),
+        child: Text("Product Design", style: TextStyle(fontSize: 16),)
+      ),
+    );
+  }
+
+  Widget _bankingAndSecurity1(){
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[12] = !_etiquetasOprimidas[12];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[12] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.symmetric(vertical: 5),
+            child: Text("Online Banking", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+        SizedBox(width: 10,),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[13] = !_etiquetasOprimidas[13];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[13] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.symmetric(vertical: 5),
+            child: Text("Security", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _artificialIntelligenceAndOther1(){
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[14] = !_etiquetasOprimidas[14];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[14] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.only(top: 5, bottom: _margenHorizontal),
+            child: Text("Artificial Inteligence", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+        SizedBox(width: 10,),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              _etiquetasOprimidas[15] = !_etiquetasOprimidas[15];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC4C4C4)),
+              borderRadius: BorderRadius.circular(10),
+              color: _etiquetasOprimidas[15] == false
+              ? Color(0xffF6F6F6)
+              : Color(0xffA1A1A1)
+            ),
+            padding: EdgeInsets.symmetric(vertical: _margenHorizontal, horizontal: _margenHorizontal+5),
+            margin: EdgeInsets.only(top: 5, bottom: _margenHorizontal),
+            child: Text("Other", style: TextStyle(fontSize: 16),)
+          ),
+        ),
+      ],
     );
   }
 
@@ -520,6 +691,45 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "duracion":"30 Min",
         "estado":"confirmado",
         "mensaje":"I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400)."
+      },
+    ];
+
+    _requestSentByYou = [
+      {
+        "para":"Matt Higgins1",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"espera"
+      },
+      {
+        "para":"Matt Higgins2",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"confirmado"
+      },
+      {
+        "para":"Matt Higgins3",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"espera"
+      },
+      {
+        "para":"Matt Higgins4",
+        "empresa":"CEO Microsoft",
+        "fecha":"Monday 15, February",
+        "lugar":"Lobby Area",
+        "hora":"8:30 AM",
+        "duracion":"30 Min",
+        "estado":"rechazado"
       },
     ];
 

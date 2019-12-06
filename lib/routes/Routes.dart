@@ -40,6 +40,5 @@ class Routes {
   static const String invitacionReunionPerfilUsario = InvitacionReunionPerfilUsuarioView.routeName;
   static const String networking = NetworkingArea.routeName;
   static const String networkingSentByYou = NetwrokingSentByYou.routeName;
-  static const String networkingRecived = NetworkingRecived.routeName;
   static const String exhibitorList = ExhibitorListPage.routeName;
 }
