@@ -1,6 +1,6 @@
-import 'package:felaban/components/backgroundSuperior.dart';
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/pages/menu_loged/exhibitor/detalle_exhibitor_list.dart';
 import 'package:flutter/material.dart';
 
 class ExhibitorListPage extends StatefulWidget {
@@ -65,6 +65,9 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
           labelStyle: TextStyle(fontSize: 20),
           icon: Icon(Icons.search),
         ),
+        onChanged: (value){
+
+        },
       ),
     );
   }
@@ -80,11 +83,79 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
     return Column(
       children: <Widget>[
         _letraTitulo("L"),
-        ... _tenderosConL.map((tenderoL) => ListTile(title: Text(tenderoL["name"]),)),
+        ... _tenderosConL.map(
+          (tenderoL) => Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(_margenHorizontal),
+                child: ListTile(
+                  title: Text(tenderoL["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(tenderoL["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoL["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                    ],
+                  ),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => ExhibitorDetailPage(tenderoL)
+                    ));
+                  },
+                ),
+              ),
+              _separador(),
+            ],
+          )
+        ),
         _letraTitulo("M"),
-        ... _tenderosConM.map((tenderoM) => ListTile(title: Text(tenderoM["name"]),)),
+        ... _tenderosConM.map((tenderoM) => Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(_margenHorizontal),
+                child: ListTile(
+                  title: Text(tenderoM["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(tenderoM["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoM["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                    ],
+                  ),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => ExhibitorDetailPage(tenderoM)
+                    ));
+                  },
+                ),
+              ),
+              _separador(),
+            ],
+          )),
         _letraTitulo("N"),
-        ... _tenderosConN.map((tenderoN) => ListTile(title: Text(tenderoN["name"]),)),
+        ... _tenderosConN.map((tenderoN) => Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(_margenHorizontal),
+                child: ListTile(
+                  title: Text(tenderoN["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(tenderoN["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoN["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                    ],
+                  ),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => ExhibitorDetailPage(tenderoN)
+                    ));
+                  },
+                ),
+              ),
+              _separador(),
+            ],
+          )),
       ],
     );
   }
@@ -100,9 +171,12 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
     );
   }
 
+  Widget _separador(){
+    return Divider(height: 0, color: Color(0xffC4C4C4),);
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _exhibitors = [

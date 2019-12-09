@@ -76,7 +76,7 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
                     );
                   }
 
-                  Navigator.pop(context);
+                  return Navigator.pop(context);
                 },
               ),
             ],

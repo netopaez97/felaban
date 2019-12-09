@@ -7,7 +7,6 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dar
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/networking/networking.dart';
-import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';

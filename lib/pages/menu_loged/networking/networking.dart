@@ -2,7 +2,6 @@ import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/components/barra_networking.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_recived.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
-import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

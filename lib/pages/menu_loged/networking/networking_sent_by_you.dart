@@ -5,7 +5,6 @@ import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_confirm
 import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_espera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NetwrokingSentByYou extends StatefulWidget {
 
