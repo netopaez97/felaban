@@ -22,7 +22,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   var _oldtext;
   var _heightscroller;
   var _itemsizeheight = 65.0; //NOTE: size items
-  var _marginRight=50.0;
   var _sizeheightcontainer;
   var posSelected = 0;
   var diff = 0.0;

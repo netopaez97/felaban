@@ -269,40 +269,6 @@ class _NetWorkingFiltrosState extends State<NetWorkingFiltros> {
     );
   }
 
-  Future _dialogDateTimePicker(){
-    return showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          content: Container(
-            width: double.infinity,
-            height: 200,
-            child: CupertinoDatePicker(
-              minimumDate: DateTime.now(),
-              mode: CupertinoDatePickerMode.date,
-              initialDateTime: _initTime,
-              onDateTimeChanged: (newDate){
-                setState(() {
-                  _initTime = newDate;
-                });
-              },
-            ),
-          ),
-          actions: <Widget>[
-            CupertinoButton(
-              child: Text("OK"),
-              color: Color(0xff29983A),
-              borderRadius: BorderRadius.zero,
-              onPressed: (){
-                Navigator.pop(context);
-              },
-            )
-          ],
-        );
-      }
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

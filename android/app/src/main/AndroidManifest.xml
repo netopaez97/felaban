@@ -10,6 +10,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Felaban"
         android:icon="@mipmap/launcher_icon">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDCT59dwLz6Rf8ax0GbOyNTSOPitsnrd4I"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

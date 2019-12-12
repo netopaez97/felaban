@@ -24,6 +24,7 @@ class _ExhibitorDetailPageState extends State<ExhibitorDetailPage> {
         _informacionPreliminar(),
         Divider(color: Color(0xffC4C4C4),),
         _descripcion(),
+        SizedBox(height: 30,),
         _botones(),
       ],
     );
@@ -105,7 +106,7 @@ class _ExhibitorDetailPageState extends State<ExhibitorDetailPage> {
               onPressed: (){
 
               },
-              child: Text("EMAIL"),
+              child: Text("WEBSITE"),
               color: Color(0xffC4C4C4),
             ),
           ),

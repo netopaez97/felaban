@@ -219,7 +219,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Venue", style: TextStyle(fontSize: 20),),
               subtitle: Text("Explore Conference Location", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.location);
               },
             ),
           ),
@@ -242,7 +242,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Map", style: TextStyle(fontSize: 20),),
               subtitle: Text("Venue Map", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.map);
               },
             ),
           ),
@@ -265,7 +265,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Organizers", style: TextStyle(fontSize: 20),),
               subtitle: Text("FELABAN - ABG", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                
+                Navigator.pushNamed(context, Routes.organizers);
               },
             ),
           ),

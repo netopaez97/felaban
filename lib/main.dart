@@ -6,6 +6,9 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
+import 'package:felaban/pages/menu_loged/location.dart';
+import 'package:felaban/pages/menu_loged/map.dart';
+import 'package:felaban/pages/menu_loged/organizers.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/message.dart';
@@ -63,6 +66,9 @@ class MyApp extends StatelessWidget {
           InvitacionReunionPerfilUsuarioView.routeName: (BuildContext context) => InvitacionReunionPerfilUsuarioView(),
           NetworkingArea.routeName: (BuildContext context) => NetworkingArea(),
           ExhibitorListPage.routeName: (BuildContext context) => ExhibitorListPage(),
+          LocationPage.routeName: (BuildContext context) => LocationPage(),
+          MapPage.routeName: (BuildContext context) => MapPage(),
+          OrganizersPage.routeName: (BuildContext context) => OrganizersPage(),
         },
       ),
     );

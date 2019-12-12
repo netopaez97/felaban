@@ -6,8 +6,11 @@ import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
+import 'package:felaban/pages/menu_loged/location.dart';
+import 'package:felaban/pages/menu_loged/map.dart';
 import 'package:felaban/pages/menu_loged/networking/networking.dart';
 import 'package:felaban/pages/menu_loged/networking/networking_sent_by_you.dart';
+import 'package:felaban/pages/menu_loged/organizers.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/message.dart';
@@ -40,4 +43,7 @@ class Routes {
   static const String networking = NetworkingArea.routeName;
   static const String networkingSentByYou = NetwrokingSentByYou.routeName;
   static const String exhibitorList = ExhibitorListPage.routeName;
+  static const String location = LocationPage.routeName;
+  static const String map = MapPage.routeName;
+  static const String organizers = OrganizersPage.routeName;
 }
