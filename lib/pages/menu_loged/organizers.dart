@@ -53,7 +53,8 @@ class _OrganizersPageState extends State<OrganizersPage> {
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height*0.25,
-              child: Image.asset(_listaOrganizadores[i]["imageOrganizer"]),
+              alignment: Alignment.center,
+              child: Image.asset(_listaOrganizadores[i]["imageOrganizer"], width: double.infinity, alignment: Alignment.center,),
             ),
             Container(
               alignment: Alignment.centerLeft,
@@ -88,7 +89,7 @@ class _OrganizersPageState extends State<OrganizersPage> {
         "description":"La Federación Latinoamericana de Bancos, FELABAN, es una institución sin fines de lucro, constituida en 1965 en la ciudad de Mar del Plata, República Argentina. Agrupa, a través de sus respectivas asociaciones en 19 países del continente, a más de 623 bancos y entidades financieras de América Latina.",
       },
       {
-        "imageOrganizer":"assets/images/fiba.png",
+        "imageOrganizer":"assets/organizers/fiba.png",
         "name":"FIBA",
         "description":"La Federación Latinoamericana de Bancos, FELABAN, es una institución sin fines de lucro, constituida en 1965 en la ciudad de Mar del Plata, República Argentina. Agrupa, a través de sus respectivas asociaciones en 19 países del continente, a más de 623 bancos y entidades financieras de América Latina.",
       },
