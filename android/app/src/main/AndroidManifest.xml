@@ -11,8 +11,8 @@
         android:label="Felaban"
         android:icon="@mipmap/launcher_icon">
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDCT59dwLz6Rf8ax0GbOyNTSOPitsnrd4I"/>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+               android:value="AIzaSyClI8hGQYv_ZPtHWdq2vC1-FJjpWoLscYI"/>
 
         <activity
             android:name=".MainActivity"

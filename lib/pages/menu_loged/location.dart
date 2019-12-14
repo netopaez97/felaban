@@ -1,6 +1,7 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationPage extends StatefulWidget {
 
@@ -13,6 +14,16 @@ class LocationPage extends StatefulWidget {
 class _LocationPageState extends State<LocationPage> {
 
   final double _margenHorizontal = 15;
+  final Set<Marker> _markers = Set();
+
+
+  GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(25.991922, -80.118406);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   Widget _cuerpoDeLaPagina(){
     return ListView(
@@ -20,6 +31,7 @@ class _LocationPageState extends State<LocationPage> {
         BackgroundSuperiorPequenoWidget(),
         _barraVenue(),
         _presentacionVenue(),
+        _mostrarMapa(),
       ],
     );
   }
@@ -59,7 +71,66 @@ class _LocationPageState extends State<LocationPage> {
     );
   }
 
+  Widget _mostrarMapa(){
+    return GestureDetector(
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: 300,
+            child: _mapa(),
+          ),
+          Container(
+            height: 300,
+            color: Colors.white.withOpacity(0.5),
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 300,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black, width: 3),
+              ),
+              child: Text("TAP ME HERE", style: TextStyle(color: Colors.black, fontSize: 30)),
+            ),
+          )
+        ],
+      ),
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+          builder: (BuildContext context) => Scaffold(
+            appBar: barraSuperior(context),
+            body: _mapa(),
+          )
+        ));
+      },
+    );
+  }
 
+  Widget _mapa(){
+    return GoogleMap(
+      myLocationEnabled: true,
+      onMapCreated: _onMapCreated,
+      initialCameraPosition: CameraPosition(
+        target: _center,
+        zoom: 5.0,
+      ),
+      markers: _markers,
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _markers.add(
+        Marker(
+            markerId: MarkerId('newyork'),
+            position: LatLng(25.991922, -80.118406),
+        ),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
