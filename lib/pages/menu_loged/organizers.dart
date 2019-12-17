@@ -80,7 +80,6 @@ class _OrganizersPageState extends State<OrganizersPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _listaOrganizadores = [
       {
