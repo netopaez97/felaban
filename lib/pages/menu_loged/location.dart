@@ -31,6 +31,12 @@ class _LocationPageState extends State<LocationPage> {
         BackgroundSuperiorPequenoWidget(),
         _barraVenue(),
         _presentacionVenue(),
+        _imagenUbicacion(),
+        _descripcionDeUbicacion(),
+        _barraAboutLocation(),
+        _descripcionDeUbicacion2(),
+        _barraMap(),
+        SizedBox(height: 5,),
         _mostrarMapa(),
       ],
     );
@@ -68,6 +74,40 @@ class _LocationPageState extends State<LocationPage> {
           Text("3555 South Ocean Drive, Hollywood, Florida, 33019, USA", style: TextStyle(fontSize: 20),),
         ],
       ),
+    );
+  }
+
+  Widget _imagenUbicacion(){
+    return Image.asset("assets/location/ubicacionFoto.png");
+  }
+
+  Widget _descripcionDeUbicacion(){
+    return Padding(
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Text("On one of the most remarkable stretches of sand and sea in South Florida, The Diplomat Beach Resort is ideally situated between Miami and Fort Lauderdale along Hollywood’s Gold Coast. Our sun-splashed and spacious rooms and suites feature stunning views of the Atlantic Ocean or Intracoastal Waterway and thoughtful touches like vintage-inspired art, luxurious amenities and plush bedding.", style: TextStyle(fontSize: 16)),
+    );
+  }
+
+  Widget _barraAboutLocation(){
+    return Container(
+      padding: EdgeInsets.all(_margenHorizontal),
+      color: Color(0xffF0F0F0),
+      child: Text("About the Location", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+    );
+  }
+
+  Widget _descripcionDeUbicacion2(){
+    return Padding(
+      padding: EdgeInsets.all(_margenHorizontal),
+      child: Text("Enjoy shopping near Mission Valley at San Diego’s premier outdoor shopping and entertainment destination – the Fashion Valley shopping district is an upscale, open‐air shopping destination with 200 places to dine and shop, and an 18 screen movie theater – within easy walking distance from our hotel by the footbridge or Fashion Valley Road.", style: TextStyle(fontSize: 16)),
+    );
+  }
+
+  Widget _barraMap(){
+    return Container(
+      padding: EdgeInsets.all(_margenHorizontal),
+      color: Color(0xffF0F0F0),
+      child: Text("Map", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 

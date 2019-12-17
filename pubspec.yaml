@@ -75,6 +75,7 @@ flutter:
   - assets/exhibitors/
   - assets/map/
   - assets/organizers/
+  - assets/location/
   - assets/images/
   #  - images/a_dot_ham.jpeg
 
