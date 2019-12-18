@@ -165,6 +165,7 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
                     borderRadius: BorderRadius.all(Radius.circular(10))
                   )
                 ),
+                textInputAction: TextInputAction.done,
               ),
             ),
           ),

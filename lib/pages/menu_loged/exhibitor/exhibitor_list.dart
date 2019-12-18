@@ -48,26 +48,29 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
   }
 
   Widget _searchNavigation(){
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: _margenHorizontal),
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      height: 60,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color(0xffE9E6E6),
-      ),
-      child: TextField(
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          labelText: "search...",
-          labelStyle: TextStyle(fontSize: 20),
-          icon: Icon(Icons.search),
+    return GestureDetector(
+      onTap: (){
+        showSearch(
+          context: context,
+          delegate: SearchNavigation(),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5, vertical: _margenHorizontal),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        height: 60,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Color(0xffE9E6E6),
         ),
-        onChanged: (value){
-
-        },
+        child: Row(
+          children: <Widget>[
+            Text(" "),
+            Icon(Icons.search, color: Color(0xff776C6C),),
+            Text("  Search...", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff776C6C)))
+          ],
+        )
       ),
     );
   }
@@ -93,7 +96,7 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(tenderoL["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text("Booth ${tenderoL["booth"]}", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
                       Text(tenderoL["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
                     ],
                   ),
@@ -225,4 +228,84 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
       body: _cuerpoDeLaPagina(),
     );
   }
+}
+
+class SearchNavigation extends SearchDelegate{
+
+  List exhibitors = [
+      {
+        "name":"LUXWORX - MACVAD GROUP",
+        "booth": "108",
+        "summary": "Smart-repair™ products that make your life easier.",
+        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+        "imageLocation": "assets/exhibitors/lda_technologies.png"
+      },
+      {
+        "name":"LDA International",
+        "booth": "209",
+        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
+        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+        "imageLocation": "assets/exhibitors/lda_technologies.png"
+      },
+      {
+        "name":"MDA International",
+        "booth": "209",
+        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
+        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+        "imageLocation": "assets/exhibitors/lda_technologies.png"
+      },
+      {
+        "name":"NDA International",
+        "booth": "209",
+        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
+        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+        "imageLocation": "assets/exhibitors/lda_technologies.png"
+      },
+      {
+        "name":"LDA International",
+        "booth": "209",
+        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
+        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+        "imageLocation": "assets/exhibitors/lda_technologies.png"
+      },
+    ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [IconButton(icon: Icon(Icons.clear), onPressed: (){},)];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: (){
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestionList = exhibitors;
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, item){
+        return ListTile(
+          leading: Icon(Icons.pages),
+          title: Text(suggestionList[item]["name"]),
+        );
+      },
+    );
+  }
+  
 }

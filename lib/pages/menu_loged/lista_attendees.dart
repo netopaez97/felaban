@@ -13,6 +13,14 @@ class ListaAttendeesView extends StatefulWidget {
 class _ListaAttendeesViewState extends State<ListaAttendeesView> {
 
 
+  ///IMPORTANTE: la funcionalidad de esta pagina no es correcta.
+  ///Es necesario definir la estructura de datos teniendo en cuenta cómo se van a recibir
+  ///los nombres de las empresas de los asistentes para poder definir barras como
+  ///las que actualmente están (Kubilabs, oracle y felaban).
+  ///
+  ///Yo creo que la única forma de hacer es hacer un condicional para cada letra del abedecario
+  ///al abrir la vista en un initState, creando un lista con los nombres de las empresas ordenadas
+  ///y después dibujar los datos en el canva filtrando cada persona por el nombre de la empresa.
 
 
 
@@ -32,12 +40,9 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   double _margenHorizontalGeneral = 25;
 
   List exampleList = [
-    'Liz Wiseman',
-    'Liz Wiseman 2',
-    'Matt Higgins',
-    'Matt Higgins',
-    'Matt Higgins',
-    'Zal Higgins',
+    'Felaban',
+    'Kubilabs',
+    'Oracle',
   ];
 
   List _alphabet = [
@@ -147,10 +152,13 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           border: InputBorder.none,
-          labelText: "search...",
+          labelText: "Search...",
           labelStyle: TextStyle(fontSize: 20),
           icon: Icon(Icons.search),
         ),
+        onChanged: (input){
+
+        },
       ),
     );
   }

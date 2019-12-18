@@ -31,16 +31,16 @@ class AppDrawer extends StatelessWidget {
               children: <Widget>[
                 SizedBox(
                   height: MediaQuery.of(context).size.height*0.1,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 15),
-                      alignment: Alignment.centerLeft,
-                      color: Color(0xFF004A80),
-                      child: FlatButton(
-                        onPressed: (){
-                          Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route)=>false);
-                        },
-                        child: Text('Switch Event', style: TextStyle(fontSize: 18, fontFamily: 'Roboto-Medium', color: Colors.white),
-                      )
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15),
+                    alignment: Alignment.centerLeft,
+                    color: Color(0xFF004A80),
+                    child: CupertinoNavigationBarBackButton(
+                      previousPageTitle: "Switch Event",
+                      color: Colors.white,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
                     ),
                   )
                 ),

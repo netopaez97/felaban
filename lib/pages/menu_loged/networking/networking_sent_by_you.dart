@@ -69,10 +69,13 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
           border: InputBorder.none,
-          labelText: "search...",
+          labelText: "Search...",
           labelStyle: TextStyle(fontSize: 20),
           icon: Icon(Icons.search),
         ),
+        onChanged: (input){
+          
+        },
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:felaban/pages/menu_loged/speakers_detalle.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DetalleAgendaView extends StatefulWidget {
 
@@ -14,6 +15,8 @@ class DetalleAgendaView extends StatefulWidget {
 }
 
 class _DetalleAgendaViewState extends State<DetalleAgendaView> {
+
+  bool _favorite = false;
 
   final String _nombreAgenda = "Opening ceremony";
 
@@ -116,7 +119,9 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                     ? Image.asset("assets/detalleAgenda/calendario.png")
                     : Image.asset("assets/detalleAgenda/calendario.png", color: Colors.white.withOpacity(0.34),),
 
-                    onPressed: (){},
+                    onPressed: (){
+
+                    },
                   ),
                     _eventoActivo == false
 
@@ -154,7 +159,9 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 children: <Widget>[
                   IconButton(
                     icon: Image.asset("assets/detalleAgenda/camera.png"),
-                    onPressed: null,
+                    onPressed: (){
+                      ImagePicker.pickImage(source: ImageSource.camera);
+                    },
                   ),
                   Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
                 ],
@@ -167,8 +174,14 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
               child: Column(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
-                    onPressed: (){},
+                    icon: _favorite==false
+                      ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+                      : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
+                    onPressed: (){
+                      setState(() {
+                        _favorite= !_favorite;
+                      });
+                    },
                   ),
                   Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
                 ],

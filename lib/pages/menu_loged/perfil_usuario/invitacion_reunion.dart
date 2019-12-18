@@ -13,6 +13,12 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
 
   final double _margenPaginaHorizontal = 10;
   DateTime dateTime;
+  DateTime hour;
+  String location;
+
+  String _duracionReunion;
+
+  String subject;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -88,6 +94,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
                 hintStyle: TextStyle(fontSize: 16),
               ),
               textCapitalization: TextCapitalization.sentences,
+              onChanged: (val){
+                subject = val;
+              },
             ),
           )
         ],
@@ -97,8 +106,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
 
   Widget _dateProposal(){
 
-    return GestureDetector(
-      onTap: (){
+    return CupertinoButton(
+      padding: EdgeInsets.all(0),
+      onPressed: (){
         _dialogDateTimePicker();
       },
       child: Container(
@@ -114,8 +124,8 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
           children: <Widget>[
             Icon(Icons.date_range, color: Color(0xffA1A1A1),),
             dateTime == null
-            ? Text("  Date proposal", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-            : Text("  ${dateTime.toString()}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+            ? Text("  Date proposal", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)
+            : Text("  ${dateTime.toString().split(" ")[0]}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
           ],
         ),
       ),
@@ -157,9 +167,52 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
   }
 
   Widget _location(){
-    return GestureDetector(
-      onTap: (){
-        
+    return CupertinoButton(
+      padding: EdgeInsets.all(0),
+      onPressed: (){
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text("Choose location"),
+            content: Column(
+              children: <Widget>[
+                RadioListTile(
+                  value: "The Diplomat Beach Resort",
+                  onChanged: (value){
+                    setState(() {
+                      location = value;
+                      Navigator.pop(context);
+                    });
+                  },
+                  groupValue: location,
+                  title: Text("The Diplomat Beach Resort"),
+                ),
+                RadioListTile(
+                  value: "Hard Rock Hotel Miami",
+                  onChanged: (value){
+                    setState(() {
+                      location = value;
+                      Navigator.pop(context);
+                    });
+                  },
+                  groupValue: location,
+                  title: Text("Hard Rock Hotel Miami"),
+                ),
+                RadioListTile(
+                  value: "Tower Phillip",
+                  onChanged: (value){
+                    setState(() {
+                      location = value;
+                      Navigator.pop(context);
+                    });
+                  },
+                  groupValue: location,
+                  title: Text("Tower Phillip"),
+                ),
+              ],
+            ),
+          )
+        );
       },
       child: Container(
         height: 58,
@@ -173,7 +226,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         child: Row(
           children: <Widget>[
             Icon(Icons.location_on, color: Color(0xffA1A1A1),),
-            Text("  Location", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+            location == null
+            ? Text("  Location", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)
+            : Text("  $location", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
           ],
         ),
       ),
@@ -181,9 +236,10 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
   }
 
   Widget _startedTime(){
-    return GestureDetector(
-      onTap: (){
-        
+    return CupertinoButton(
+      padding: EdgeInsets.all(0),
+      onPressed: (){
+        _dialogoParaTomarHora();
       },
       child: Container(
         height: 58,
@@ -197,10 +253,41 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         child: Row(
           children: <Widget>[
             Icon(Icons.access_time, color: Color(0xffA1A1A1),),
-            Text("  Started Time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+            hour == null
+            ? Text("  Started time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)
+            : Text("  ${hour.hour}:${hour.minute}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
           ],
         ),
       ),
+    );
+  }
+
+  Future _dialogoParaTomarHora(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: Container(
+          height: 200,
+          child: CupertinoDatePicker(
+            mode: CupertinoDatePickerMode.time,
+            onDateTimeChanged: (nuevaHora){
+              setState(() {
+                hour = nuevaHora;
+              });
+            },
+          ),
+        ),
+        actions: <Widget>[
+          CupertinoButton(
+            child: Text("OK"),
+            color: Color(0xff29983A),
+            borderRadius: BorderRadius.zero,
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          )
+        ],
+      )
     );
   }
 
@@ -221,27 +308,63 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
   }
 
   Widget _timeMinutes( String _hora){
-    return GestureDetector(
-      onTap: (){
-        
-      },
-      child: Container(
-        height: 58,
-        decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffA1A1A1)),
-          borderRadius: BorderRadius.circular(10),
-          color: Color(0xffF6F6F6)
+
+    if(_duracionReunion.toString() == _hora){
+      return CupertinoButton(
+        padding: EdgeInsets.all(0),
+        onPressed: (){
+          setState(() {
+            _duracionReunion = _hora;
+          });
+        },
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            border: Border.all(color: Color(0xffA1A1A1)),
+            borderRadius: BorderRadius.circular(10),
+            color: _duracionReunion.toString() != _hora
+            ? Color(0xffF6F6F6)
+            : Color(0xff8C8C8C)
+          ),
+          margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.access_time, color: Colors.white,),
+              Text("  $_hora Min  ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),)
+            ],
+          ),
         ),
-        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-        padding: EdgeInsets.symmetric(horizontal: 5),
-        child: Row(
-          children: <Widget>[
-            Icon(Icons.access_time, color: Color(0xffA1A1A1),),
-            Text("  $_hora Min  ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-          ],
+      );
+    }
+    else{
+      return CupertinoButton(
+        padding: EdgeInsets.all(0),
+        onPressed: (){
+          setState(() {
+            _duracionReunion = _hora;
+          });
+        },
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            border: Border.all(color: Color(0xffA1A1A1)),
+            borderRadius: BorderRadius.circular(10),
+            color: Color(0xffF6F6F6)
+          ),
+          margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.access_time, color: Color(0xffA1A1A1),),
+              Text("  $_hora Min  ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+
+    
   }
   Widget _messageText(){
     return Container(
@@ -315,6 +438,17 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
   }
 
   Future _dialogoParaEnviar(){
+    if(dateTime==null || location == null || hour == null || _duracionReunion == null || subject == null || subject == ""){
+      return showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            content: Text("You have to select a subject, date proposal, location, started time and  meeting duration"),
+          );
+        }
+      );
+    }
+    
     return showDialog(
       context: context,
       builder: (BuildContext context){

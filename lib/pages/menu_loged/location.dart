@@ -123,18 +123,6 @@ class _LocationPageState extends State<LocationPage> {
             height: 300,
             color: Colors.white.withOpacity(0.5),
           ),
-          Container(
-            alignment: Alignment.center,
-            height: 300,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Text("TAP ME HERE", style: TextStyle(color: Colors.black, fontSize: 30)),
-            ),
-          )
         ],
       ),
       onTap: (){
@@ -154,7 +142,7 @@ class _LocationPageState extends State<LocationPage> {
       onMapCreated: _onMapCreated,
       initialCameraPosition: CameraPosition(
         target: _center,
-        zoom: 5.0,
+        zoom: 11.0,
       ),
       markers: _markers,
     );
