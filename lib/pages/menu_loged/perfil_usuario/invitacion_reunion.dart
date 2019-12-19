@@ -363,9 +363,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         ),
       );
     }
-
-    
   }
+
+  
   Widget _messageText(){
     return Container(
       padding: EdgeInsets.all(_margenPaginaHorizontal),
