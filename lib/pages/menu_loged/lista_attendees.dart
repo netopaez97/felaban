@@ -225,7 +225,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Hiz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   ListTile(
@@ -238,7 +238,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   Container(
@@ -258,7 +258,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   ListTile(
@@ -271,7 +271,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   ListTile(
@@ -284,7 +284,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   ListTile(
@@ -297,7 +297,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                   ListTile(
@@ -310,7 +310,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                     title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
-                      
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                     },
                   ),
                 ],
