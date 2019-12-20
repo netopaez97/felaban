@@ -13,7 +13,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
 
   final double _margenPaginaHorizontal = 10;
   DateTime dateTime;
-  DateTime hour;
+  TimeOfDay hour;
   String location;
 
   String _duracionReunion;
@@ -255,40 +255,21 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
             Icon(Icons.access_time, color: Color(0xffA1A1A1),),
             hour == null
             ? Text("  Started time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)
-            : Text("  ${hour.hour}:${hour.minute}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+            : Text("  ${hour.format(context)}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
           ],
         ),
       ),
     );
   }
 
-  Future _dialogoParaTomarHora(){
-    return showDialog(
+  Future _dialogoParaTomarHora() async {
+    hour = await showTimePicker(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content: Container(
-          height: 200,
-          child: CupertinoDatePicker(
-            mode: CupertinoDatePickerMode.time,
-            onDateTimeChanged: (nuevaHora){
-              setState(() {
-                hour = nuevaHora;
-              });
-            },
-          ),
-        ),
-        actions: <Widget>[
-          CupertinoButton(
-            child: Text("OK"),
-            color: Color(0xff29983A),
-            borderRadius: BorderRadius.zero,
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          )
-        ],
-      )
+      initialTime: TimeOfDay.now()
     );
+    setState(() {
+      
+    });
   }
 
   Widget _listaHorizontalHoras(){
