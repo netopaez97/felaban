@@ -1,6 +1,6 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/pages/menu_loged/sponsors_detalle.dart';
+import 'package:felaban/pages/menu_loged/sponsors/sponsors_detalle.dart';
 import 'package:flutter/material.dart';
 
 class SponsorsView extends StatefulWidget {
