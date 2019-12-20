@@ -94,8 +94,6 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
     );
   }
 
-
-
   Widget _presentacionInvitaciones(){
     return Container(
       alignment: Alignment.centerLeft,

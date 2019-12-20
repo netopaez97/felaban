@@ -165,36 +165,6 @@ class SearchNavigation extends SearchDelegate{
       "name": "Matt Higgins",
       "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
     },
-    {
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "name": "Liz Wiseman",
-      "cargo":"Executive Strategy and Leadership Consultant"
-    },
-    {
-      "imageLocation":"assets/speakers/matt_higgins.png",
-      "name": "Matt Higgins",
-      "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-    },
-    {
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "name": "Liz Wiseman",
-      "cargo":"Executive Strategy and Leadership Consultant"
-    },
-    {
-      "imageLocation":"assets/speakers/matt_higgins.png",
-      "name": "Matt Higgins",
-      "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-    },
-    {
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "name": "Liz Wiseman",
-      "cargo":"Executive Strategy and Leadership Consultant"
-    },
-    {
-      "imageLocation":"assets/speakers/matt_higgins.png",
-      "name": "Matt Higgins",
-      "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-    },
   ];
 
   @override
