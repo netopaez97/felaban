@@ -141,24 +141,29 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   }
 
   Widget _searchNavigation(){
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 18),
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color(0xffE9E6E6),
-      ),
-      child: TextField(
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          labelText: "Search...",
-          labelStyle: TextStyle(fontSize: 20),
-          icon: Icon(Icons.search),
+    return GestureDetector(
+      onTap: (){
+        showSearch(
+          context: context,
+          delegate: SearchNavigation(),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        height: 60,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Color(0xffE9E6E6),
         ),
-        onChanged: (input){
-
-        },
+        child: Row(
+          children: <Widget>[
+            Text(" "),
+            Icon(Icons.search, color: Color(0xff776C6C),),
+            Text("  Search...", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff776C6C)))
+          ],
+        )
       ),
     );
   }
@@ -197,7 +202,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                       ),
                       child: Image.asset("assets/speakers/liz_wiseman.png"),
                     ),
-                    title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    title: Text("Bal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
                       Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
@@ -217,7 +222,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                       ),
                       child: Image.asset("assets/speakers/liz_wiseman.png"),
                     ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    title: Text("Hiz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
                       
@@ -230,7 +235,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                       ),
                       child: Image.asset("assets/speakers/liz_wiseman.png"),
                     ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                     subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                     onTap: (){
                       
@@ -388,4 +393,64 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
       print("reached top");
     }
   }
+}
+
+
+
+class SearchNavigation extends SearchDelegate{
+
+  List suggestions = [
+    "Liz Wiseman"
+  ];
+
+  List attendees = [
+      "Zal Wiseman",
+      "Liz Wiseman",
+      "Hiz Wiseman",
+      "Bal Wiseman",
+    ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [IconButton(icon: Icon(Icons.clear), onPressed: (){},)];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: (){
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestionList = query.isEmpty
+    ? suggestions
+    : attendees.where((p) => p.startsWith(query)).toList();
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, item){
+        return ListTile(
+          onTap: (){
+            Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
+          },
+          leading: Icon(Icons.people_outline),
+          title: Text(suggestionList[item]),
+        );
+      },
+    );
+  }
+  
 }

@@ -1,0 +1,377 @@
+[33mcommit 6871d64b498a3ee1171a518cff5b514b8486bd29[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Dec 20 07:38:55 2019 -0500
+
+    cambios en la busqueda search nav bar
+
+[33mcommit c023d3bc1033a1ef6df1a317877767978bc67bc3[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Thu Dec 19 23:15:51 2019 -0500
+
+    arreglo search navbar en speakers
+
+[33mcommit dca4217f314f57cf245b39d983015cd79c7a616d[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Thu Dec 19 22:33:10 2019 -0500
+
+    arreglo search navbar ehibitor list y arreglo en started time meeting
+
+[33mcommit 19359319179cd2158de8fead58d1939adadf867f[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Thu Dec 19 11:28:17 2019 -0500
+
+    arreglo networking para invitaciones enviadas por el usuario
+
+[33mcommit 2600981b47dcbb6a02239112cb83bccda07da251[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Wed Dec 18 18:38:56 2019 -0500
+
+    Arreglos en las vistas
+
+[33mcommit 1c3c48e27d8b2b6810471050686bfc38044b444a[m
+Merge: 046374e b38cecb
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Mon Dec 16 20:29:15 2019 -0500
+
+    Merge branch 'master' of https://github.com/netopaez97/felaban
+
+[33mcommit 046374ed06b7b01d44863b5532264119d8c75fea[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Mon Dec 16 20:28:29 2019 -0500
+
+    finalizacion venue
+
+[33mcommit b38cecbeaf805950998cf69aaa8a05160c12ecde[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Dec 14 15:10:19 2019 -0500
+
+    mapas en Venue para ios habilitado
+
+[33mcommit 103f7ba8ac927c06c4ec5f7cea5dabe0b75465ed[m
+Merge: 719a154 2888f72
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Dec 14 14:10:38 2019 -0500
+
+    Merge branch 'master' of https://github.com/netopaez97/felaban
+
+[33mcommit 2888f72b51130ff07b9cb247dced1aaeabd4e5e3[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Sat Dec 14 12:20:23 2019 -0500
+
+    Creacion mapas para android
+
+[33mcommit 719a154e36b01e3448aa34d9948eb5575dfbe690[m
+Merge: edff4dc 5da50de
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Dec 14 10:04:39 2019 -0500
+
+    Merge branch 'master' of https://github.com/netopaez97/felaban
+
+[33mcommit edff4dca559de7b2d92de9cf8f8a69508ca0c944[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Dec 14 10:04:34 2019 -0500
+
+    .
+
+[33mcommit 5da50de71ae1712e504f881f19539878e68ac129[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Dec 13 17:13:28 2019 -0500
+
+    finalizacion organizers
+
+[33mcommit fe3a597e7e20860760dddd9e2a8b144e29d88bfd[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Wed Dec 11 23:56:00 2019 -0500
+
+    Comienzo de maps y organizers. Pendiente Venue location
+
+[33mcommit bc9a5c37468df2d3795eb1cd3e562847fe528f99[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Mon Dec 9 01:43:38 2019 -0500
+
+    finalizacion exhibitors
+
+[33mcommit c0091c518dc07d210fa27f41bfe3745a2aa364d4[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Dec 6 18:55:04 2019 -0500
+
+    Casi finalizacion de exhibitors
+
+[33mcommit f108c68bebdf0726b677b6e13644dc0f8a961d1d[m
+Merge: 552ddf1 cd9dd86
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Dec 6 11:08:32 2019 -0500
+
+    comienzo exhibitors
+
+[33mcommit 552ddf16ac36ceb9f59f1f03df05fb9922184add[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Dec 6 11:02:13 2019 -0500
+
+    comienzo exhibitor list
+
+[33mcommit cd9dd868a3242623b7eaca240cd01b13a1ad08b3[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Wed Dec 4 01:00:24 2019 -0500
+
+    cambio de icono
+
+[33mcommit 4192145522a880035ed76e3c892c26c48bd5b86c[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Dec 3 19:30:21 2019 -0500
+
+    arreglo menor
+
+[33mcommit 58113e07485e0e53891bb45724e65c49b63d70f2[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Dec 3 19:16:52 2019 -0500
+
+    arreglo networking sent by you
+
+[33mcommit 38b17987b4082f4750e590f2ba5f9299965ec8ab[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Dec 2 20:45:10 2019 -0500
+
+    arreglos menores
+
+[33mcommit 3d0bbf32bb580532ecd03925c107db6ce255565c[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Dec 2 00:45:15 2019 -0500
+
+    Arreglo perfil de usuario en mensajes
+
+[33mcommit 61c815083c3eb84c3b6eea53b3de9b5ef5f71894[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Dec 2 00:20:26 2019 -0500
+
+    finalizacion request details
+
+[33mcommit 39e87c37743b46e5c7b439d058747a55e3c011ee[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sun Dec 1 20:49:02 2019 -0500
+
+    casi finalizacion de meeting request confirmed
+
+[33mcommit bcaad7ef08fa4141f0cb7a6ddf4affd7c34815c3[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sun Dec 1 15:17:20 2019 -0500
+
+    finalizacion networking recived y sent by you. Pendiente filtros
+
+[33mcommit f08bfab655af76cd8f9c5138813739e2588e2fca[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Nov 30 11:16:05 2019 -0500
+
+    filtros trabajando
+
+[33mcommit 2942f801d96b33a26daa9aa29b03bc69bbbafb5c[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 29 23:02:13 2019 -0500
+
+    continuacion networking no finalizado
+
+[33mcommit 4efece035c9ef8c472c02083c1fdf95d97513811[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Thu Nov 28 23:18:44 2019 -0500
+
+    Arreglo pagina networking
+
+[33mcommit 94facb8be7c9aff59e05d6fc256b42c0ea722e05[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Nov 26 11:31:59 2019 -0500
+
+    finalizando networking, pendiente botones en solicitudes recividas
+
+[33mcommit de02647207ee133f786c1bcb1999f13eee701a9c[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Nov 25 23:42:48 2019 -0500
+
+    networking actualizado
+
+[33mcommit 70c30bdf45e928d512f30b7840dd2a2e2ead2430[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Nov 25 10:47:27 2019 -0500
+
+    finalizacion vista de perfil de usuario
+
+[33mcommit eaafa9b33d3993db7eca4adb4df27eeb43a7b99f[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 22 13:29:22 2019 -0500
+
+    comienzo invitacion reunion
+
+[33mcommit 2edd83db33c6962857dec5dac921d502ff3dfd70[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 22 00:51:01 2019 -0500
+
+    finalizacion perfil usuario y message
+
+[33mcommit 5d79f0aab3ffa255ef415b965b1f34f6ca9cdd0d[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Wed Nov 20 09:57:54 2019 -0500
+
+    Comienzo de perfilPublicoView y mensajeView
+
+[33mcommit 5017956a688a15538d085ce98e949e23c0b136d6[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Nov 19 12:53:18 2019 -0500
+
+    attendees terminado
+
+[33mcommit 9e214cc9526de88b8974a687c8fcc190f2d709ac[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Nov 19 10:56:15 2019 -0500
+
+    Inicio de vista attendees
+
+[33mcommit 4c5a8412efcc2ae810f3a00b39266acca2036950[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Tue Nov 19 09:19:52 2019 -0500
+
+    eliminacion de librers no usadas
+
+[33mcommit fb161f3fd07a30f2048c845bfcef7ba08ad765f2[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Nov 18 22:27:20 2019 -0500
+
+    arreglo de mensaje en upload foto de perfil
+
+[33mcommit 36ede27c5588b0e3ed48d60e271a5677658c7207[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Mon Nov 18 22:19:24 2019 -0500
+
+    Cambio de icono de la app y arreglo del tamano de la imagen en la foto de perfil del usuario
+
+[33mcommit c10b532b9b92524104f5512490ab59d61524cfaf[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sun Nov 17 22:27:11 2019 -0500
+
+    arrego en el splash general y en sponsors view
+
+[33mcommit 7a044fa843978338fb586eb8b0a1d09d33ccbb9b[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sun Nov 17 00:46:52 2019 -0500
+
+    arreglo splash
+
+[33mcommit 8d5f74e80011fb0051182769c0822b82650b0fc0[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sun Nov 17 00:45:01 2019 -0500
+
+    finalizacion sponsors view y soponsors detail view
+
+[33mcommit 76539acba9a2dbf2c475aac0883fb5e3e46371df[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Nov 16 22:32:48 2019 -0500
+
+    arreglo pantalla gallery en agenda detail
+
+[33mcommit 4a0127676210efcc7fc407099f76ec36ea5abaa4[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Sat Nov 16 21:53:19 2019 -0500
+
+    arreglo splash screen ios
+
+[33mcommit 74cf21d6d7a107cc4b68c1ef67971f08b49385f3[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Sat Nov 16 21:33:04 2019 -0500
+
+    creacion vista sponsors
+
+[33mcommit 6ceb6cf4620912a46360be575ac1fb8c3a1cb5b3[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 22:03:14 2019 -0500
+
+    Arreglo de prueba de splash screen de ios
+
+[33mcommit 6431ba7daa4d075531de0f07ab5847add05e38f7[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 20:18:28 2019 -0500
+
+    arreglo palabra en el background superior
+
+[33mcommit 3d8a442e653d9088b226ca14f8563d3b160832d6[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 18:58:29 2019 -0500
+
+    Arreglo pantalla de perfil y pantalla inicial
+
+[33mcommit a9849e1979b4b7bb800efb0276a4c77af572c562[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 18:57:54 2019 -0500
+
+    cambio de foto de perfil en pefilView.dart
+
+[33mcommit 26db8e8ae6c400aa2f14319ccaa5125da8a58f8c[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 17:36:25 2019 -0500
+
+    instalacion database, storage, auth, image picker
+
+[33mcommit d6814646e81c261e1b053490c5b0a711daae61d1[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 16:34:06 2019 -0500
+
+    Se agrega image_picker y se dan los permisos necesarios de ios para acceder a la camara y galer
+
+[33mcommit 15b95b44bd507d2302c6542256a2b321301bc81f[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 16:18:37 2019 -0500
+
+    Arreglos segun indicaciones del cliente
+
+[33mcommit 30aa0d818253d00fe439f9ec83aa98dd9e0e1019[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 14:59:57 2019 -0500
+
+    Arreglo pantalla de perfil y pantalla inicial
+
+[33mcommit 3a8ec7a307d20cdd54052ac5c22c2510c2e9c75f[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 11:35:05 2019 -0500
+
+    arreglo app to APP en homeview en background superior
+
+[33mcommit 6aa3c19b84215a77d41c306b698b86e31d505c98[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 11:30:50 2019 -0500
+
+    arreglo homeview.dart
+
+[33mcommit 7ae625844d2132dcbe0d4ec949df482b598bc862[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Fri Nov 15 00:52:15 2019 -0500
+
+    finalizacion gallery, live_poll, questionAndAnswer y detalle agenda
+
+[33mcommit 8808238199045405c1b7ccd8c31a52d663a49004[m
+Merge: fc5fb33 3b35bb9
+Author: Neto <netopaez97@hotmail.com>
+Date:   Thu Nov 14 12:18:58 2019 -0500
+
+    Arreglo pantalla angenda detalles
+
+[33mcommit fc5fb33b5089bced1fcdb2fd32f6ca23c471c3ae[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Thu Nov 14 12:17:50 2019 -0500
+
+    ARreglo pantalla angenda detalles
+
+[33mcommit 3b35bb96a26403a328e30ce8acde85c4f7bf6164[m
+Merge: e8ba3ca e5b4f1d
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Wed Nov 13 20:57:48 2019 -0500
+
+    Merge branch 'master' of https://github.com/netopaez97/felaban
+
+[33mcommit e8ba3cacaba5cd21f135db26c79765276439478c[m
+Author: Luis Ernesto <netopaez97@hotmail.com>
+Date:   Wed Nov 13 20:56:55 2019 -0500
+
+    Eliminacion temporal de firebas_auth
+
+[33mcommit e5b4f1db63312ffa9a6be972f815f1a2e534213d[m
+Author: Neto <netopaez97@hotmail.com>
+Date:   Wed Nov 13 11:38:50 2019 -0500
+
+    Finalizacinon detalleAgendaView. Pendiente retroalimentacion
