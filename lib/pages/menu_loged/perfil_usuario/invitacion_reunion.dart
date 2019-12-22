@@ -42,6 +42,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         _dateProposal(),
         _location(),
         _startedTime(),
+        _avaibleHours(),
         _listaHorizontalHoras(),
         _messageText(),
         _botonSubmit(),
@@ -239,7 +240,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     return CupertinoButton(
       padding: EdgeInsets.all(0),
       onPressed: (){
-        _dialogoParaTomarHora();
+
       },
       child: Container(
         height: 58,
@@ -260,6 +261,86 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         ),
       ),
     );
+  }
+
+  Widget _avaibleHours(){
+    return Table(
+      children: [
+        TableRow(
+          children: [
+            _horaAElegir(8,0),
+            _horaAElegir(11,30),
+            _horaAElegir(15,0),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(8,30),
+            _horaAElegir(12,0),
+            _horaAElegir(16,0),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(9,0),
+            _horaAElegir(12,30),
+            _horaAElegir(16,30),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(9,30),
+            _horaAElegir(13,00),
+            _horaAElegir(17,0),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(10,0),
+            _horaAElegir(13,30),
+            _horaAElegir(17,30),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(10,30),
+            _horaAElegir(14,0),
+            _horaAElegir(18,00),
+          ]
+        ),
+        TableRow(
+          children: [
+            _horaAElegir(11,0),
+            _horaAElegir(14,30),
+            Text("")
+          ]
+        ),
+      ],
+    );
+  }
+
+  Widget _horaAElegir(int _horaReal, int _minutosReal){
+    return Row(
+      children: <Widget>[
+        Flexible(
+          child: Radio(
+          value: TimeOfDay(
+            hour: _horaReal,
+            minute: _minutosReal,
+          ),
+          onChanged: (value){
+            setState(() {
+              hour = value;
+              print(value);
+            });
+          },
+          groupValue: hour,
+        ),
+        ),
+        Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
+      ],
+    );
+    
   }
 
   Future _dialogoParaTomarHora() async {

@@ -337,7 +337,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
       ],
     );
     
-  }
+  }/* 
 
   Future _dialogoParaTomarHora() async {
     hour = await showTimePicker(
@@ -347,7 +347,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
     setState(() {
       
     });
-  }
+  } */
 
   Widget _listaHorizontalHoras(){
     return Container(
