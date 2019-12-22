@@ -194,7 +194,7 @@ class SearchNavigation extends SearchDelegate{
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
     ? suggestions
-    : speakers.where((s) => s["name"].startsWith(query)).toList();
+    : speakers.where((s) => s["name"].toLowerCase().startsWith(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,

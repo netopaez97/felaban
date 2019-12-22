@@ -233,13 +233,7 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
 class SearchNavigation extends SearchDelegate{
 
   List suggestions = [
-    {
-      "name":"LUXWORX - MACVAD GROUP",
-      "booth": "108",
-      "summary": "Smart-repair™ products that make your life easier.",
-      "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-      "imageLocation": "assets/exhibitors/lda_technologies.png"
-    },
+    
   ];
 
   List exhibitors = [
@@ -307,7 +301,7 @@ class SearchNavigation extends SearchDelegate{
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
     ? suggestions
-    : exhibitors.where((p) => p["name"].startsWith(query)).toList();
+    : exhibitors.where((p) => p["name"].toLowerCase().startsWith(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,

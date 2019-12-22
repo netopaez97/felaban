@@ -40,6 +40,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   double _margenHorizontalGeneral = 25;
 
   List exampleList = [
+    'Amazon',
     'Felaban',
     'Kubilabs',
     'Oracle',
@@ -194,6 +195,26 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
                 controller: _controller,
                 itemExtent: _itemsizeheight,
                 children: <Widget>[
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    color: Color(0xffF0F0F0),
+                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
+                    height: 53,
+                    child: Text("AMAZON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
+                  ),
+                  ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle
+                      ),
+                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                    ),
+                    title: Text("Hiz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                    onTap: (){
+                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
+                    },
+                  ),
                   _barraFelaban(),
                   ListTile(
                     leading: Container(
@@ -331,7 +352,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
         onVerticalDragUpdate: _onVerticalDragUpdate,
         onVerticalDragStart: _onVerticalDragStart,
         child: Container(
-          width: 22,
+          width: 40,
           //height: 20.0 * 26,
           color: Color(0xff8C8C8C).withOpacity(.3),
           child: new Column(
@@ -400,14 +421,14 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
 class SearchNavigation extends SearchDelegate{
 
   List suggestions = [
-    "Liz Wiseman"
+    
   ];
 
   List attendees = [
-      "Zal Wiseman",
-      "Liz Wiseman",
-      "Hiz Wiseman",
-      "Bal Wiseman",
+      "zal Wiseman",
+      "liz Wiseman",
+      "hiz Wiseman",
+      "bal Wiseman",
     ];
 
   @override
@@ -447,7 +468,7 @@ class SearchNavigation extends SearchDelegate{
             Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
           },
           leading: Icon(Icons.people_outline),
-          title: Text(suggestionList[item]),
+          title: Text("${suggestionList[item][0].toUpperCase()}${suggestionList[item].substring(1)}"),
         );
       },
     );
