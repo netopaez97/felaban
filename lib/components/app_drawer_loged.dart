@@ -39,7 +39,7 @@ class AppDrawer extends StatelessWidget {
                       previousPageTitle: "Switch Event",
                       color: Colors.white,
                       onPressed: (){
-                        Navigator.pop(context);
+                        Navigator.pushNamedAndRemoveUntil(context, Routes.home,  (Route<dynamic> route) => false);
                       },
                     ),
                   )
