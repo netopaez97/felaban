@@ -264,50 +264,50 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
       children: [
         TableRow(
           children: [
-            _horaAElegir(8,0),
-            _horaAElegir(11,30),
-            _horaAElegir(15,0),
+            _horaAElegir(8,0, true),
+            _horaAElegir(11,30, false),
+            _horaAElegir(15,0, false),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(8,30),
-            _horaAElegir(12,0),
-            _horaAElegir(16,0),
+            _horaAElegir(8,30, true),
+            _horaAElegir(12,0, false),
+            _horaAElegir(16,0, false),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(9,0),
-            _horaAElegir(12,30),
-            _horaAElegir(16,30),
+            _horaAElegir(9,0, false),
+            _horaAElegir(12,30, false),
+            _horaAElegir(16,30, false),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(9,30),
-            _horaAElegir(13,00),
-            _horaAElegir(17,0),
+            _horaAElegir(9,30, true),
+            _horaAElegir(13,00, false),
+            _horaAElegir(17,0, false),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(10,0),
-            _horaAElegir(13,30),
-            _horaAElegir(17,30),
+            _horaAElegir(10,0, false),
+            _horaAElegir(13,30, true),
+            _horaAElegir(17,30, true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(10,30),
-            _horaAElegir(14,0),
-            _horaAElegir(18,00),
+            _horaAElegir(10,30, false),
+            _horaAElegir(14,0, false),
+            _horaAElegir(18,00, true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(11,0),
-            _horaAElegir(14,30),
+            _horaAElegir(11,0, false),
+            _horaAElegir(14,30, false),
             Text("")
           ]
         ),
@@ -315,27 +315,35 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
     );
   }
 
-  Widget _horaAElegir(int _horaReal, int _minutosReal){
-    return Row(
-      children: <Widget>[
-        Flexible(
-          child: Radio(
-          value: TimeOfDay(
-            hour: _horaReal,
-            minute: _minutosReal,
+  Widget _horaAElegir(int _horaReal, int _minutosReal, bool _enable){
+    
+    if(_enable){
+      return Row(
+        children: <Widget>[
+          Flexible(
+            child: Radio(
+              value: TimeOfDay(
+                hour: _horaReal,
+                minute: _minutosReal,
+              ),
+              onChanged: (value){
+                if(_enable){
+                  setState(() {
+                    hour = value;
+                    print(value);
+                  });
+                }
+              },
+              groupValue: hour,
+            ),
           ),
-          onChanged: (value){
-            setState(() {
-              hour = value;
-              print(value);
-            });
-          },
-          groupValue: hour,
-        ),
-        ),
-        Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
-      ],
-    );
+          Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
+        ],
+      );
+    }
+    else return Container();
+    
+    
     
   }/* 
 

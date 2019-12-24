@@ -29,7 +29,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   var _text;
   var _oldtext;
   var _heightscroller;
-  var _itemsizeheight = 65.0; //NOTE: size items
+  var _itemsizeheight = 197.0; //NOTE: size items
   var _sizeheightcontainer;
   var posSelected = 0;
   var diff = 0.0;
@@ -39,11 +39,85 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   String message = "";
   double _margenHorizontalGeneral = 25;
 
-  List exampleList = [
-    'Amazon',
-    'Felaban',
-    'Kubilabs',
-    'Oracle',
+  List _listAttendees = [
+    {
+      "name":"Liz Wiseman",
+      "position":"CTO Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Oracle"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTA Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Amazon"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTB Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Kubilabs"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTC Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Felaban"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTD Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Acciona"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTE Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Barril sin fondo"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTF Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Bucaramanga"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTG Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Zylos"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTH Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Cerrejon"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTH Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Cerrejon"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTH Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Cerrejon"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTI Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Mystico"
+    },
+    {
+      "name":"Liz Wiseman",
+      "position":"CTJ Cocacola",
+      "imageLocation":"assets/speakers/liz_wiseman.png",
+      "company":"Lupe"
+    },
   ];
 
   List _alphabet = [
@@ -75,19 +149,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     'Z'
   ];
 
-  @override
-  void initState() {
-
-    _offsetContainer = 0.0;
-    _controller = ScrollController();
-    _controller.addListener(_scrollListener);
-    //sort the item list
-    exampleList.sort((a, b) {
-      return a.toString().compareTo(b.toString());
-    });
-    super.initState();
-  }
-
   void _onVerticalDragUpdate(DragUpdateDetails details) {
     setState(() {
       if ((_offsetContainer + details.delta.dy) >= 0 &&
@@ -98,10 +159,10 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
             ((_offsetContainer / _heightscroller) % _alphabet.length).round();
         _text = _alphabet[posSelected];
         if (_text != _oldtext) {
-          for (var i = 0; i < exampleList.length; i++) {
+          for (var i = 0; i < _listAttendees.length; i++) {
             if (_text
                     .toString()
-                    .compareTo(exampleList[i].toString().toUpperCase()[0]) ==
+                    .compareTo(_listAttendees[i]["company"].toString().toUpperCase()[0]) ==
                 0) {
                   print("i: $i");
                   print("itemSize: $_itemsizeheight");
@@ -169,16 +230,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     );
   }
 
-  Widget _barraFelaban(){
-    return Container(
-      alignment: Alignment.centerLeft,
-      color: Color(0xffF0F0F0),
-      padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
-      height: 53,
-      child: Text("FELABAN", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
-    );
-  }
-
   Widget _infoFelaban(){
 
     return Container(
@@ -190,159 +241,66 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
           _sizeheightcontainer = (contrainsts.biggest.height); //NO
           return new Stack(
             children: <Widget>[
-              ListView(
-                shrinkWrap: true,
+              ListView.builder(
+                itemCount: _listAttendees.length,
                 controller: _controller,
                 itemExtent: _itemsizeheight,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    color: Color(0xffF0F0F0),
-                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
-                    height: 53,
-                    child: Text("AMAZON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Hiz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  _barraFelaban(),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Bal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    color: Color(0xffF0F0F0),
-                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
-                    height: 53,
-                    child: Text("KUBILABS", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Hiz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Zal Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    color: Color(0xffF0F0F0),
-                    padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
-                    height: 53,
-                    child: Text("ORACLE", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                  ListTile(
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                    ),
-                    title: Text("Liz Wiseman", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    subtitle: Text("CTO Cocacola", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                    onTap: (){
-                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                    },
-                  ),
-                ],
+                itemBuilder: (context, item){
+                  return Column(
+                      children: <Widget>[
+                        _barraEmpresa(_listAttendees[item]["company"].toUpperCase()),
+                        Container(
+                          height: 144,
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: _listAttendees.map(
+                              (attendees) {
+                                if(_listAttendees[item]["company"] == attendees["company"]){
+                                  return ListTile(
+                                    leading: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle
+                                      ),
+                                      child: Image.asset("assets/speakers/liz_wiseman.png"),
+                                    ),
+                                    title: Text(attendees["name"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                    subtitle: Text(attendees["position"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                                    onTap: (){
+                                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
+                                    },
+                                  );
+                                }
+                                else {
+                                  return Container();
+                                }
+                              }
+                            ).toList(),
+                          ),
+                        ),
+                      ],
+                  );
+                },
               ),
               _barraVerticalDerecha(),
-              
             ],
           );
         }
       ),
     );
+  }
+
+  Widget _barraEmpresa(String empresa){
+    return Container(
+      alignment: Alignment.centerLeft,
+      color: Color(0xffF0F0F0),
+      padding: EdgeInsets.symmetric(horizontal: _margenHorizontalGeneral),
+      height: 53,
+      child: Text(empresa, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
+    );
+  }
+
+  Widget _attendeesPorEmpresa(){
+    return Container();
   }
 
   Widget _barraVerticalDerecha(){
@@ -378,16 +336,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     _offsetContainer = details.globalPosition.dy - diff;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      appBar: barraSuperior(context),
-      body: _cuerpoDeLaPagina(),
-    );
-  }
-
   _getAlphabetItem(int index) {
     return new Expanded(
       child: new Container(
@@ -414,6 +362,29 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
       print("reached top");
     }
   }
+
+  @override
+  void initState() {
+
+    _offsetContainer = 0.0;
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    //sort the item list
+    _listAttendees.sort((a, b) {
+      return a["company"].toString().compareTo(b["company"].toString());
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      appBar: barraSuperior(context),
+      body: _cuerpoDeLaPagina(),
+    );
+  }
 }
 
 
@@ -425,10 +396,10 @@ class SearchNavigation extends SearchDelegate{
   ];
 
   List attendees = [
-      "zal Wiseman",
-      "liz Wiseman",
-      "hiz Wiseman",
-      "bal Wiseman",
+      "Zal Wiseman",
+      "Liz Wiseman",
+      "Hiz Wiseman",
+      "Bal Wiseman",
     ];
 
   @override
@@ -458,7 +429,7 @@ class SearchNavigation extends SearchDelegate{
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
     ? suggestions
-    : attendees.where((p) => p.startsWith(query)).toList();
+    : attendees.where((p) => p.toLowerCase().contains(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
