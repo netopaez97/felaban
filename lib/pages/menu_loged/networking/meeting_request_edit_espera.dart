@@ -41,6 +41,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         _location(),
         _timeProposal(),
         _avaibleHours(),
+        _textoDuracionMeeting(),
         _listaHorizontalHoras(),
         _messageText(),
         _botonesModificarOlvidar()
@@ -356,6 +357,13 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
       
     });
   } */
+
+  Widget _textoDuracionMeeting(){
+    return Container(
+      padding: EdgeInsets.all(15),
+      child: Text("Duration of meeting"),
+    );
+  }
 
   Widget _listaHorizontalHoras(){
     return Container(

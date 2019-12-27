@@ -14,6 +14,10 @@ class MessageListaAttendeesView extends StatefulWidget {
 class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
 
   final double _margenPaginaHorizontal = 15;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _asunto="";
+  String _mensaje="";
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -30,27 +34,29 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
   }
 
   Widget _cuerpoDeLaPagina(){
-    return Stack(
-      children: <Widget>[
-        ListView(
-          children: <Widget>[
-            _barraMessageTitulo(),
-            _presentacionDelDestinatarioTile(),
-            _barraDeDivision(),
-            _barraNombreDestinatario(),
-            _barraDeDivision(),
-            _barraAsunto(),
-            _barraDeDivision(),
-            _contenidoMensaje(),
-          ],
-        ),
-        Positioned(
-          bottom: 0.0,
-          left: 0.0,
-          right: 0.0,
-          child: _barraEnviarMensaje(),
-        ),
-      ],
+    return Form(
+      key: _formKey,
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              _barraMessageTitulo(),
+              _presentacionDelDestinatarioTile(),
+              _barraDeDivision(),
+              _barraNombreDestinatario(),
+              _barraDeDivision(),
+              _barraAsunto(),
+              _barraDeDivision(),
+            ],
+          ),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: _inputBar(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -118,6 +124,19 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
           Container(
             width: 200,
             child: TextFormField(
+              initialValue: _asunto,
+              onChanged: (value){
+                setState(() {
+                  _asunto = value;
+                });
+              },
+              validator: (value){
+                if(value.isEmpty){
+                  if(_mensaje!="")
+                    return "Type subject";
+                  }
+                return null;
+              },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 labelText: "Come meet us at our booth #157"
@@ -130,17 +149,114 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
     );
   }
 
+  Widget _inputBar(){
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: roundedContainer(),
+          ),
+          SizedBox(
+            width: 5.0,
+          ),
+          GestureDetector(
+            onTap: () async{
+              if(!_formKey.currentState.validate())
+                  return "You have to validate";
+
+              if(_asunto=="" && _mensaje=="")
+                return showDialog(
+                  context: context,
+                  builder: (BuildContext context){
+                    return AlertDialog(
+                      title: Text("You have to type something before send"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("OK"),
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                        )
+                      ],
+                    );
+                  }
+                );
+              await _dialogoMensajeEnviado();
+              return Navigator.pop(context);
+            },
+            child: CircleAvatar(
+              child: Icon(Icons.send),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget roundedContainer(){
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: Container(
+        color: Colors.white,
+        child: Row(
+          children: <Widget>[
+            SizedBox(width: 8.0),
+            Expanded(
+              child: TextFormField(
+                validator: (value){
+                  print("Asunto: $_asunto");
+                  print("Mensaje: $_mensaje");
+                  if(value.isEmpty)
+                    if(_asunto != "")
+                      return "Type a message";
+                  return null;
+                },
+                onChanged: (value){
+                  setState(() {
+                    _mensaje=value;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: 'Please, type a message',
+                  border: InputBorder.none,
+                ),
+                keyboardType: TextInputType.text,
+                maxLines: 2,
+              ),
+            ),
+            SizedBox(width: 8.0),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _contenidoMensaje(){
     return Container(
       padding: EdgeInsets.all(_margenPaginaHorizontal),
       color: Color(0xffF6F6F6),
       child: TextFormField(
+        initialValue: _mensaje,
+        onSaved: (value){
+          setState(() {
+            _mensaje = value;
+          });
+        },
+        validator: (value){
+          if(_asunto=="")
+            if(value.isEmpty){
+              print("AAA");
+              return "Type a message";
+            }
+          return null;
+        },
         decoration: InputDecoration(
           border: InputBorder.none,
         ),
         textCapitalization: TextCapitalization.sentences,
         keyboardType: TextInputType.text,
-        maxLines: 6,
+        maxLines: 3,
       ),
     );
   }
@@ -173,16 +289,33 @@ class _MessageListaAttendeesViewState extends State<MessageListaAttendeesView> {
             child: FlatButton(
               padding: EdgeInsets.all(0),
               child: Text("Send", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
-              onPressed: (){
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(title: Text("Message sent"),)
-                );
+              onPressed: () async {
+                if(!_formKey.currentState.validate())
+                  return "You have to validate";
+                await _dialogoMensajeEnviado();
+                return Navigator.pop(context);
               },
             ),
           )
         ],
       ),
+    );
+  }
+
+  Future _dialogoMensajeEnviado(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text("Message sent"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("OK"),
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          )
+        ],
+      )
     );
   }
 

@@ -43,6 +43,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
         _location(),
         _startedTime(),
         _avaibleHours(),
+        Divider(),
+        _textoDuracionMeeting(),
+        Divider(),
         _listaHorizontalHoras(),
         _messageText(),
         _botonSubmit(),
@@ -268,50 +271,50 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
       children: [
         TableRow(
           children: [
-            _horaAElegir(8,0),
-            _horaAElegir(11,30),
-            _horaAElegir(15,0),
+            _horaAElegir(8,0,true),
+            _horaAElegir(11,30,false),
+            _horaAElegir(15,0,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(8,30),
-            _horaAElegir(12,0),
-            _horaAElegir(16,0),
+            _horaAElegir(8,30,false),
+            _horaAElegir(12,0,true),
+            _horaAElegir(16,0,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(9,0),
-            _horaAElegir(12,30),
-            _horaAElegir(16,30),
+            _horaAElegir(9,0,true),
+            _horaAElegir(12,30,false),
+            _horaAElegir(16,30,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(9,30),
-            _horaAElegir(13,00),
-            _horaAElegir(17,0),
+            _horaAElegir(9,30, true),
+            _horaAElegir(13,00,true),
+            _horaAElegir(17,0,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(10,0),
-            _horaAElegir(13,30),
-            _horaAElegir(17,30),
+            _horaAElegir(10,0,true),
+            _horaAElegir(13,30,true),
+            _horaAElegir(17,30,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(10,30),
-            _horaAElegir(14,0),
-            _horaAElegir(18,00),
+            _horaAElegir(10,30,false),
+            _horaAElegir(14,0,false),
+            _horaAElegir(18,00,true),
           ]
         ),
         TableRow(
           children: [
-            _horaAElegir(11,0),
-            _horaAElegir(14,30),
+            _horaAElegir(11,0,true),
+            _horaAElegir(14,30,true),
             Text("")
           ]
         ),
@@ -319,31 +322,39 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     );
   }
 
-  Widget _horaAElegir(int _horaReal, int _minutosReal){
-    return Row(
-      children: <Widget>[
-        Flexible(
-          child: Radio(
-          value: TimeOfDay(
-            hour: _horaReal,
-            minute: _minutosReal,
+  Widget _horaAElegir(int _horaReal, int _minutosReal, bool _enable){
+    
+    if(_enable){
+      return Row(
+        children: <Widget>[
+          Flexible(
+            child: Radio(
+              value: TimeOfDay(
+                hour: _horaReal,
+                minute: _minutosReal,
+              ),
+              onChanged: (value){
+                if(_enable){
+                  setState(() {
+                    hour = value;
+                    print(value);
+                  });
+                }
+              },
+              groupValue: hour,
+            ),
           ),
-          onChanged: (value){
-            setState(() {
-              hour = value;
-              print(value);
-            });
-          },
-          groupValue: hour,
-        ),
-        ),
-        Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
-      ],
-    );
+          Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
+        ],
+      );
+    }
+    else return Container();
+    
+    
     
   }
 
-  Future _dialogoParaTomarHora() async {
+  /* Future _dialogoParaTomarHora() async {
     hour = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now()
@@ -351,6 +362,13 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
     setState(() {
       
     });
+  } */
+
+  Widget _textoDuracionMeeting(){
+    return Container(
+      padding: EdgeInsets.all(15),
+      child: Text("Duration of meeting",style: TextStyle(fontSize: 16),),
+    );
   }
 
   Widget _listaHorizontalHoras(){

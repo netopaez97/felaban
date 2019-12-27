@@ -47,19 +47,19 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
       "company":"Oracle"
     },
     {
-      "name":"Liz Wiseman",
+      "name":"Zal Wiseman",
       "position":"CTA Cocacola",
       "imageLocation":"assets/speakers/liz_wiseman.png",
       "company":"Amazon"
     },
     {
-      "name":"Liz Wiseman",
+      "name":"Hiz Wiseman",
       "position":"CTB Cocacola",
       "imageLocation":"assets/speakers/liz_wiseman.png",
       "company":"Kubilabs"
     },
     {
-      "name":"Liz Wiseman",
+      "name":"Bal Wiseman",
       "position":"CTC Cocacola",
       "imageLocation":"assets/speakers/liz_wiseman.png",
       "company":"Felaban"
@@ -69,12 +69,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
       "position":"CTD Cocacola",
       "imageLocation":"assets/speakers/liz_wiseman.png",
       "company":"Acciona"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTE Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Barril sin fondo"
     },
     {
       "name":"Liz Wiseman",
@@ -234,57 +228,40 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
 
     return Container(
       height: MediaQuery.of(context).size.height*0.7,
-      child: new LayoutBuilder(
-        builder: (context, contrainsts) {
-          diff = height - contrainsts.biggest.height;
-          _heightscroller = (contrainsts.biggest.height) / _alphabet.length;
-          _sizeheightcontainer = (contrainsts.biggest.height); //NO
-          return new Stack(
-            children: <Widget>[
-              ListView.builder(
-                itemCount: _listAttendees.length,
-                controller: _controller,
-                itemExtent: _itemsizeheight,
-                itemBuilder: (context, item){
-                  return Column(
-                      children: <Widget>[
-                        _barraEmpresa(_listAttendees[item]["company"].toUpperCase()),
-                        Container(
-                          height: 144,
-                          child: ListView(
-                            shrinkWrap: true,
-                            children: _listAttendees.map(
-                              (attendees) {
-                                if(_listAttendees[item]["company"] == attendees["company"]){
-                                  return ListTile(
-                                    leading: Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle
-                                      ),
-                                      child: Image.asset("assets/speakers/liz_wiseman.png"),
-                                    ),
-                                    title: Text(attendees["name"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                                    subtitle: Text(attendees["position"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
-                                    onTap: (){
-                                      Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
-                                    },
-                                  );
-                                }
-                                else {
-                                  return Container();
-                                }
-                              }
-                            ).toList(),
-                          ),
-                        ),
-                      ],
-                  );
-                },
-              ),
-              _barraVerticalDerecha(),
-            ],
+      child: ListView.builder(
+        itemCount: _listAttendees.length,
+        controller: _controller,
+        itemBuilder: (context, item){
+          return Column(
+              children: <Widget>[
+                _barraEmpresa(_listAttendees[item]["company"].toUpperCase()),
+                Column(
+                    children: _listAttendees.map(
+                      (attendees) {
+                        if(_listAttendees[item]["company"] == attendees["company"]){
+                          return ListTile(
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle
+                              ),
+                              child: Image.asset("assets/speakers/liz_wiseman.png"),
+                            ),
+                            title: Text(attendees["name"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                            subtitle: Text(attendees["position"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                            onTap: (){
+                              Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
+                            },
+                          );
+                        }
+                        else {
+                          return Container();
+                        }
+                      }
+                    ).toList(),
+                  ),
+              ],
           );
-        }
+        },
       ),
     );
   }
@@ -297,10 +274,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
       height: 53,
       child: Text(empresa, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff489ED2)),),
     );
-  }
-
-  Widget _attendeesPorEmpresa(){
-    return Container();
   }
 
   Widget _barraVerticalDerecha(){
