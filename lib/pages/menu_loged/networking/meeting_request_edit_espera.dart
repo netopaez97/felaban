@@ -172,42 +172,45 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           context: context,
           builder: (BuildContext context) => AlertDialog(
             title: Text("Choose location"),
-            content: Column(
-              children: <Widget>[
-                RadioListTile(
-                  value: "The Diplomat Beach Resort",
-                  onChanged: (value){
-                    setState(() {
-                      location = value;
-                      Navigator.pop(context);
-                    });
-                  },
-                  groupValue: location,
-                  title: Text("The Diplomat Beach Resort"),
-                ),
-                RadioListTile(
-                  value: "Hard Rock Hotel Miami",
-                  onChanged: (value){
-                    setState(() {
-                      location = value;
-                      Navigator.pop(context);
-                    });
-                  },
-                  groupValue: location,
-                  title: Text("Hard Rock Hotel Miami"),
-                ),
-                RadioListTile(
-                  value: "Tower Phillip",
-                  onChanged: (value){
-                    setState(() {
-                      location = value;
-                      Navigator.pop(context);
-                    });
-                  },
-                  groupValue: location,
-                  title: Text("Tower Phillip"),
-                ),
-              ],
+            content: Container(
+              height: 180,
+              child: Column(
+                children: <Widget>[
+                  RadioListTile(
+                    value: "The Diplomat Beach Resort",
+                    onChanged: (value){
+                      setState(() {
+                        location = value;
+                        Navigator.pop(context);
+                      });
+                    },
+                    groupValue: location,
+                    title: Text("The Diplomat Beach Resort"),
+                  ),
+                  RadioListTile(
+                    value: "Hard Rock Hotel Miami",
+                    onChanged: (value){
+                      setState(() {
+                        location = value;
+                        Navigator.pop(context);
+                      });
+                    },
+                    groupValue: location,
+                    title: Text("Hard Rock Hotel Miami"),
+                  ),
+                  RadioListTile(
+                    value: "Tower Phillip",
+                    onChanged: (value){
+                      setState(() {
+                        location = value;
+                        Navigator.pop(context);
+                      });
+                    },
+                    groupValue: location,
+                    title: Text("Tower Phillip"),
+                  ),
+                ],
+              ),
             ),
           )
         );
