@@ -86,14 +86,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             onTap: (){
 
-              eventosInfo.eventoActual = EventosModel(
-                titulo: _eventos[item].titulo,
-                descripcion: _eventos[item].descripcion,
-                ubicacion: _eventos[item].ubicacion,
-                fecha: _eventos[item].fecha,
-                imagenPequena: _eventos[item].imagenPequena,
-                imagenGrande: _eventos[item].imagenGrande,
-              );
+              eventosInfo.eventoActual = _eventos[item];
 
               Navigator.push(
                 context,

@@ -1,4 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,10 +24,47 @@ class _AgendaViewState extends State<AgendaView> {
     final Size _sizeScreen = MediaQuery.of(context).size;
 
     final eventosInfo = Provider.of<EventosProvider>(context);
-    final eventoActual = eventosInfo.eventoActual;
+    final EventosModel eventoActual = eventosInfo.eventoActual;
 
     final double fontSizeTitle = 20;
     final double fontSizeSubtitle = 15;
+
+
+    List<Widget> eventos = [];
+    eventoActual.agenda.forEach( (_evento){
+      eventos.add(
+        Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              color: Color(0xffF6F6F6),
+              height: 46,
+              alignment: Alignment.centerLeft,
+              child: Text("${_evento["time"].format(context).toString()}", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+            ),
+            ListTile(
+              leading: Container(
+                width: 46,
+                child: Image.asset(_evento["image"], ),
+              ),
+              title: Text(_evento["name"], style: TextStyle(fontSize: fontSizeTitle)),
+              subtitle: Text("Registration Area", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+              trailing: IconButton(
+                icon: _evento["favorite"] == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Color(0xffD80027)),
+                onPressed: (){
+                  setState(() {
+                    _evento["favorite"]=!_evento["favorite"];
+                  });
+                },
+              ),
+              onTap: (){
+                Navigator.pushNamed(context, Routes.detalleAgenda);
+              },
+            ),
+          ],
+        )
+      );
+    });
 
     return Scaffold(
       appBar: barraSuperior(context),
@@ -86,13 +124,17 @@ class _AgendaViewState extends State<AgendaView> {
             height: 60,
             alignment: Alignment.centerLeft,
             child: Text("All Categories", style: TextStyle( fontSize: 17),),
-          ),Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                color: Color(0xffF6F6F6),
-                height: 46,
-                alignment: Alignment.centerLeft,
-                child: Text("08:00 AM", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
-              ),
+          ),
+          Column(
+            children: eventos,
+          ),/* 
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            color: Color(0xffF6F6F6),
+            height: 46,
+            alignment: Alignment.centerLeft,
+            child: Text("08:00 AM", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+          ),
           ListTile(
             leading: Container(
               width: 46,
@@ -217,7 +259,7 @@ class _AgendaViewState extends State<AgendaView> {
             onTap: (){
               Navigator.pushNamed(context, Routes.detalleAgenda);
             },
-          ),
+          ), */
         ],
       ),
     );
