@@ -674,9 +674,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       {
         "de":"Matt Higgins",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"espera",
         "mensaje":"I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400)."
@@ -684,9 +684,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       {
         "de":"Matt Higgins",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"confirmado",
         "mensaje":"I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400)."
@@ -697,36 +697,36 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       {
         "para":"Matt Higgins1",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"espera"
       },
       {
         "para":"Matt Higgins2",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"confirmado"
       },
       {
         "para":"Matt Higgins3",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"espera"
       },
       {
         "para":"Matt Higgins4",
         "empresa":"CEO Microsoft",
-        "fecha":"Monday 15, February",
+        "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
-        "hora":"8:30 AM",
+        "hora":TimeOfDay(hour:8, minute:30),
         "duracion":"30 Min",
         "estado":"rechazado"
       },

@@ -128,6 +128,7 @@ class _AgendaViewState extends State<AgendaView> {
           Column(
             children: eventos,
           ),
+          SizedBox(height: 50,),
         ],
       ),
     );

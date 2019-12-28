@@ -119,6 +119,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/sponsor.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.sponsors);
                   },
                 ),
                 ListTile(
@@ -135,6 +136,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/favorites.png"),
                   ),
                   onTap: () {
+
                   },
                 ),
                 ListTile(
@@ -180,6 +182,7 @@ class AppDrawer extends StatelessWidget {
                       )
                     :   Icon(null),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.networking);
                   },
                 ),
                 ListTile(
@@ -196,6 +199,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/exhibitor.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.exhibitorList);
                   },
                 ),
                 ListTile(
@@ -212,6 +216,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/venue.png"),
                   ),
                   onTap: () {
+                    Navigator.pushNamed(context, Routes.location);
                   },
                 ),
                 ListTile(

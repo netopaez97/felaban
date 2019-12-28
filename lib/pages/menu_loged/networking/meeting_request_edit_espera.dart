@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 
 class RequestEditPageEspera extends StatefulWidget {
 
+  final DateTime dateTime;
+  final TimeOfDay hour;
+  final String location;
+  final String duracionReunion;
+
+  RequestEditPageEspera(this.dateTime,this.hour,this.location,this.duracionReunion,{Key key}) : super(key:key);
+
   @override
   _RequestEditPageEsperaState createState() => _RequestEditPageEsperaState();
 }
@@ -13,7 +20,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
   DateTime dateTime;
   TimeOfDay hour;
   String location;
-  String _duracionReunion;
+  String duracionReunion;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -171,6 +178,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         showDialog(
           context: context,
           builder: (BuildContext context) => AlertDialog(
+            contentPadding: EdgeInsets.all(0),
             title: Text("Choose location"),
             content: Container(
               height: 180,
@@ -381,12 +389,12 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
 
   Widget _timeMinutes( String _hora){
 
-    if(_duracionReunion.toString() == _hora){
+    if(duracionReunion.toString() == _hora){
       return CupertinoButton(
         padding: EdgeInsets.all(0),
         onPressed: (){
           setState(() {
-            _duracionReunion = _hora;
+            duracionReunion = _hora;
           });
         },
         child: Container(
@@ -394,7 +402,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           decoration: BoxDecoration(
             border: Border.all(color: Color(0xffA1A1A1)),
             borderRadius: BorderRadius.circular(10),
-            color: _duracionReunion.toString() != _hora
+            color: duracionReunion.toString() != _hora
             ? Color(0xffF6F6F6)
             : Color(0xff8C8C8C)
           ),
@@ -414,7 +422,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         padding: EdgeInsets.all(0),
         onPressed: (){
           setState(() {
-            _duracionReunion = _hora;
+            duracionReunion = _hora;
           });
         },
         child: Container(
@@ -496,6 +504,16 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    dateTime = widget.dateTime;
+    hour = widget.hour;
+    location = widget.location;
+    duracionReunion = widget.duracionReunion;
   }
 
   @override

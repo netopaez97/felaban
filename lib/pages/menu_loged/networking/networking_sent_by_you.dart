@@ -5,6 +5,7 @@ import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_confirm
 import 'package:felaban/pages/menu_loged/networking/meeting_request_edit_espera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NetwrokingSentByYou extends StatefulWidget {
 
@@ -132,7 +133,12 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           onPressed: (){
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (BuildContext context) => RequestEditPageEspera()
+                              builder: (BuildContext context) => RequestEditPageEspera(
+                                invitacionEnviada["fecha"],
+                                invitacionEnviada["hora"],
+                                invitacionEnviada["lugar"],
+                                invitacionEnviada["duracion"],
+                              )
                             ));
                           },
                         ),
@@ -177,9 +183,9 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Text(invitacionEnviada["fecha"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
+                        child: Text(DateFormat.yMMMMd("en_US").format(invitacionEnviada["fecha"]) , style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
                       ),
-                      Text(invitacionEnviada["hora"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
+                      Text(invitacionEnviada["hora"].format(context).toString(), style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
                     ]
                   ),
                   TableRow(
