@@ -395,7 +395,7 @@ class SearchNavigation extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
-    return null;
+    return Container();
   }
 
   @override

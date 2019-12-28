@@ -321,34 +321,29 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
 
   Widget _horaAElegir(int _horaReal, int _minutosReal, bool _enable){
     
-    if(_enable){
-      return Row(
-        children: <Widget>[
-          Flexible(
-            child: Radio(
-              value: TimeOfDay(
-                hour: _horaReal,
-                minute: _minutosReal,
-              ),
-              onChanged: (value){
-                if(_enable){
-                  setState(() {
-                    hour = value;
-                    print(value);
-                  });
-                }
-              },
-              groupValue: hour,
+    return Row(
+      children: <Widget>[
+        Flexible(
+          child: Radio(
+            value: TimeOfDay(
+              hour: _horaReal,
+              minute: _minutosReal,
             ),
+            onChanged: (value){
+              if(_enable){
+                setState(() {
+                  hour = value;
+                  print(value);
+                });
+              }
+            },
+            groupValue: hour,
           ),
-          Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
-        ],
-      );
-    }
-    else return Container();
-    
-    
-    
+        ),
+        Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}", style: TextStyle(color: _enable == true ? Colors.black : Colors.grey[400],),),
+      ],
+    );
+
   }/* 
 
   Future _dialogoParaTomarHora() async {
@@ -364,7 +359,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
   Widget _textoDuracionMeeting(){
     return Container(
       padding: EdgeInsets.all(15),
-      child: Text("Duration of meeting"),
+      child: Text("How long?"),
     );
   }
 

@@ -327,8 +327,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
 
   Widget _horaAElegir(int _horaReal, int _minutosReal, bool _enable){
     
-    if(_enable){
-      return Row(
+    return Row(
         children: <Widget>[
           Flexible(
             child: Radio(
@@ -347,14 +346,9 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
               groupValue: hour,
             ),
           ),
-          Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}"),
+          Text("${TimeOfDay(hour: _horaReal, minute: _minutosReal).format(context).toString()}", style: TextStyle(color: _enable == true ? Colors.black : Colors.grey[400],),),
         ],
       );
-    }
-    else return Container();
-    
-    
-    
   }
 
   /* Future _dialogoParaTomarHora() async {
@@ -370,7 +364,7 @@ class _InvitacionReunionPerfilUsuarioViewState extends State<InvitacionReunionPe
   Widget _textoDuracionMeeting(){
     return Container(
       padding: EdgeInsets.all(15),
-      child: Text("Duration of meeting",style: TextStyle(fontSize: 16),),
+      child: Text("How long?",style: TextStyle(fontSize: 16),),
     );
   }
 

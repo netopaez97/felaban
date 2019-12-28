@@ -187,14 +187,14 @@ class SearchNavigation extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
-    return null;
+    return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = query.isEmpty
     ? suggestions
-    : speakers.where((s) => s["name"].toLowerCase().startsWith(query)).toList();
+    : speakers.where((s) => s["name"].toLowerCase().contains(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,

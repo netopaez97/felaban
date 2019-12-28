@@ -74,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
     final double tamanoIconos = MediaQuery.of(context).size.height*0.1;
 
     return Container(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width*0.1, left: MediaQuery.of(context).size.width*0.05, right: MediaQuery.of(context).size.width*0.05),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.width*0.08, left: MediaQuery.of(context).size.width*0.05, right: MediaQuery.of(context).size.width*0.05),
       alignment: Alignment.center,
       child: Row(
         children: <Widget>[
@@ -122,6 +122,9 @@ class _LoginViewState extends State<LoginView> {
           //hintText: 'Example: felaban@feleaban.com',
           labelText: 'Username (your email)',
         ),
+        style: TextStyle(
+          fontSize: 18
+        ),
         onSaved: (String value) {
           setState(() {
             _usuarioContrasena["correo"] = value;
@@ -145,11 +148,13 @@ class _LoginViewState extends State<LoginView> {
       alignment: Alignment.center,
       color: Colors.black12,
       child: TextFormField(
-        
         decoration: const InputDecoration(
           border: InputBorder.none,
           icon: Icon(LoginIcons.key),
           labelText: 'Password',
+        ),
+        style: TextStyle(
+          fontSize: 18
         ),
         obscureText: true,
         onSaved: (String value) {
