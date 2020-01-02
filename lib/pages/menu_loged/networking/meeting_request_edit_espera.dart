@@ -184,46 +184,27 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
         showDialog(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            contentPadding: EdgeInsets.all(0),
             title: Text("Choose location"),
             content: Container(
+              alignment: Alignment.centerLeft,
               height: 180,
-              child: Column(
-                children: <Widget>[
-                  RadioListTile(
-                    value: "The Diplomat Beach Resort",
-                    onChanged: (value){
-                      setState(() {
-                        location = value;
-                        Navigator.pop(context);
-                      });
-                    },
-                    groupValue: location,
-                    title: Text("The Diplomat Beach Resort"),
+              child: Stack(
+                children: [
+                  ListView(
+                    children: <Widget>[
+                      _opcionesLocalizacion("The Diplomat Beach Resort"),
+                      _opcionesLocalizacion("Hard Rock Hotel Miami"),
+                      _opcionesLocalizacion("Tower Phillip"),
+                    ],
                   ),
-                  RadioListTile(
-                    value: "Hard Rock Hotel Miami",
-                    onChanged: (value){
-                      setState(() {
-                        location = value;
-                        Navigator.pop(context);
-                      });
-                    },
-                    groupValue: location,
-                    title: Text("Hard Rock Hotel Miami"),
-                  ),
-                  RadioListTile(
-                    value: "Tower Phillip",
-                    onChanged: (value){
-                      setState(() {
-                        location = value;
-                        Navigator.pop(context);
-                      });
-                    },
-                    groupValue: location,
-                    title: Text("Tower Phillip"),
-                  ),
-                ],
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    top: 180,
+                    child: Divider(height: 100,),
+                  )
+                ]
               ),
             ),
           )
@@ -247,6 +228,35 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _opcionesLocalizacion(String _titulo){
+
+    return Row(
+      children: <Widget>[
+        Flexible(
+          child: Radio(
+            value: _titulo,
+            onChanged: (value){
+              setState(() {
+                location = value;
+                Navigator.pop(context);
+              });
+            },
+            groupValue: location,
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width*0.5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(_titulo),
+            ],
+          ),
+        )
+      ],
     );
   }
 
