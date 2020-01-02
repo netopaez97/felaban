@@ -4,6 +4,7 @@ import 'package:felaban/pages/menu_loged/networking/filtros.dart';
 import 'package:felaban/pages/menu_loged/networking/meeting_request_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NetworkingRecived extends StatefulWidget {
 
@@ -168,9 +169,9 @@ class _NetworkingRecivedState extends State<NetworkingRecived> {
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Text(solicitud["fecha"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
+                        child: Text(DateFormat.yMMMMd("en_US").format(solicitud["fecha"]), style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)))
                       ),
-                      Text(solicitud["hora"], style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
+                      Text(solicitud["hora"].format(context).toString(), style: TextStyle(fontSize: 16, color: Color(0xff8C8C8C)), textAlign: TextAlign.center,),
                     ]
                   ),
                   TableRow(

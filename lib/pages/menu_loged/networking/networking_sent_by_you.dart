@@ -138,6 +138,7 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                                 invitacionEnviada["hora"],
                                 invitacionEnviada["lugar"],
                                 invitacionEnviada["duracion"],
+                                invitacionEnviada["mensaje"],
                               )
                             ));
                           },

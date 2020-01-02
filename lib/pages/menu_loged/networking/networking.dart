@@ -700,8 +700,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
         "hora":TimeOfDay(hour:8, minute:30),
-        "duracion":"30 Min",
-        "estado":"espera"
+        "duracion":"30",
+        "estado":"espera",
+        "mensaje":"I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400).",
       },
       {
         "para":"Matt Higgins2",
@@ -709,8 +710,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
         "hora":TimeOfDay(hour:8, minute:30),
-        "duracion":"30 Min",
-        "estado":"confirmado"
+        "duracion":"30",
+        "estado":"confirmado",
+        "mensaje":"2. I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400).",
       },
       {
         "para":"Matt Higgins3",
@@ -718,8 +720,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
         "hora":TimeOfDay(hour:8, minute:30),
-        "duracion":"30 Min",
-        "estado":"espera"
+        "duracion":"30",
+        "estado":"espera",
+        "mensaje":"3. I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400).",
       },
       {
         "para":"Matt Higgins4",
@@ -727,8 +730,9 @@ class _NetworkingAreaState extends State<NetworkingArea> {
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
         "hora":TimeOfDay(hour:8, minute:30),
-        "duracion":"30 Min",
-        "estado":"rechazado"
+        "duracion":"30",
+        "estado":"rechazado",
+        "mensaje":"4. I would like to invite you to stop by our booth #157 on the third floor and say Hello. You can lean more about our iSecurity suite of solutions. Raz-Lee Security is one of the world’s leading independent providers of cybersecurity and compliance solutions for IBM i servers (AS/400).",
       },
     ];
 

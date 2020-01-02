@@ -7,8 +7,9 @@ class RequestEditPageEspera extends StatefulWidget {
   final TimeOfDay hour;
   final String location;
   final String duracionReunion;
+  final String mensaje;
 
-  RequestEditPageEspera(this.dateTime,this.hour,this.location,this.duracionReunion,{Key key}) : super(key:key);
+  RequestEditPageEspera(this.dateTime,this.hour,this.location,this.duracionReunion, this.mensaje, {Key key}) : super(key:key);
 
   @override
   _RequestEditPageEsperaState createState() => _RequestEditPageEsperaState();
@@ -21,6 +22,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
   TimeOfDay hour;
   String location;
   String duracionReunion;
+  String mensaje;
 
   Widget _barraSuperior(){
     return CupertinoNavigationBar(
@@ -159,7 +161,8 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           actions: <Widget>[
             CupertinoButton(
               child: Text("OK"),
-              color: Color(0xff29983A),
+              color: Color
+              (0xff29983A),
               borderRadius: BorderRadius.zero,
               onPressed: (){
                 Navigator.pop(context);
@@ -389,6 +392,8 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
 
   Widget _timeMinutes( String _hora){
 
+    print(_hora);
+
     if(duracionReunion.toString() == _hora){
       return CupertinoButton(
         padding: EdgeInsets.all(0),
@@ -449,7 +454,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
     return Container(
       padding: EdgeInsets.all(_margenPaginaHorizontal),
       child: TextFormField(
-        
+        initialValue: mensaje,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -514,6 +519,9 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
     hour = widget.hour;
     location = widget.location;
     duracionReunion = widget.duracionReunion;
+    mensaje = widget.mensaje;
+
+    print(duracionReunion);
   }
 
   @override
