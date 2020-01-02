@@ -134,6 +134,8 @@ class _NetwrokingSentByYouState extends State<NetwrokingSentByYou> {
                           onPressed: (){
                             Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext context) => RequestEditPageEspera(
+                                invitacionEnviada["para"],
+                                invitacionEnviada["subject"],
                                 invitacionEnviada["fecha"],
                                 invitacionEnviada["hora"],
                                 invitacionEnviada["lugar"],

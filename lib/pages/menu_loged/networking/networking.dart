@@ -696,6 +696,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
     _requestSentByYou = [
       {
         "para":"Matt Higgins1",
+        "subject":"Initial meet",
         "empresa":"CEO Microsoft",
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
@@ -706,6 +707,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       },
       {
         "para":"Matt Higgins2",
+        "subject":"Initial meet2",
         "empresa":"CEO Microsoft",
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
@@ -716,6 +718,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       },
       {
         "para":"Matt Higgins3",
+        "subject":"Initial meet3",
         "empresa":"CEO Microsoft",
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",
@@ -726,6 +729,7 @@ class _NetworkingAreaState extends State<NetworkingArea> {
       },
       {
         "para":"Matt Higgins4",
+        "subject":"Initial meet4",
         "empresa":"CEO Microsoft",
         "fecha":DateTime(DateTime.now().year, 2, 15),
         "lugar":"Lobby Area",

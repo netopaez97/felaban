@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 class RequestEditPageEspera extends StatefulWidget {
 
+  final String para;
+  final String subject;
   final DateTime dateTime;
   final TimeOfDay hour;
   final String location;
   final String duracionReunion;
   final String mensaje;
 
-  RequestEditPageEspera(this.dateTime,this.hour,this.location,this.duracionReunion, this.mensaje, {Key key}) : super(key:key);
+  RequestEditPageEspera(this.para, this.subject, this.dateTime,this.hour,this.location,this.duracionReunion, this.mensaje, {Key key}) : super(key:key);
 
   @override
   _RequestEditPageEsperaState createState() => _RequestEditPageEsperaState();
@@ -71,7 +73,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
             width: _anchoTOySUBJECT,
             child: Text("To:", style: TextStyle(fontSize: 16),),
           ),
-          Text("Matt Higgins", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(widget.para, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -98,6 +100,7 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
           Container(
             width: 200,
             child: TextFormField(
+              initialValue: widget.subject,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Please, type subject",
@@ -490,7 +493,8 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
               child: Text("Modify and Send", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xff29983A),
               onPressed: (){
-
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           ),
@@ -502,7 +506,8 @@ class _RequestEditPageEsperaState extends State<RequestEditPageEspera> {
               child: Text("Dismiss", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               color: Color(0xffEF4135),
               onPressed: (){
-
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
             ),
           ),
