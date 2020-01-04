@@ -40,24 +40,33 @@ class _AgendaViewState extends State<AgendaView> {
               color: Color(0xffF6F6F6),
               height: 46,
               alignment: Alignment.centerLeft,
-              child: Text("${_evento["time"].format(context).toString()}", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
+              child: Text("${_evento.time.format(context).toString()}", style: TextStyle( fontSize: 17, fontWeight: FontWeight.bold),),
             ),
             ListTile(
               leading: Container(
                 width: 46,
-                child: Image.asset(_evento["image"], ),
+                child: Image.asset(_evento.image, ),
               ),
-              title: Text(_evento["name"], style: TextStyle(fontSize: fontSizeTitle)),
+              title: Text(_evento.name, style: TextStyle(fontSize: fontSizeTitle)),
               subtitle: Text("Registration Area", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
               trailing: IconButton(
-                icon: _evento["favorite"] == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Color(0xffD80027)),
+                icon: _evento.favorite == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Color(0xffD80027)),
                 onPressed: (){
-                  setState(() {
-                    _evento["favorite"]=!_evento["favorite"];
-                  });
+                  if(_evento.favorite==false)
+                    setState(() {
+                      eventosInfo.agregarEventoAFavoritos = _evento;
+                      _evento.favorite=!_evento.favorite;
+                    });
+                  else
+                    setState(() {
+                      eventosInfo.eliminarEventoAFavoritos = _evento;
+                      _evento.favorite=!_evento.favorite;
+                    });
                 },
               ),
               onTap: (){
+                eventosInfo.eventoEspecificoActual = _evento;
+                print(eventosInfo.eventoEspecificoActual);
                 Navigator.pushNamed(context, Routes.detalleAgenda);
               },
             ),

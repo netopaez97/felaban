@@ -136,7 +136,7 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/favorites.png"),
                   ),
                   onTap: () {
-
+                    Navigator.pushNamed(context, Routes.favoritos);
                   },
                 ),
                 ListTile(

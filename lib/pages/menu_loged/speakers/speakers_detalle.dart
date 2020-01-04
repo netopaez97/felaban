@@ -1,5 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

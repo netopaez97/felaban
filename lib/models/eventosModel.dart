@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:felaban/models/eventoEspecifico.dart';
+
 EventosModel eventosModelFromJson(String str) => EventosModel.fromJson(json.decode(str));
 
 String eventosModelToJson(EventosModel data) => json.encode(data.toJson());
@@ -15,7 +17,7 @@ class EventosModel {
     List<dynamic> fecha;
     String imagenPequena;
     String imagenGrande;
-    List<dynamic> agenda;
+    List<EventoEspecifico> agenda;
 
     EventosModel({
         this.titulo,

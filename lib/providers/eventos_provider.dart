@@ -1,13 +1,24 @@
+import 'package:felaban/models/eventoEspecifico.dart';
 import 'package:felaban/models/eventosModel.dart';
 import 'package:flutter/material.dart';
 
 class EventosProvider with ChangeNotifier {
 
+  ///Evento general.
   EventosModel _eventoActual;
-  // bool _eventoActivo;
+  ///Evento específicio del evento general.
+  EventoEspecifico _eventoEspecificoActual;
+  ///Lista de eventos especificos favoritos para el usuario
+  List<EventoEspecifico> _listaEventEspecificosFavoritos = [];
 
   get eventoActual {
     return _eventoActual;
+  }
+  get eventoEspecificoActual {
+    return _eventoEspecificoActual;
+  }
+  get listaEventEspecificosFavoritos {
+    return _listaEventEspecificosFavoritos;
   }
 
   //Evento escogido por el usuario
@@ -16,63 +27,81 @@ class EventosProvider with ChangeNotifier {
 
     notifyListeners();
   }
+  //Evento específico escogido por el usuario en la agenda
+  set eventoEspecificoActual (EventoEspecifico _nuevoEventoEspecifico) {
+    this._eventoEspecificoActual = _nuevoEventoEspecifico;
+    
+    notifyListeners();
+  }
+  //Lista de eventos especificos favoritos para el usuario
+  set agregarEventoAFavoritos(EventoEspecifico e){
+    this._listaEventEspecificosFavoritos.add(e);
+
+    notifyListeners();
+  }
+
+  set eliminarEventoAFavoritos(EventoEspecifico e){
+    this.listaEventEspecificosFavoritos.removeWhere((eventoAEliminar) => eventoAEliminar == e);
+
+    notifyListeners();
+  }
 
   List<EventosModel> obtenerEventosFelaban(){
 
-    List agenda = [
-      {
-        "name":"Arrival & Registration",
-        "place":"Registration Area",
-        "sponsor":"",
-        "favorite":false,
-        "time":TimeOfDay(hour: 8, minute: 0),
-        "image":"assets/images/arrival_registration.png",
-      },
-      {
-        "name":"Breakfast",
-        "place":"Breakfast Area",
-        "sponsor":"Sponsor by SPONSOR NAME",
-        "favorite":false,
-        "time":TimeOfDay(hour: 9, minute: 9),
-        "image":"assets/images/breakfast.png",
-      },
-      {
-        "name":"Session #1",
-        "place":"AARON LASHERChief",
-        "sponsor":"Marketing Officer - Bread Wallet",
-        "favorite":false,
-        "time":TimeOfDay(hour: 10, minute: 0),
-        "image":"assets/images/adam_burke.png",
-      },
-      {
-        "name":"Opening Remarks",
-        "place":"Main Salon",
-        "sponsor":"Felaban",
-        "favorite":true,
-        "time":TimeOfDay(hour: 9, minute: 30),
-        "image":"assets/drawerImages/speaker.png",
-      },
-      {
-        "name":"Session #2",
-        "place":"ADAM BURKE",
-        "sponsor":"US Azure Channel Sales irector - Microsoft",
-        "favorite":true,
-        "time":TimeOfDay(hour: 12, minute: 0),
-        "image":"assets/images/aaron_lasher.png",
-      },
-      {
-        "name":"Breakfast",
-        "place":"Breakfast Area",
-        "sponsor":"Sponsor By",
-        "favorite":false,
-        "time":TimeOfDay(hour: 13, minute: 0),
-        "image":"assets/images/breakfast.png",
-      },
+    List<EventoEspecifico> agenda = [
+      EventoEspecifico(
+        name:"Arrival & Registration",
+        place:"Registration Area",
+        sponsor:"",
+        favorite:false,
+        time:TimeOfDay(hour: 8, minute: 0),
+        image:"assets/images/arrival_registration.png",
+      ),
+      EventoEspecifico(
+        name:"Breakfast",
+        place:"Breakfast Area",
+        sponsor:"Sponsor by SPONSOR NAME",
+        favorite:false,
+        time:TimeOfDay(hour: 9, minute: 9),
+        image:"assets/images/breakfast.png",
+      ),
+      EventoEspecifico(
+        name:"Session #1",
+        place:"AARON LASHERChief",
+        sponsor:"Marketing Officer - Bread Wallet",
+        favorite:false,
+        time:TimeOfDay(hour: 10, minute: 0),
+        image:"assets/images/adam_burke.png",
+      ),
+      EventoEspecifico(
+        name:"Opening Remarks",
+        place:"Main Salon",
+        sponsor:"Felaban",
+        favorite:false,
+        time:TimeOfDay(hour: 9, minute: 30),
+        image:"assets/drawerImages/speaker.png",
+      ),
+      EventoEspecifico(
+        name:"Session #2",
+        place:"ADAM BURKE",
+        sponsor:"US Azure Channel Sales irector - Microsoft",
+        favorite:false,
+        time:TimeOfDay(hour: 12, minute: 0),
+        image:"assets/images/aaron_lasher.png",
+      ),
+      EventoEspecifico(
+        name:"Breakfast",
+        place:"Breakfast Area",
+        sponsor:"Sponsor By",
+        favorite:false,
+        time:TimeOfDay(hour: 13, minute: 0),
+        image:"assets/images/breakfast.png",
+      ),
     ];
 
     agenda.sort((a,b) {
-      var adate = a['time'].toString(); //before -> var adate = a.expiry;
-      var bdate = b['time'].toString(); //var bdate = b.expiry;
+      var adate = a.time.toString(); //before -> var adate = a.expiry;
+      var bdate = b.time.toString(); //var bdate = b.expiry;
       return adate.compareTo(bdate);
     });
     

@@ -1,10 +1,11 @@
 import 'package:felaban/pages/home_loged_view.dart';
 import 'package:felaban/pages/home_no_loged_view.dart';
-import 'package:felaban/pages/menu_loged/agenda.dart';
-import 'package:felaban/pages/menu_loged/detalleAgenda/detalle_agenda.dart';
-import 'package:felaban/pages/menu_loged/detalleAgenda/live_poll.dart';
-import 'package:felaban/pages/menu_loged/detalleAgenda/questionAndAnswerView.dart';
+import 'package:felaban/pages/menu_loged/agenda/agenda.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/live_poll.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
+import 'package:felaban/pages/menu_loged/favoritos.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/location.dart';
 import 'package:felaban/pages/menu_loged/map.dart';
@@ -46,4 +47,5 @@ class Routes {
   static const String location = LocationPage.routeName;
   static const String map = MapPage.routeName;
   static const String organizers = OrganizersPage.routeName;
+  static const String favoritos = FavoritosPage.routeName;
 }

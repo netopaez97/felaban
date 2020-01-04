@@ -1,10 +1,13 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/pages/menu_loged/detalleAgenda/gallery.dart';
+import 'package:felaban/models/eventoEspecifico.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/gallery.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
+import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class DetalleAgendaView extends StatefulWidget {
 
@@ -100,6 +103,11 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
 
   Widget _pasarelaOpciones(){
 
+    final EventosProvider _eventosInfo = Provider.of<EventosProvider>(context);
+    final EventoEspecifico _eventoEspecificoActual = _eventosInfo.eventoEspecificoActual;
+
+    print(_eventoEspecificoActual.favorite);
+
     double anchoBotones = MediaQuery.of(context).size.width*0.22;
 
     return Container(
@@ -174,13 +182,20 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
               child: Column(
                 children: <Widget>[
                   IconButton(
-                    icon: _favorite==false
+                    icon: _eventoEspecificoActual.favorite==false
                       ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
                       : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
                     onPressed: (){
-                      setState(() {
-                        _favorite= !_favorite;
-                      });
+                      if(_eventoEspecificoActual.favorite==false)
+                        setState(() {
+                          _eventosInfo.agregarEventoAFavoritos = _eventoEspecificoActual;
+                          _eventoEspecificoActual.favorite=!_eventoEspecificoActual.favorite;
+                        });
+                      else
+                        setState(() {
+                          _eventosInfo.eliminarEventoAFavoritos = _eventoEspecificoActual;
+                          _eventoEspecificoActual.favorite=!_eventoEspecificoActual.favorite;
+                        });
                     },
                   ),
                   Text("Favorite", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
