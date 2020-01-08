@@ -59,13 +59,25 @@ class _FavoritosPageState extends State<FavoritosPage> {
         shrinkWrap: true,
         itemCount: eventosFavoritos.length,
         itemBuilder: (context, item){
-          return ListTile(
-            leading: Image.asset(eventosFavoritos[item].image),
-            title: Text(eventosFavoritos[item].name),
-            onTap: (){
-              eventosProvider.eventoEspecificoActual = eventosFavoritos[item];
-              Navigator.pushNamed(context, Routes.detalleAgenda);
-            },
+          return Column(
+            children: <Widget>[
+              ListTile(
+                leading: Image.asset(eventosFavoritos[item].image),
+                title: Text(eventosFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(eventosFavoritos[item].place, style: TextStyle(fontSize: 15, color: Colors.red)),
+                    Text(eventosFavoritos[item].sponsor, style: TextStyle(fontSize: 15, color: Colors.red)),
+                  ],
+                ),
+                onTap: (){
+                  eventosProvider.eventoEspecificoActual = eventosFavoritos[item];
+                  Navigator.pushNamed(context, Routes.detalleAgenda);
+                },
+              ),
+              Divider(height: 0,),
+            ],
           );
         },
       );
@@ -93,13 +105,14 @@ class _FavoritosPageState extends State<FavoritosPage> {
             children: <Widget>[
               ListTile(
                 leading: Image.asset(attendeesFavoritos[item].imageLocation),
-                title: Text(attendeesFavoritos[item].name),
+                title: Text(attendeesFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Text(attendeesFavoritos[item].company, style: TextStyle(fontSize: 15)),
                 onTap: (){
                   attendeesInfo.attendeeActual = attendeesFavoritos[item];
                   Navigator.pushNamed(context, Routes.perfilUsuario);
                 },
               ),
-              Divider()
+              Divider(height: 0,)
             ],
           );
         },

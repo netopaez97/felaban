@@ -48,7 +48,13 @@ class _AgendaViewState extends State<AgendaView> {
                 child: Image.asset(_evento.image, ),
               ),
               title: Text(_evento.name, style: TextStyle(fontSize: fontSizeTitle)),
-              subtitle: Text("Registration Area", style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(_evento.place, style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+                  Text(_evento.sponsor, style: TextStyle(fontSize: fontSizeSubtitle, color: Colors.red)),
+                ],
+              ),
               trailing: IconButton(
                 icon: _evento.favorite == false ? Icon(Icons.favorite_border) : Icon(Icons.favorite, color: Color(0xffD80027)),
                 onPressed: (){
