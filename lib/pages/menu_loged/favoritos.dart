@@ -92,7 +92,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
                   Navigator.pushNamed(context, Routes.detalleAgenda);
                 },
               ),
-              Divider(height: 0,),
+              _divider(),
             ],
           );
         },
@@ -128,11 +128,15 @@ class _FavoritosPageState extends State<FavoritosPage> {
                   Navigator.pushNamed(context, Routes.perfilUsuario);
                 },
               ),
-              Divider(height: 0,)
+              _divider(),
             ],
           );
         },
       );
+  }
+
+  Widget _divider(){
+    return Divider(height: 1, color: Color(0xffC4C4C4),);
   }
 
   @override
