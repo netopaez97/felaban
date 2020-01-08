@@ -23,11 +23,27 @@ class _FavoritosPageState extends State<FavoritosPage> {
   Widget _cuerpoDeLaPagina(){
     return ListView(
       children: <Widget>[
+        _barraFavoritos(),
         _barraTitulo("SESSIONS"),
         _listaEventosFavoritos(),
         _barraTitulo("ATTENDEES"),
         _listaAttendeesFavoritos(),
       ],
+    );
+  }
+
+  Widget _barraFavoritos(){
+    return Container(
+      color: Color(0xff489ED2),
+      padding: EdgeInsets.symmetric(horizontal: _margenHorizontal),
+      height: 53,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("Favorites", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+          Icon(Icons.favorite, color:Colors.white),
+        ],
+      ),
     );
   }
 
