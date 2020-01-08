@@ -1,7 +1,10 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/attendeesModel.dart';
+import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PerfilUsuarioPublicoView extends StatefulWidget {
 
@@ -29,6 +32,11 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
   }
 
   Widget _profileInformation(){
+
+    final attendeesInfo = Provider.of<AttendeesProvider>(context);
+    final AttendeesModel attendeeActual = attendeesInfo.attendeeActual;
+
+    print(attendeeActual.favorite);
 
     //Tamaño de la foto de perfil usada tanto en ancho como en alto
     final double _sizeImage = MediaQuery.of(context).size.height*0.22;
@@ -59,14 +67,20 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
                   Container(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      icon: _likeCorazon == false
-                      ? Icon(CupertinoIcons.heart, color: Colors.white, size: 27,)
-                      : Icon(CupertinoIcons.heart_solid, color: Colors.white, size: 27,),
+                      icon: attendeeActual.favorite==false
+                      ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+                      : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
                       onPressed: (){
-                        setState(() {
-                          _likeCorazon = !_likeCorazon;
-                          print(_likeCorazon);
-                        });
+                        if(attendeeActual.favorite==false)
+                          setState(() {
+                            attendeesInfo.agregarAttendeeAFavoritos = attendeeActual;
+                            attendeeActual.favorite=!attendeeActual.favorite;
+                          });
+                        else
+                          setState(() {
+                            attendeesInfo.eliminarAttendeeAFavoritos = attendeeActual;
+                            attendeeActual.favorite=!attendeeActual.favorite;
+                          });
                       },
                     ),
                   ),
@@ -92,7 +106,7 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
                 image: new DecorationImage(
                   fit: BoxFit.fill,
                   image: new AssetImage(
-                    "assets/speakers/matt_higgins.png",
+                    attendeeActual.imageLocation,
                   )
                 ),
                 border: Border.all(color: Colors.white, width: 2.0)
@@ -111,11 +125,11 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(bottom: 5),
-                  child: Text("Higgins", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                  child: Text(attendeeActual.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 5),
-                  child: Text("CEO Microsoft", style: TextStyle(fontSize: 16, color: Colors.white),),
+                  child: Text(attendeeActual.company, style: TextStyle(fontSize: 16, color: Colors.white),),
                 )
               ],
             ),
@@ -220,11 +234,14 @@ class _PerfilUsuarioPublicoViewState extends State<PerfilUsuarioPublicoView> {
 
   Widget _descripcionPerfil(){
 
+    final attendeesInfo = Provider.of<AttendeesProvider>(context);
+    final AttendeesModel attendeeActual = attendeesInfo.attendeeActual;
+
     double _margenes  = 15;
 
     return Container(
       padding: EdgeInsets.only(left: _margenes, right: _margenes, bottom: _margenes),
-      child: Text("Secretario General de la Federación Latinoamericana de Bancos, FELABAN. Agrupa a más de 600 Bancos en 19 países, a través de los presidentes de los Bancos de las 19 asociaciones bancarias de América Latina. con sede en la ciudad de Bogotá, Republica de Colombia.",style: TextStyle(fontSize: 16)),
+      child: Text("${attendeeActual.position}. Agrupa a más de 600 Bancos en 19 países, a través de los presidentes de los Bancos de las 19 asociaciones bancarias de América Latina. con sede en la ciudad de Bogotá, Republica de Colombia.",style: TextStyle(fontSize: 16)),
     );
   }
 

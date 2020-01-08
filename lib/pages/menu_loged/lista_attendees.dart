@@ -1,6 +1,9 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/attendeesModel.dart';
+import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ListaAttendeesView extends StatefulWidget {
 
@@ -39,80 +42,8 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   String message = "";
   double _margenHorizontalGeneral = 25;
 
-  List _listAttendees = [
-    {
-      "name":"Liz Wiseman",
-      "position":"CTO Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Oracle"
-    },
-    {
-      "name":"Zal Wiseman",
-      "position":"CTA Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Amazon"
-    },
-    {
-      "name":"Hiz Wiseman",
-      "position":"CTB Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Kubilabs"
-    },
-    {
-      "name":"Bal Wiseman",
-      "position":"CTC Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Felaban"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTD Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Acciona"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTF Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Bucaramanga"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTG Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Zylos"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTH Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Cerrejon"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTH Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Cerrejon"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTH Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Cerrejon"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTI Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Mystico"
-    },
-    {
-      "name":"Liz Wiseman",
-      "position":"CTJ Cocacola",
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "company":"Lupe"
-    },
-  ];
+  List<AttendeesModel> _listAttendees;
+  List<AttendeesModel> _attendeesFiltradoPorCompania;
 
   List _alphabet = [
     'A',
@@ -144,6 +75,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   ];
 
   void _onVerticalDragUpdate(DragUpdateDetails details) {
+
     setState(() {
       if ((_offsetContainer + details.delta.dy) >= 0 &&
           (_offsetContainer + details.delta.dy) <=
@@ -156,7 +88,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
           for (var i = 0; i < _listAttendees.length; i++) {
             if (_text
                     .toString()
-                    .compareTo(_listAttendees[i]["company"].toString().toUpperCase()[0]) ==
+                    .compareTo(_listAttendees[i].company.toString().toUpperCase()[0]) ==
                 0) {
                   print("i: $i");
                   print("itemSize: $_itemsizeheight");
@@ -226,29 +158,32 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
 
   Widget _infoFelaban(){
 
+    final attendeesInfo = Provider.of<AttendeesProvider>(context);
+
     return Container(
       height: MediaQuery.of(context).size.height*0.7,
       child: ListView.builder(
-        itemCount: _listAttendees.length,
+        itemCount: _attendeesFiltradoPorCompania.length,
         controller: _controller,
         itemBuilder: (context, item){
           return Column(
               children: <Widget>[
-                _barraEmpresa(_listAttendees[item]["company"].toUpperCase()),
+                _barraEmpresa(_attendeesFiltradoPorCompania[item].company.toUpperCase()),
                 Column(
                     children: _listAttendees.map(
                       (attendees) {
-                        if(_listAttendees[item]["company"] == attendees["company"]){
+                        if(attendees.company == _attendeesFiltradoPorCompania[item].company){
                           return ListTile(
                             leading: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle
                               ),
-                              child: Image.asset("assets/speakers/liz_wiseman.png"),
+                              child: Image.asset(attendees.imageLocation),
                             ),
-                            title: Text(attendees["name"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                            subtitle: Text(attendees["position"], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
+                            title: Text(attendees.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                            subtitle: Text(attendees.position, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xff8C8C8C))),
                             onTap: (){
+                              attendeesInfo.attendeeActual = attendees;
                               Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                             },
                           );
@@ -342,10 +277,22 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     _offsetContainer = 0.0;
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
-    //sort the item list
-    _listAttendees.sort((a, b) {
-      return a["company"].toString().compareTo(b["company"].toString());
-    });
+
+    _listAttendees = AttendeesProvider().obtenerAttendeesFelaban();
+    print(_listAttendees);
+
+    ///Filtrar attendees por compañía
+    Set seen = new Set();
+    _attendeesFiltradoPorCompania = [];
+    for (int i = 0; i < _listAttendees.length; i++) {
+      var element = _listAttendees[i].company;
+      print(element);
+      if (!seen.contains(element)) {
+        seen.add(element);
+        _attendeesFiltradoPorCompania.add(_listAttendees[i]);
+      }
+    }
+
     super.initState();
   }
 

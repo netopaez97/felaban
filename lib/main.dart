@@ -21,6 +21,7 @@ import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
 import 'package:felaban/pages/menu_no_loged/settings_view.dart';
 import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/pages/splash/splash_general.dart';
+import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider( builder: (context) => EventosProvider() ),
         ChangeNotifierProvider( builder: (context) => UserProvider.instance() ),
+        ChangeNotifierProvider( builder: (context) => AttendeesProvider() ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

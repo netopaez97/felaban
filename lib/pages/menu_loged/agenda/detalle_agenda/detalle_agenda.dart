@@ -1,5 +1,5 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
-import 'package:felaban/models/eventoEspecifico.dart';
+import 'package:felaban/models/eventoEspecificoModel.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/gallery.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
 import 'package:felaban/providers/eventos_provider.dart';
@@ -104,7 +104,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   Widget _pasarelaOpciones(){
 
     final EventosProvider _eventosInfo = Provider.of<EventosProvider>(context);
-    final EventoEspecifico _eventoEspecificoActual = _eventosInfo.eventoEspecificoActual;
+    final EventoEspecificoModel _eventoEspecificoActual = _eventosInfo.eventoEspecificoActual;
 
     print(_eventoEspecificoActual.favorite);
 

@@ -1,7 +1,9 @@
 import 'package:felaban/components/app_drawer_no_loged.dart';
 import 'package:felaban/components/backgroundSuperior.dart';
+import 'package:felaban/models/attendeesModel.dart';
 import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/pages/login/login_preview.dart';
+import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
   final _eventosProvider = EventosProvider();
+  final _attendeesProvider = AttendeesProvider();
   List<EventosModel> _eventos = EventosProvider().obtenerEventosFelaban();
+  List<AttendeesModel> _attendees = AttendeesProvider().obtenerAttendeesFelaban();
   
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -41,6 +45,7 @@ class _HomeViewState extends State<HomeView> {
   void _cargarEventos(){
 
     final eventosInfo = Provider.of<EventosProvider>(context);
+    final attendeesInfo = Provider.of<AttendeesProvider>(context);
 
     _tilesDeEventos = [];
 
@@ -87,6 +92,8 @@ class _HomeViewState extends State<HomeView> {
             onTap: (){
 
               eventosInfo.eventoActual = _eventos[item];
+              attendeesInfo.attendees = attendeesInfo.obtenerAttendeesFelaban();
+              print(attendeesInfo.attendees);
 
               Navigator.push(
                 context,
@@ -104,6 +111,7 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
 
     _eventos = _eventosProvider.obtenerEventosFelaban();
+    _attendees = _attendeesProvider.obtenerAttendeesFelaban();
   }
 
   @override

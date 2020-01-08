@@ -1,18 +1,28 @@
-import 'package:felaban/models/eventoEspecifico.dart';
+import 'package:felaban/models/eventoEspecificoModel.dart';
 import 'package:felaban/models/eventosModel.dart';
 import 'package:flutter/material.dart';
 
 class EventosProvider with ChangeNotifier {
 
+
+  ///¡LEER!
+  ///En este momento no es correcto colocar la variable favorito en el modelo EventoEspecifico.
+  ///puesto que un evento específico es favorito solo para UN usuario, no para todos.
+
   ///Evento general.
   EventosModel _eventoActual;
+  ///Eventos felaban
+  List<EventosModel> _eventos = [];
   ///Evento específicio del evento general.
-  EventoEspecifico _eventoEspecificoActual;
+  EventoEspecificoModel _eventoEspecificoActual;
   ///Lista de eventos especificos favoritos para el usuario
-  List<EventoEspecifico> _listaEventEspecificosFavoritos = [];
+  List<EventoEspecificoModel> _listaEventEspecificosFavoritos = [];
 
   get eventoActual {
     return _eventoActual;
+  }
+  get eventos {
+    return _eventos;
   }
   get eventoEspecificoActual {
     return _eventoEspecificoActual;
@@ -27,20 +37,24 @@ class EventosProvider with ChangeNotifier {
 
     notifyListeners();
   }
+  //Editar lista de eventos felaban
+  set eventos( List<EventosModel> newEventos){
+    this._eventos = newEventos;
+  }
   //Evento específico escogido por el usuario en la agenda
-  set eventoEspecificoActual (EventoEspecifico _nuevoEventoEspecifico) {
+  set eventoEspecificoActual (EventoEspecificoModel _nuevoEventoEspecifico) {
     this._eventoEspecificoActual = _nuevoEventoEspecifico;
     
     notifyListeners();
   }
   //Lista de eventos especificos favoritos para el usuario
-  set agregarEventoAFavoritos(EventoEspecifico e){
+  set agregarEventoAFavoritos(EventoEspecificoModel e){
     this._listaEventEspecificosFavoritos.add(e);
 
     notifyListeners();
   }
 
-  set eliminarEventoAFavoritos(EventoEspecifico e){
+  set eliminarEventoAFavoritos(EventoEspecificoModel e){
     this.listaEventEspecificosFavoritos.removeWhere((eventoAEliminar) => eventoAEliminar == e);
 
     notifyListeners();
@@ -48,8 +62,8 @@ class EventosProvider with ChangeNotifier {
 
   List<EventosModel> obtenerEventosFelaban(){
 
-    List<EventoEspecifico> agenda = [
-      EventoEspecifico(
+    List<EventoEspecificoModel> agenda = [
+      EventoEspecificoModel(
         name:"Arrival & Registration",
         place:"Registration Area",
         sponsor:"",
@@ -57,7 +71,7 @@ class EventosProvider with ChangeNotifier {
         time:TimeOfDay(hour: 8, minute: 0),
         image:"assets/images/arrival_registration.png",
       ),
-      EventoEspecifico(
+      EventoEspecificoModel(
         name:"Breakfast",
         place:"Breakfast Area",
         sponsor:"Sponsor by SPONSOR NAME",
@@ -65,7 +79,7 @@ class EventosProvider with ChangeNotifier {
         time:TimeOfDay(hour: 9, minute: 9),
         image:"assets/images/breakfast.png",
       ),
-      EventoEspecifico(
+      EventoEspecificoModel(
         name:"Session #1",
         place:"AARON LASHERChief",
         sponsor:"Marketing Officer - Bread Wallet",
@@ -73,7 +87,7 @@ class EventosProvider with ChangeNotifier {
         time:TimeOfDay(hour: 10, minute: 0),
         image:"assets/images/adam_burke.png",
       ),
-      EventoEspecifico(
+      EventoEspecificoModel(
         name:"Opening Remarks",
         place:"Main Salon",
         sponsor:"Felaban",
@@ -81,7 +95,7 @@ class EventosProvider with ChangeNotifier {
         time:TimeOfDay(hour: 9, minute: 30),
         image:"assets/drawerImages/speaker.png",
       ),
-      EventoEspecifico(
+      EventoEspecificoModel(
         name:"Session #2",
         place:"ADAM BURKE",
         sponsor:"US Azure Channel Sales irector - Microsoft",
@@ -89,7 +103,7 @@ class EventosProvider with ChangeNotifier {
         time:TimeOfDay(hour: 12, minute: 0),
         image:"assets/images/aaron_lasher.png",
       ),
-      EventoEspecifico(
+      EventoEspecificoModel(
         name:"Breakfast",
         place:"Breakfast Area",
         sponsor:"Sponsor By",
@@ -104,8 +118,8 @@ class EventosProvider with ChangeNotifier {
       var bdate = b.time.toString(); //var bdate = b.expiry;
       return adate.compareTo(bdate);
     });
-    
-    return [
+
+    List<EventosModel> _eventosFelaban = [
       EventosModel(
         titulo: "CLAIN 2019",
         descripcion: "Congreso Latinoamericano de Auditoria Interna y Evaluación de Riesgos",
@@ -143,6 +157,10 @@ class EventosProvider with ChangeNotifier {
         agenda: agenda,
       ),
     ];
+
+    _eventos = _eventosFelaban;
+    
+    return _eventosFelaban;
   }
 
 

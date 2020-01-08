@@ -1,16 +1,16 @@
 // To parse this JSON data, do
 //
-//     final eventoEspecifico = eventoEspecificoFromJson(jsonString);
+//     final eventoEspecificoModel = eventoEspecificoModelFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-EventoEspecifico eventoEspecificoFromJson(String str) => EventoEspecifico.fromJson(json.decode(str));
+EventoEspecificoModel eventoEspecificoModelFromJson(String str) => EventoEspecificoModel.fromJson(json.decode(str));
 
-String eventoEspecificoToJson(EventoEspecifico data) => json.encode(data.toJson());
+String eventoEspecificoModelToJson(EventoEspecificoModel data) => json.encode(data.toJson());
 
-class EventoEspecifico {
+class EventoEspecificoModel {
     String name;
     String place;
     String sponsor;
@@ -18,7 +18,7 @@ class EventoEspecifico {
     String image;
     TimeOfDay time;
 
-    EventoEspecifico({
+    EventoEspecificoModel({
         this.name,
         this.place,
         this.sponsor,
@@ -27,7 +27,7 @@ class EventoEspecifico {
         this.time,
     });
 
-    factory EventoEspecifico.fromJson(Map<String, dynamic> json) => EventoEspecifico(
+    factory EventoEspecificoModel.fromJson(Map<String, dynamic> json) => EventoEspecificoModel(
         name: json["name"],
         place: json["place"],
         sponsor: json["sponsor"],
