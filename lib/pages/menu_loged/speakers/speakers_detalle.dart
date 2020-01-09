@@ -1,13 +1,13 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/speakersModel.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetalleSpeakersView extends StatefulWidget {
-
-  final String _imagenRuta;
-  DetalleSpeakersView(this._imagenRuta,{Key key}): super(key:key);
 
   @override
   _DetalleSpeakersViewState createState() => _DetalleSpeakersViewState();
@@ -32,6 +32,9 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
 
     final double _sizeImage = MediaQuery.of(context).size.height*0.17;
 
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
+    final SpeakersModel speakerActual = speakersInfo.speakerActual;
+
     return Stack(
       children: <Widget>[
         Column(
@@ -55,14 +58,20 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
                   Container(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      icon: _likeCorazon == false
-                      ? Icon(CupertinoIcons.heart, color: Colors.white, size: 27,)
-                      : Icon(CupertinoIcons.heart_solid, color: Colors.white, size: 27,),
+                      icon: speakerActual.favorite==false
+                      ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+                      : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
                       onPressed: (){
-                        setState(() {
-                          _likeCorazon = !_likeCorazon;
-                          print(_likeCorazon);
-                        });
+                        if(speakerActual.favorite==false)
+                          setState(() {
+                            speakersInfo.agregarSpeakerAFavoritos = speakerActual;
+                            speakerActual.favorite=!speakerActual.favorite;
+                          });
+                        else
+                          setState(() {
+                            speakersInfo.eliminarSpeakerAFavoritos = speakerActual;
+                            speakerActual.favorite=!speakerActual.favorite;
+                          });
                       },
                     ),
                   ),
@@ -88,7 +97,7 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
                 image: new DecorationImage(
                   fit: BoxFit.fill,
                   image: new AssetImage(
-                    widget._imagenRuta,
+                    speakerActual.imageLocation,
                   )
                 ),
                 border: Border.all(color: Colors.white)
@@ -107,11 +116,10 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(bottom: 5),
-                  child: Text("Giorgio Trettenero Castro", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                  child: Text(speakerActual.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 5),
-                  child: Text("Secretario General FELABAN", style: TextStyle(fontSize: 16, color: Colors.white),),
+                  child: Text(speakerActual.cargo, style: TextStyle(fontSize: 16, color: Colors.white),),
                 )
               ],
             ),

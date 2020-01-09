@@ -1,12 +1,17 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/speakersModel.dart';
+import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SpeakersView extends StatefulWidget {
 
-  static const routeName = "/speakers";
+  final List<SpeakersModel> listaSpeakers;
+  SpeakersView(this.listaSpeakers, {Key key}) : super(key:key);
 
   @override
   _SpeakersViewState createState() => _SpeakersViewState();
@@ -15,8 +20,6 @@ class SpeakersView extends StatefulWidget {
 class _SpeakersViewState extends State<SpeakersView> {
 
   static final Color _colorDivider = Color(0xffC4C4C4);
-
-  List speakers;
 
   Widget _speakersTitulo(){
     return Container(
@@ -66,54 +69,9 @@ class _SpeakersViewState extends State<SpeakersView> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    speakers = [
-      {
-        "imageLocation":"assets/speakers/liz_wiseman.png",
-        "name": "Liz Wiseman",
-        "cargo":"Executive Strategy and Leadership Consultant"
-      },
-      {
-        "imageLocation":"assets/speakers/matt_higgins.png",
-        "name": "Matt Higgins",
-        "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-      },
-      {
-        "imageLocation":"assets/speakers/liz_wiseman.png",
-        "name": "Liz Wiseman",
-        "cargo":"Executive Strategy and Leadership Consultant"
-      },
-      {
-        "imageLocation":"assets/speakers/matt_higgins.png",
-        "name": "Matt Higgins",
-        "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-      },
-      {
-        "imageLocation":"assets/speakers/liz_wiseman.png",
-        "name": "Liz Wiseman",
-        "cargo":"Executive Strategy and Leadership Consultant"
-      },
-      {
-        "imageLocation":"assets/speakers/matt_higgins.png",
-        "name": "Matt Higgins",
-        "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-      },
-      {
-        "imageLocation":"assets/speakers/liz_wiseman.png",
-        "name": "Liz Wiseman",
-        "cargo":"Executive Strategy and Leadership Consultant"
-      },
-      {
-        "imageLocation":"assets/speakers/matt_higgins.png",
-        "name": "Matt Higgins",
-        "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-      },
-    ];
-  }
-
-  @override
   Widget build(BuildContext context) {
+    
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
 
     return Scaffold(
       appBar: barraSuperior(context),
@@ -124,15 +82,18 @@ class _SpeakersViewState extends State<SpeakersView> {
           _searchNavigation(),
           Divider(color: _colorDivider,),
           Column(
-            children: speakers.map( (s) => Column(
+            children: widget.listaSpeakers.map( (s) => Column(
               children: <Widget>[
                 ListTile(
-                  leading: Image.asset(s["imageLocation"]),
-                  title: Text(s["name"], style: TextStyle(fontSize: 20),),
-                  subtitle: Text(s["cargo"], style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
+                  leading: Image.asset(s.imageLocation),
+                  title: Text(s.name, style: TextStyle(fontSize: 20),),
+                  subtitle: Text(s.cargo, style: TextStyle(fontSize: 15, color: Color(0xffEF4135))),
                   onTap: (){
+                    
+                    speakersInfo.speakerActual = s;
+
                     Navigator.push(context, MaterialPageRoute(
-                      builder: (BuildContext context) => DetalleSpeakersView(s["imageLocation"])
+                      builder: (BuildContext context) => DetalleSpeakersView()
                     ));
                   },
                 ),
@@ -150,21 +111,21 @@ class _SpeakersViewState extends State<SpeakersView> {
 
 class SearchNavigation extends SearchDelegate{
 
-  List suggestions = [
+  List<SpeakersModel> suggestions = [
     
   ];
 
-  List speakers = [
-    {
-      "imageLocation":"assets/speakers/liz_wiseman.png",
-      "name": "Liz Wiseman",
-      "cargo":"Executive Strategy and Leadership Consultant"
-    },
-    {
-      "imageLocation":"assets/speakers/matt_higgins.png",
-      "name": "Matt Higgins",
-      "cargo":"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
-    },
+  List<SpeakersModel> speakers = [
+    SpeakersModel(
+      imageLocation:"assets/speakers/liz_wiseman.png",
+      name: "Liz Wiseman",
+      cargo:"Executive Strategy and Leadership Consultant"
+    ),
+    SpeakersModel(
+      imageLocation:"assets/speakers/matt_higgins.png",
+      name: "Matt Higgins",
+      cargo:"Co-founder and CEO RSE Ventures, Shark Tank Panelist"
+    ),
   ];
 
   @override
@@ -192,21 +153,25 @@ class SearchNavigation extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
+
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
+
     final suggestionList = query.isEmpty
     ? suggestions
-    : speakers.where((s) => s["name"].toLowerCase().contains(query)).toList();
+    : speakers.where((s) => s.name.toLowerCase().contains(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, item){
         return ListTile(
           onTap: (){
+            speakersInfo.speakerActual = suggestionList[item];
             Navigator.push(context, MaterialPageRoute(
-              builder: (BuildContext context) => DetalleSpeakersView(suggestionList[item]["imageLocation"])
+              builder: (BuildContext context) => DetalleSpeakersView()
             ));
           },
           leading: Icon(Icons.people),
-          title: Text(suggestionList[item]["name"]),
+          title: Text(suggestionList[item].name),
         );
       },
     );

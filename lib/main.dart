@@ -6,7 +6,6 @@ import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/questionAndAnswerView.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/favoritos.dart';
-import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/location.dart';
 import 'package:felaban/pages/menu_loged/map.dart';
 import 'package:felaban/pages/menu_loged/organizers.dart';
@@ -14,7 +13,6 @@ import 'package:felaban/pages/menu_loged/perfil_usuario.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/invitacion_reunion.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/message.dart';
 import 'package:felaban/pages/menu_loged/perfil_usuario/perfil_usuario.dart';
-import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
 import 'package:felaban/pages/menu_loged/sponsors/sponsors.dart';
 import 'package:felaban/pages/menu_no_loged/about_felaban_view.dart';
 import 'package:felaban/pages/menu_no_loged/about_ifc_view.dart';
@@ -23,6 +21,7 @@ import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +41,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider( builder: (context) => EventosProvider() ),
         ChangeNotifierProvider( builder: (context) => UserProvider.instance() ),
         ChangeNotifierProvider( builder: (context) => AttendeesProvider() ),
+        ChangeNotifierProvider( builder: (context) => SpeakersProvider() ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -61,11 +61,9 @@ class MyApp extends StatelessWidget {
           SplashEventView.routeName: (BuildContext context) => SplashEventView(),
           AgendaView.routeName: (BuildContext context) => AgendaView(),
           DetalleAgendaView.routeName: (BuildContext context) => DetalleAgendaView(),
-          SpeakersView.routeName: (BuildContext context) => SpeakersView(),
           QuestionAndAnswerView.routeName: (BuildContext context) => QuestionAndAnswerView(),
           LivePollAgendaDetallesView.routeName: (BuildContext context) => LivePollAgendaDetallesView(),
           SponsorsView.routeName: (BuildContext context) => SponsorsView(),
-          ListaAttendeesView.routeName: (BuildContext context) => ListaAttendeesView(),
           PerfilUsuarioPublicoView.routeName: (BuildContext context) => PerfilUsuarioPublicoView(),
           MessageListaAttendeesView.routeName: (BuildContext context) => MessageListaAttendeesView(),
           InvitacionReunionPerfilUsuarioView.routeName: (BuildContext context) => InvitacionReunionPerfilUsuarioView(),

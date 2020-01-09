@@ -9,6 +9,7 @@ AttendeesModel attendeesModelFromJson(String str) => AttendeesModel.fromJson(jso
 String attendeesModelToJson(AttendeesModel data) => json.encode(data.toJson());
 
 class AttendeesModel {
+    int id;
     String name;
     String position;
     String imageLocation;
@@ -16,6 +17,7 @@ class AttendeesModel {
     bool favorite;
 
     AttendeesModel({
+        this.id,
         this.name,
         this.position,
         this.imageLocation,
@@ -24,6 +26,7 @@ class AttendeesModel {
     });
 
     factory AttendeesModel.fromJson(Map<String, dynamic> json) => AttendeesModel(
+        id: json["id"],
         name: json["name"],
         position: json["position"],
         imageLocation: json["imageLocation"],
@@ -32,6 +35,7 @@ class AttendeesModel {
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "name": name,
         "position": position,
         "imageLocation": imageLocation,

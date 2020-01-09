@@ -1,5 +1,9 @@
 import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/pages/menu_loged/lista_attendees.dart';
+import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
+import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +22,8 @@ class AppDrawer extends StatelessWidget {
 
     
     final eventoInfo = Provider.of<EventosProvider>(context);
+    final attendeesInfo = Provider.of<AttendeesProvider>(context);
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
     final usuario = Provider.of<UserProvider>(context);
     
     final EventosModel eventoActual = eventoInfo.eventoActual;
@@ -39,6 +45,9 @@ class AppDrawer extends StatelessWidget {
                       previousPageTitle: "Switch Event",
                       color: Colors.white,
                       onPressed: (){
+                        attendeesInfo.listaAttendeesFavoritos = [];
+                        eventoInfo.listaEventEspecificosFavoritos = [];
+                        speakersInfo.listaSpeakersFavoritos = [];
                         Navigator.pushNamedAndRemoveUntil(context, Routes.home,  (Route<dynamic> route) => false);
                       },
                     ),
@@ -102,7 +111,9 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/speaker.png"),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.speakers);
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => SpeakersView(speakersInfo.speakers)
+                    ));
                   },
                 ),
                 ListTile(
@@ -153,7 +164,9 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/group.png"),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.attendees);
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => ListaAttendeesView(attendeesInfo.attendees)
+                    ));
                   },
                 ),
                 ListTile(
@@ -250,6 +263,11 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/logout.png"),
                   ),
                   onTap: () {
+                    
+                    attendeesInfo.listaAttendeesFavoritos = [];
+                    eventoInfo.listaEventEspecificosFavoritos = [];
+                    speakersInfo.listaSpeakersFavoritos = [];
+                    
                     usuario.signOut();
                     Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route) => false);
                   },

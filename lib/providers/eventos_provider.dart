@@ -55,7 +55,13 @@ class EventosProvider with ChangeNotifier {
   }
 
   set eliminarEventoAFavoritos(EventoEspecificoModel e){
-    this.listaEventEspecificosFavoritos.removeWhere((eventoAEliminar) => eventoAEliminar == e);
+    this._listaEventEspecificosFavoritos.removeWhere((eventoAEliminar) => eventoAEliminar == e);
+
+    notifyListeners();
+  }
+  
+  set listaEventEspecificosFavoritos(List<EventoEspecificoModel> newListFavEventoEspecifico){
+    this._listaEventEspecificosFavoritos = newListFavEventoEspecifico;
 
     notifyListeners();
   }

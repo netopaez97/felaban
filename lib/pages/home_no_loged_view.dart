@@ -5,6 +5,7 @@ import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/pages/login/login_preview.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,10 +19,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  final _eventosProvider = EventosProvider();
-  final _attendeesProvider = AttendeesProvider();
   List<EventosModel> _eventos = EventosProvider().obtenerEventosFelaban();
-  List<AttendeesModel> _attendees = AttendeesProvider().obtenerAttendeesFelaban();
   
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -46,6 +44,7 @@ class _HomeViewState extends State<HomeView> {
 
     final eventosInfo = Provider.of<EventosProvider>(context);
     final attendeesInfo = Provider.of<AttendeesProvider>(context);
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
 
     _tilesDeEventos = [];
 
@@ -93,7 +92,9 @@ class _HomeViewState extends State<HomeView> {
 
               eventosInfo.eventoActual = _eventos[item];
               attendeesInfo.attendees = attendeesInfo.obtenerAttendeesFelaban();
-              print(attendeesInfo.attendees);
+              speakersInfo.speakers = speakersInfo.obtenerSpeakersFelaban();
+
+              print("attendees: ${attendeesInfo.attendees}");
 
               Navigator.push(
                 context,
@@ -104,14 +105,6 @@ class _HomeViewState extends State<HomeView> {
         )
       );
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _eventos = _eventosProvider.obtenerEventosFelaban();
-    _attendees = _attendeesProvider.obtenerAttendeesFelaban();
   }
 
   @override

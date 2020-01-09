@@ -37,6 +37,12 @@ class AttendeesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  set listaAttendeesFavoritos(List<AttendeesModel> newListFavAttendees){
+    this._listaAttendeesFavoritos = newListFavAttendees;
+
+    notifyListeners();
+  }
+
   //Eliminar asistentes favoritos para el usuario
   set eliminarAttendeeAFavoritos(AttendeesModel a){
     this._listaAttendeesFavoritos.removeWhere((attendeeAEliminar) => attendeeAEliminar == a);
@@ -48,6 +54,7 @@ class AttendeesProvider with ChangeNotifier {
 
     List<AttendeesModel> attendees = [
       AttendeesModel(
+        id:1,
         name:"Liz Wiseman",
         position:"CTO Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
@@ -55,6 +62,7 @@ class AttendeesProvider with ChangeNotifier {
         favorite: false,
       ),
       AttendeesModel(
+        id:2,
         name:"Zal Wiseman",
         position:"CTA Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
@@ -62,6 +70,7 @@ class AttendeesProvider with ChangeNotifier {
         favorite: false,
       ),
       AttendeesModel(
+        id:3,
         name:"Hiz Wiseman",
         position:"CTB Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
@@ -69,6 +78,7 @@ class AttendeesProvider with ChangeNotifier {
         favorite: false,
       ),
       AttendeesModel(
+        id:4,
         name:"Bal Wiseman",
         position:"CTC Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
@@ -76,6 +86,15 @@ class AttendeesProvider with ChangeNotifier {
         favorite: false,
       ),
       AttendeesModel(
+        id:5,
+        name:"Bal Wiseman",
+        position:"CTD Cocacola",
+        imageLocation:"assets/speakers/liz_wiseman.png",
+        company:"Acciona",
+        favorite: false,
+      ),
+      AttendeesModel(
+        id:6,
         name:"Liz Wiseman",
         position:"CTD Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
@@ -83,20 +102,15 @@ class AttendeesProvider with ChangeNotifier {
         favorite: false,
       ),
       AttendeesModel(
-        name:"Karla Wiseman",
+        id:7,
+        name:"Liz Wiseman",
         position:"CTD Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",
         company:"Acciona",
         favorite: false,
       ),
       AttendeesModel(
-        name:"Key Wiseman",
-        position:"CTD Cocacola",
-        imageLocation:"assets/speakers/liz_wiseman.png",
-        company:"Acciona",
-        favorite: false,
-      ),
-      AttendeesModel(
+        id:8,
         name:"Liz Wiseman",
         position:"CTF Cocacola",
         imageLocation:"assets/speakers/liz_wiseman.png",

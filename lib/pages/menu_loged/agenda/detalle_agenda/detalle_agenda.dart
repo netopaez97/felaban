@@ -1,8 +1,10 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/models/eventoEspecificoModel.dart';
+import 'package:felaban/models/speakersModel.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/gallery.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +25,19 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
 
   final String _nombreAgenda = "Opening ceremony";
 
-  final List _listaDeSpeakers = [
-    {
-      "nombre":"Laura Bommer",
-      "cargo":"Moderator",
-      "imagenUbicacion":"assets/detalleAgenda/laura_bommer.png",
-    },
-    {
-      "nombre":"Giorgio Trettenero Castro",
-      "cargo":"Secretary General FELABAN",
-      "imagenUbicacion":"assets/images/profile_face.png",
-    },
+  final List<SpeakersModel> _listaDeSpeakers = [
+    SpeakersModel(
+      name:"Laura Bommer",
+      cargo:"Moderator",
+      imageLocation:"assets/detalleAgenda/laura_bommer.png",
+      favorite: false,
+    ),
+    SpeakersModel(
+      name:"Giorgio Trettenero Castro",
+      cargo:"Secretary General FELABAN",
+      imageLocation:"assets/images/profile_face.png",
+      favorite: false,
+    ),
   ];
 
   bool _eventoActivo = true;
@@ -239,10 +243,12 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _speakersContenido(){
+    
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
 
     List<Widget> _speakersAMostrar = [];
-    _listaDeSpeakers.map((speaker) => _speakersAMostrar.add(
-      Container(
+    for(int i=0; i<_listaDeSpeakers.length;i++){
+      _speakersAMostrar.add(Container(
         color: Color(0xffEEEEEE),
         child: Column(
           children: <Widget>[
@@ -253,24 +259,25 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: AssetImage(speaker["imagenUbicacion"]),
+                    image: AssetImage(_listaDeSpeakers[i].imageLocation),
                   )
                 )
               ),
-              title: Text(speaker["nombre"], style: TextStyle(fontSize: 20),),
-              subtitle: Text(speaker["cargo"], style: TextStyle(fontSize: 17),),
+              title: Text(_listaDeSpeakers[i].name, style: TextStyle(fontSize: 20),),
+              subtitle: Text(_listaDeSpeakers[i].cargo, style: TextStyle(fontSize: 17),),
               trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
               onTap: (){
+                speakersInfo.speakerActual = _listaDeSpeakers[i];
                 Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) => DetalleSpeakersView(speaker["imagenUbicacion"])
+                  builder: (BuildContext context) => DetalleSpeakersView()
                 ));
               },
             ),
             Divider(color: Colors.white, height: 1,)
           ],
         )
-      ),
-    )).toList();
+      ),);
+    }
 
     return Column(
       children: _speakersAMostrar,

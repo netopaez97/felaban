@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 
 class ListaAttendeesView extends StatefulWidget {
 
+  final List<AttendeesModel> listaAttendees;
+  ListaAttendeesView(this.listaAttendees, {Key key}) : super(key:key);
+
   static const routeName = 'attendees';
 
   @override
@@ -42,7 +45,6 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
   String message = "";
   double _margenHorizontalGeneral = 25;
 
-  List<AttendeesModel> _listAttendees;
   List<AttendeesModel> _attendeesFiltradoPorCompania;
 
   List _alphabet = [
@@ -85,10 +87,10 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
             ((_offsetContainer / _heightscroller) % _alphabet.length).round();
         _text = _alphabet[posSelected];
         if (_text != _oldtext) {
-          for (var i = 0; i < _listAttendees.length; i++) {
+          for (var i = 0; i < widget.listaAttendees.length; i++) {
             if (_text
                     .toString()
-                    .compareTo(_listAttendees[i].company.toString().toUpperCase()[0]) ==
+                    .compareTo(widget.listaAttendees[i].company.toString().toUpperCase()[0]) ==
                 0) {
                   print("i: $i");
                   print("itemSize: $_itemsizeheight");
@@ -170,7 +172,7 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
               children: <Widget>[
                 _barraEmpresa(_attendeesFiltradoPorCompania[item].company.toUpperCase()),
                 Column(
-                    children: _listAttendees.map(
+                    children: widget.listaAttendees.map(
                       (attendees) {
                         if(attendees.company == _attendeesFiltradoPorCompania[item].company){
                           return ListTile(
@@ -278,18 +280,16 @@ class _ListaAttendeesViewState extends State<ListaAttendeesView> {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
-    _listAttendees = AttendeesProvider().obtenerAttendeesFelaban();
-    print(_listAttendees);
 
     ///Filtrar attendees por compañía
     Set seen = new Set();
     _attendeesFiltradoPorCompania = [];
-    for (int i = 0; i < _listAttendees.length; i++) {
-      var element = _listAttendees[i].company;
+    for (int i = 0; i < widget.listaAttendees.length; i++) {
+      var element = widget.listaAttendees[i].company;
       print(element);
       if (!seen.contains(element)) {
         seen.add(element);
-        _attendeesFiltradoPorCompania.add(_listAttendees[i]);
+        _attendeesFiltradoPorCompania.add(widget.listaAttendees[i]);
       }
     }
 

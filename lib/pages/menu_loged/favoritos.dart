@@ -1,9 +1,11 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/models/attendeesModel.dart';
 import 'package:felaban/models/eventoEspecificoModel.dart';
-import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/models/speakersModel.dart';
+import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +30,8 @@ class _FavoritosPageState extends State<FavoritosPage> {
         _listaEventosFavoritos(),
         _barraTitulo("ATTENDEES"),
         _listaAttendeesFavoritos(),
+        _barraTitulo("SPEAKERS"),
+        _listaSpeakersFavoritos(),
       ],
     );
   }
@@ -125,7 +129,45 @@ class _FavoritosPageState extends State<FavoritosPage> {
                 subtitle: Text(attendeesFavoritos[item].company, style: TextStyle(fontSize: 15)),
                 onTap: (){
                   attendeesInfo.attendeeActual = attendeesFavoritos[item];
-                  Navigator.pushNamed(context, Routes.perfilUsuario);
+                  Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
+                },
+              ),
+              _divider(),
+            ],
+          );
+        },
+      );
+  }
+
+  Widget _listaSpeakersFavoritos(){
+
+    final speakersInfo = Provider.of<SpeakersProvider>(context);
+    final List<SpeakersModel> speakersFavorito = speakersInfo.listaSpeakersFavoritos;
+    
+    return speakersFavorito == null || speakersFavorito.length == 0 ? Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text("There aren't favorite attendees in your list"),
+          ),
+        ),
+      )
+      :ListView.builder(
+        shrinkWrap: true,
+        itemCount: speakersFavorito.length,
+        itemBuilder: (context, item){
+          return Column(
+            children: <Widget>[
+              ListTile(
+                leading: Image.asset(speakersFavorito[item].imageLocation),
+                title: Text(speakersFavorito[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Text(speakersFavorito[item].cargo, style: TextStyle(fontSize: 15)),
+                onTap: (){
+                  speakersInfo.speakerActual = speakersFavorito[item];
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSpeakersView()
+                  ));
                 },
               ),
               _divider(),
