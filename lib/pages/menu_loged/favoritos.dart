@@ -1,12 +1,15 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/models/attendeesModel.dart';
 import 'package:felaban/models/eventoEspecificoModel.dart';
+import 'package:felaban/models/exhibitorModel.dart';
 import 'package:felaban/models/speakersModel.dart';
 import 'package:felaban/models/sponsorModel.dart';
+import 'package:felaban/pages/menu_loged/exhibitor/detalle_exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
 import 'package:felaban/pages/menu_loged/sponsors/sponsors_detalle.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/exhibitor_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/routes/Routes.dart';
@@ -37,6 +40,8 @@ class _FavoritosPageState extends State<FavoritosPage> {
         _listaSpeakersFavoritos(),
         _barraTitulo("SPONSORS"),
         _listaSponsorsFavoritos(),
+        _barraTitulo("EXHIBITORS"),
+        _listaExhibitorsFavoritos(),
       ],
     );
   }
@@ -215,6 +220,44 @@ class _FavoritosPageState extends State<FavoritosPage> {
                 },
               ),
               _divider(),
+            ],
+          );
+        },
+      );
+  }
+
+  Widget _listaExhibitorsFavoritos(){
+
+    final exhibitorsInfo = Provider.of<ExhibitorProvider>(context);
+    final List<ExhibitorsModel> exhibitorsFavoritos = exhibitorsInfo.listaExhibitorsFavoritos;
+    
+    return exhibitorsFavoritos == null || exhibitorsFavoritos.length == 0 ? Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text("There aren't favorite exhibitors in your list"),
+          ),
+        ),
+      )
+      :ListView.builder(
+        shrinkWrap: true,
+        itemCount: exhibitorsFavoritos.length,
+        itemBuilder: (context, item){
+          return Column(
+            children: <Widget>[
+              ListTile(
+                leading: Image.asset(exhibitorsFavoritos[item].imageLocation),
+                title: Text(exhibitorsFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                onTap: (){
+                  exhibitorsInfo.exhibitorActual = exhibitorsFavoritos[item];
+                  print(exhibitorsInfo.exhibitorActual.favorite);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => ExhibitorDetailPage(exhibitorsInfo.exhibitorActual)
+                  ));
+                },
+              ),
+              Divider(color: Color(0xffC4C4C4),)
             ],
           );
         },

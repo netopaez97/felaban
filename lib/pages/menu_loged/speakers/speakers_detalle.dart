@@ -1,8 +1,9 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/eventoEspecificoModel.dart';
 import 'package:felaban/models/speakersModel.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
+import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
-import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -181,53 +182,65 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
   }
 
   Widget _listaDePresentaciones(BuildContext context){
+
+    final eventosInfo = Provider.of<EventosProvider>(context);
+    final List<EventoEspecificoModel> _eventosSpeaker = [
+      EventoEspecificoModel(
+        name:"Arrival & Registration",
+        place:"Registration Area",
+        sponsor:"",
+        favorite:false,
+        time:TimeOfDay(hour: 8, minute: 0),
+        image:"assets/images/arrival_registration.png",
+      ),
+      EventoEspecificoModel(
+        name:"Breakfast",
+        place:"Breakfast Area",
+        sponsor:"Sponsor by SPONSOR NAME",
+        favorite:false,
+        time:TimeOfDay(hour: 9, minute: 9),
+        image:"assets/images/breakfast.png",
+      ),
+    ];
+
+    List<Widget> _eventoAMostrar = [];
+    for(int i = 0; i<_eventosSpeaker.length; i++){
+      _eventoAMostrar.add(
+        Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 15),
+              child: ListTile(
+                title: Text(_eventosSpeaker[i].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Container(
+                  margin: EdgeInsets.symmetric(vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Tuesday, March 12, 2020. 2:00 - 3:15 PM", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),),
+                      Text("Location: ${_eventosSpeaker[i].place}", style: TextStyle(fontSize: 14, color: Colors.black))
+                    ],
+                  ),
+                ),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: (){
+
+                  eventosInfo.eventoEspecificoActual =  _eventosSpeaker[i];
+
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleAgendaView()
+                  ));
+                },
+              ),
+            ),
+            Divider(color: Color(0xffC4C4C4),),
+          ],
+        )
+      );
+    }
+
     return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 15),
-          child: ListTile(
-            title: Text("Opening Ceremony", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            subtitle: Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Tuesday, March 12, 2020. 2:00 - 3:15 PM", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),),
-                  Text("Location: Brickell Ballroom", style: TextStyle(fontSize: 14, color: Colors.black))
-                ],
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (BuildContext context) => DetalleAgendaView()
-              ));
-            },
-          ),
-        ),
-        Divider(color: Color(0xffC4C4C4),),
-        Container(
-          margin: EdgeInsets.only(top: 15),
-          child: ListTile(
-            title: Text("Session #1", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            subtitle: Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Wednesday, March 13, 2020. 4:30 - 5:00 PM", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),),
-                  Text("Location: Main Ballroom", style: TextStyle(fontSize: 14, color: Colors.black))
-                ],
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: (){
-              Navigator.pushNamed(context, Routes.detalleAgenda);
-            },
-          ),
-        ),
-        Divider(color: Color(0xffC4C4C4),)
-      ],
+      children: _eventoAMostrar
     );
   }
 

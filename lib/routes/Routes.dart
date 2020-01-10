@@ -4,7 +4,6 @@ import 'package:felaban/pages/menu_loged/agenda/agenda.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/detalle_agenda.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/live_poll.dart';
 import 'package:felaban/pages/menu_loged/agenda/detalle_agenda/questionAndAnswerView.dart';
-import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/favoritos.dart';
 import 'package:felaban/pages/menu_loged/location.dart';
 import 'package:felaban/pages/menu_loged/map.dart';
@@ -39,7 +38,6 @@ class Routes {
   static const String invitacionReunionPerfilUsario = InvitacionReunionPerfilUsuarioView.routeName;
   static const String networking = NetworkingArea.routeName;
   static const String networkingSentByYou = NetwrokingSentByYou.routeName;
-  static const String exhibitorList = ExhibitorListPage.routeName;
   static const String location = LocationPage.routeName;
   static const String map = MapPage.routeName;
   static const String organizers = OrganizersPage.routeName;

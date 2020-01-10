@@ -21,6 +21,7 @@ import 'package:felaban/pages/splash/splash_evento.dart';
 import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/exhibitor_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider( builder: (context) => AttendeesProvider() ),
         ChangeNotifierProvider( builder: (context) => SpeakersProvider() ),
         ChangeNotifierProvider( builder: (context) => SponsorsProvider() ),
+        ChangeNotifierProvider( builder: (context) => ExhibitorProvider() ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -70,7 +72,6 @@ class MyApp extends StatelessWidget {
           MessageListaAttendeesView.routeName: (BuildContext context) => MessageListaAttendeesView(),
           InvitacionReunionPerfilUsuarioView.routeName: (BuildContext context) => InvitacionReunionPerfilUsuarioView(),
           NetworkingArea.routeName: (BuildContext context) => NetworkingArea(),
-          ExhibitorListPage.routeName: (BuildContext context) => ExhibitorListPage(),
           LocationPage.routeName: (BuildContext context) => LocationPage(),
           MapPage.routeName: (BuildContext context) => MapPage(),
           OrganizersPage.routeName: (BuildContext context) => OrganizersPage(),

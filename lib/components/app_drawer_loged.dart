@@ -1,8 +1,10 @@
 import 'package:felaban/models/eventosModel.dart';
+import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
+import 'package:felaban/providers/exhibitor_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
@@ -26,6 +28,7 @@ class AppDrawer extends StatelessWidget {
     final attendeesInfo = Provider.of<AttendeesProvider>(context);
     final speakersInfo = Provider.of<SpeakersProvider>(context);
     final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+    final exhibitorsInfo = Provider.of<ExhibitorProvider>(context);
     final usuario = Provider.of<UserProvider>(context);
     
     final EventosModel eventoActual = eventoInfo.eventoActual;
@@ -52,6 +55,7 @@ class AppDrawer extends StatelessWidget {
                         eventoInfo.listaEventEspecificosFavoritos = [];
                         speakersInfo.listaSpeakersFavoritos = [];
                         sponsorsInfo.listaSponsorsFavoritos = [];
+                        exhibitorsInfo.listaExhibitorsFavoritos = [];
 
                         Navigator.pushNamedAndRemoveUntil(context, Routes.home,  (Route<dynamic> route) => false);
                       },
@@ -217,7 +221,9 @@ class AppDrawer extends StatelessWidget {
                     child: Image.asset("assets/drawerImages/exhibitor.png"),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.exhibitorList);
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => ExhibitorListPage(exhibitorsInfo.exhibitors)
+                    ));
                   },
                 ),
                 ListTile(
@@ -273,6 +279,7 @@ class AppDrawer extends StatelessWidget {
                     eventoInfo.listaEventEspecificosFavoritos = [];
                     speakersInfo.listaSpeakersFavoritos = [];
                     sponsorsInfo.listaSponsorsFavoritos = [];
+                    exhibitorsInfo.listaExhibitorsFavoritos = [];
                     
                     usuario.signOut();
                     Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route) => false);

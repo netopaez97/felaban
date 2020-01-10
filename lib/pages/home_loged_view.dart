@@ -1,8 +1,10 @@
 import 'package:felaban/components/app_drawer_loged.dart';
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
+import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
 import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
 import 'package:felaban/providers/attendees_provider.dart';
+import 'package:felaban/providers/exhibitor_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -46,6 +48,7 @@ class _AgendaOnViewState extends State<AgendaOnView> {
 
     final attendeesInfo = Provider.of<AttendeesProvider>(context);
     final speakersInfo = Provider.of<SpeakersProvider>(context);
+    final exhibitorsInfo = Provider.of<ExhibitorProvider>(context);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -205,7 +208,9 @@ class _AgendaOnViewState extends State<AgendaOnView> {
               title: Text("Exhibitors", style: TextStyle(fontSize: 20),),
               subtitle: Text("List of vendors and booths", style: TextStyle(fontSize: 15, color: Color(0xffEF4135)),),
               onTap: (){
-                Navigator.pushNamed(context, Routes.exhibitorList);
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (BuildContext context) => ExhibitorListPage(exhibitorsInfo.exhibitors)
+                ));
               },
             ),
           ),

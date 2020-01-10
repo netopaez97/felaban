@@ -1,9 +1,15 @@
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/exhibitorModel.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/detalle_exhibitor_list.dart';
+import 'package:felaban/providers/exhibitor_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ExhibitorListPage extends StatefulWidget {
+
+  final List<ExhibitorsModel> _exhibitors;
+  ExhibitorListPage(this._exhibitors, {Key key}) : super(key:key);
 
   static const String routeName = "/exhibitorList";
 
@@ -14,8 +20,6 @@ class ExhibitorListPage extends StatefulWidget {
 class _ExhibitorListPageState extends State<ExhibitorListPage> {
 
   final double _margenHorizontal = 15;
-
-  List _exhibitors;
 
   Widget _cuerpoDeLaPagina(){
     return ListView(
@@ -77,9 +81,13 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
 
   Widget _exhibitorsList(){
 
-    List _tenderosConL = _exhibitors.where((tendero) => tendero["name"].split("")[0] == "L").toList();
-    List _tenderosConM = _exhibitors.where((tendero) => tendero["name"].split("")[0] == "M").toList();
-    List _tenderosConN = _exhibitors.where((tendero) => tendero["name"].split("")[0] == "N").toList();
+    ///Será necesario hacer una lista para cada letra a mi punto de vista. Este fue un análisis no profundo.
+
+    List _tenderosConL = widget._exhibitors.where((tendero) => tendero.name.split("")[0] == "L").toList();
+    List _tenderosConM = widget._exhibitors.where((tendero) => tendero.name.split("")[0] == "M").toList();
+    List _tenderosConN = widget._exhibitors.where((tendero) => tendero.name.split("")[0] == "N").toList();
+
+    final ExhibitorProvider _exhibitorInfo = Provider.of<ExhibitorProvider>(context);
 
 
 
@@ -92,15 +100,16 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
               Container(
                 padding: EdgeInsets.all(_margenHorizontal),
                 child: ListTile(
-                  title: Text(tenderoL["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  title: Text(tenderoL.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Booth ${tenderoL["booth"]}", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
-                      Text(tenderoL["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                      Text("Booth ${tenderoL.booth}", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoL.summary, style: TextStyle(fontSize: 16, color: Colors.black)),
                     ],
                   ),
                   onTap: (){
+                    _exhibitorInfo.exhibitorActual = tenderoL;
                     Navigator.push(context, MaterialPageRoute(
                       builder: (BuildContext context) => ExhibitorDetailPage(tenderoL)
                     ));
@@ -117,15 +126,16 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
               Container(
                 padding: EdgeInsets.all(_margenHorizontal),
                 child: ListTile(
-                  title: Text(tenderoM["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  title: Text(tenderoM.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(tenderoM["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
-                      Text(tenderoM["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                      Text(tenderoM.booth, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoM.summary, style: TextStyle(fontSize: 16, color: Colors.black)),
                     ],
                   ),
                   onTap: (){
+                    _exhibitorInfo.exhibitorActual = tenderoM;
                     Navigator.push(context, MaterialPageRoute(
                       builder: (BuildContext context) => ExhibitorDetailPage(tenderoM)
                     ));
@@ -141,15 +151,16 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
               Container(
                 padding: EdgeInsets.all(_margenHorizontal),
                 child: ListTile(
-                  title: Text(tenderoN["name"], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  title: Text(tenderoN.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(tenderoN["booth"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
-                      Text(tenderoN["summary"], style: TextStyle(fontSize: 16, color: Colors.black)),
+                      Text(tenderoN.booth, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xffEF4135)),),
+                      Text(tenderoN.summary, style: TextStyle(fontSize: 16, color: Colors.black)),
                     ],
                   ),
                   onTap: (){
+                    _exhibitorInfo.exhibitorActual = tenderoN;
                     Navigator.push(context, MaterialPageRoute(
                       builder: (BuildContext context) => ExhibitorDetailPage(tenderoN)
                     ));
@@ -179,49 +190,6 @@ class _ExhibitorListPageState extends State<ExhibitorListPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    _exhibitors = [
-      {
-        "name":"LUXWORX - MACVAD GROUP",
-        "booth": "108",
-        "summary": "Smart-repair™ products that make your life easier.",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"LDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"MDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"NDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"LDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-    ];
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: barraSuperior(context),
@@ -237,42 +205,47 @@ class SearchNavigation extends SearchDelegate{
   ];
 
   List exhibitors = [
-      {
-        "name":"LUXWORX - MACVAD GROUP",
-        "booth": "108",
-        "summary": "Smart-repair™ products that make your life easier.",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"LDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"MDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"NDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-      {
-        "name":"LDA International",
-        "booth": "209",
-        "summary": "Batteries, Home Hardware, Face Masks, Closeouts",
-        "description": "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
-        "imageLocation": "assets/exhibitors/lda_technologies.png"
-      },
-    ];
+    ExhibitorsModel(
+      name:"LUXWORX - MACVAD GROUP",
+      booth: "108",
+      summary: "Smart-repair™ products that make your life easier.",
+      description: "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+      imageLocation: "assets/exhibitors/lda_technologies.png",
+      favorite: false,
+    ),
+    ExhibitorsModel(
+      name:"LDA International",
+      booth: "209",
+      summary: "Batteries, Home Hardware, Face Masks, Closeouts",
+      description: "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+      imageLocation: "assets/exhibitors/lda_technologies.png",
+      favorite: false,
+    ),
+    ExhibitorsModel(
+      name:"MDA International",
+      booth: "209",
+      summary: "Batteries, Home Hardware, Face Masks, Closeouts",
+      description: "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+      imageLocation: "assets/exhibitors/lda_technologies.png",
+      favorite: false,
+    ),
+    ExhibitorsModel(
+      name:"NDA International",
+      booth: "209",
+      summary: "Batteries, Home Hardware, Face Masks, Closeouts",
+      description: "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+      imageLocation: "assets/exhibitors/lda_technologies.png",
+      favorite: false,
+    ),
+    ExhibitorsModel(
+      name:"LDA International",
+      booth: "209",
+      summary: "Batteries, Home Hardware, Face Masks, Closeouts",
+      description: "Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.",
+      imageLocation: "assets/exhibitors/lda_technologies.png",
+      favorite: false,
+    ),
+  ];
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -299,9 +272,9 @@ class SearchNavigation extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty
+    List suggestionList = query.isEmpty
     ? suggestions
-    : exhibitors.where((p) => p["name"].toLowerCase().contains(query)).toList();
+    : exhibitors.where((p) => p.name.toLowerCase().contains(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
@@ -313,7 +286,7 @@ class SearchNavigation extends SearchDelegate{
             ));
           },
           leading: Icon(Icons.pages),
-          title: Text(suggestionList[item]["name"]),
+          title: Text(suggestionList[item].name),
         );
       },
     );
