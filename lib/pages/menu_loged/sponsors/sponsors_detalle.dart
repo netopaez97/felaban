@@ -1,12 +1,12 @@
 import 'package:felaban/components/barraSuperiorBACK.dart';
+import 'package:felaban/models/sponsorModel.dart';
+import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleSponsorView extends StatefulWidget {
-
-  final String _imageLocation;
-  DetalleSponsorView(this._imageLocation,{Key key}) : super(key:key);
 
   @override
   _DetalleSponsorViewState createState() => _DetalleSponsorViewState();
@@ -39,16 +39,24 @@ class _DetalleSponsorViewState extends State<DetalleSponsorView> {
   }
 
   Widget _logo(){
+
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+
     return Container(
       padding: EdgeInsets.all(30),
       color: Colors.white,
       child: Center(
-        child: Image.asset(widget._imageLocation),
+        child: Image.asset(sponsorsInfo.sponsorActual.imageLocation),
       ),
     );
   }
 
   Widget _barraShareAndFav(){
+
+
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+    final SponsorModel sponsorActual = sponsorsInfo.sponsorActual;
+
     return Container(
       height: 58,
       padding: EdgeInsets.symmetric(horizontal: _paddingGeneral),
@@ -63,10 +71,20 @@ class _DetalleSponsorViewState extends State<DetalleSponsorView> {
             },
           ),
           IconButton(
-            iconSize: 28,
-            icon: Icon(CupertinoIcons.heart, color: Colors.white),
+            icon: sponsorActual.favorite==false
+            ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+            : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
             onPressed: (){
-
+              if(sponsorActual.favorite==false)
+                setState(() {
+                  sponsorsInfo.agregarSponsorAFavoritos = sponsorActual;
+                  sponsorActual.favorite=!sponsorActual.favorite;
+                });
+              else
+                setState(() {
+                  sponsorsInfo.eliminarSponsorAFavoritos = sponsorActual;
+                  sponsorActual.favorite=!sponsorActual.favorite;
+                });
             },
           ),
         ],
@@ -75,21 +93,29 @@ class _DetalleSponsorViewState extends State<DetalleSponsorView> {
   }
 
   Widget _informacion(){
+
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+    final SponsorModel sponsorActual = sponsorsInfo.sponsorActual;
+
     return ListTile(
-      title: Container(child: Text("BAC Credomatic", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)), padding: EdgeInsets.symmetric(vertical: 10),),
+      title: Container(child: Text(sponsorActual.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)), padding: EdgeInsets.symmetric(vertical: 10),),
       subtitle: Row(
         children: <Widget>[
           Icon(Icons.location_on, color: Color(0xffA1A1A1),),
-          Text("Booth Number: 38 & 39", style: TextStyle(fontSize: 16, color: Color(0xffA1A1A1)))
+          Text(sponsorActual.location, style: TextStyle(fontSize: 16, color: Color(0xffA1A1A1)))
         ],
       ),
     );
   }
 
   Widget _descripcion(){
+
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+    final SponsorModel sponsorActual = sponsorsInfo.sponsorActual;
+    
     return Container(
       padding: EdgeInsets.all(_paddingGeneral),
-      child: Text("Coca-Cola, conocida comúnmente como Coca en muchos países hispanohablantes (en inglés Coke) es una bebida gaseosa y refrescante, vendida a nivel mundial, en tiendas, restaurantes y máquinas expendedoras en más de doscientos países o territorios. Es un producto de The Coca-Cola Company. En un principio, cuando la inventó el farmacéutico John Pemberton, fue concebida como una bebida medicinal patentada.", style: TextStyle(fontSize: 18),),
+      child: Text(sponsorActual.description, style: TextStyle(fontSize: 18),),
     );
   }
 

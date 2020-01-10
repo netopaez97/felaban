@@ -6,6 +6,7 @@ import 'package:felaban/pages/login/login_preview.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
+import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,7 @@ class _HomeViewState extends State<HomeView> {
     final eventosInfo = Provider.of<EventosProvider>(context);
     final attendeesInfo = Provider.of<AttendeesProvider>(context);
     final speakersInfo = Provider.of<SpeakersProvider>(context);
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
 
     _tilesDeEventos = [];
 
@@ -93,8 +95,7 @@ class _HomeViewState extends State<HomeView> {
               eventosInfo.eventoActual = _eventos[item];
               attendeesInfo.attendees = attendeesInfo.obtenerAttendeesFelaban();
               speakersInfo.speakers = speakersInfo.obtenerSpeakersFelaban();
-
-              print("attendees: ${attendeesInfo.attendees}");
+              sponsorsInfo.sponsors = sponsorsInfo.obtenerSponsorsFelaban();
 
               Navigator.push(
                 context,

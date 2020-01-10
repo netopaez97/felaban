@@ -22,6 +22,7 @@ import 'package:felaban/pages/splash/splash_general.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
+import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider( builder: (context) => UserProvider.instance() ),
         ChangeNotifierProvider( builder: (context) => AttendeesProvider() ),
         ChangeNotifierProvider( builder: (context) => SpeakersProvider() ),
+        ChangeNotifierProvider( builder: (context) => SponsorsProvider() ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

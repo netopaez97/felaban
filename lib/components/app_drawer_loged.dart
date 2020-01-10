@@ -4,6 +4,7 @@ import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
+import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/providers/user_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +25,7 @@ class AppDrawer extends StatelessWidget {
     final eventoInfo = Provider.of<EventosProvider>(context);
     final attendeesInfo = Provider.of<AttendeesProvider>(context);
     final speakersInfo = Provider.of<SpeakersProvider>(context);
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
     final usuario = Provider.of<UserProvider>(context);
     
     final EventosModel eventoActual = eventoInfo.eventoActual;
@@ -45,9 +47,12 @@ class AppDrawer extends StatelessWidget {
                       previousPageTitle: "Switch Event",
                       color: Colors.white,
                       onPressed: (){
+                        
                         attendeesInfo.listaAttendeesFavoritos = [];
                         eventoInfo.listaEventEspecificosFavoritos = [];
                         speakersInfo.listaSpeakersFavoritos = [];
+                        sponsorsInfo.listaSponsorsFavoritos = [];
+
                         Navigator.pushNamedAndRemoveUntil(context, Routes.home,  (Route<dynamic> route) => false);
                       },
                     ),
@@ -267,6 +272,7 @@ class AppDrawer extends StatelessWidget {
                     attendeesInfo.listaAttendeesFavoritos = [];
                     eventoInfo.listaEventEspecificosFavoritos = [];
                     speakersInfo.listaSpeakersFavoritos = [];
+                    sponsorsInfo.listaSponsorsFavoritos = [];
                     
                     usuario.signOut();
                     Navigator.pushNamedAndRemoveUntil(context, Routes.home, (Route<dynamic> route) => false);

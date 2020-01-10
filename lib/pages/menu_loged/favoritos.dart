@@ -2,10 +2,13 @@ import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/models/attendeesModel.dart';
 import 'package:felaban/models/eventoEspecificoModel.dart';
 import 'package:felaban/models/speakersModel.dart';
+import 'package:felaban/models/sponsorModel.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers_detalle.dart';
+import 'package:felaban/pages/menu_loged/sponsors/sponsors_detalle.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/eventos_provider.dart';
 import 'package:felaban/providers/speakersProvider.dart';
+import 'package:felaban/providers/sponsors_provider.dart';
 import 'package:felaban/routes/Routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +35,8 @@ class _FavoritosPageState extends State<FavoritosPage> {
         _listaAttendeesFavoritos(),
         _barraTitulo("SPEAKERS"),
         _listaSpeakersFavoritos(),
+        _barraTitulo("SPONSORS"),
+        _listaSponsorsFavoritos(),
       ],
     );
   }
@@ -149,7 +154,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text("There aren't favorite attendees in your list"),
+            child: Text("There aren't favorite speakers in your list"),
           ),
         ),
       )
@@ -167,6 +172,45 @@ class _FavoritosPageState extends State<FavoritosPage> {
                   speakersInfo.speakerActual = speakersFavorito[item];
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => DetalleSpeakersView()
+                  ));
+                },
+              ),
+              _divider(),
+            ],
+          );
+        },
+      );
+  }
+
+  Widget _listaSponsorsFavoritos(){
+
+    final sponsorsInfo = Provider.of<SponsorsProvider>(context);
+    final List<SponsorModel> sponsorsFavoritos = sponsorsInfo.listasponsorsFavoritos;
+    
+    return sponsorsFavoritos == null || sponsorsFavoritos.length == 0 ? Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text("There aren't favorite sponsors in your list"),
+          ),
+        ),
+      )
+      :ListView.builder(
+        shrinkWrap: true,
+        itemCount: sponsorsFavoritos.length,
+        itemBuilder: (context, item){
+          return Column(
+            children: <Widget>[
+              ListTile(
+                leading: Image.asset(sponsorsFavoritos[item].imageLocation),
+                title: Text(sponsorsFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Text(sponsorsFavoritos[item].location, style: TextStyle(fontSize: 15)),
+                onTap: (){
+                  sponsorsInfo.sponsorActual = sponsorsFavoritos[item];
+                  print(sponsorsInfo.sponsorActual.favorite);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => DetalleSponsorView()
                   ));
                 },
               ),
