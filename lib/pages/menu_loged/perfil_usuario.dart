@@ -243,9 +243,10 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: _margenesDeTextos),
-                child:Row(children: <Widget>[Text("City", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
+                child: Row(children: <Widget>[Text("Country", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
               ),
               TextFormField(
+                textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
@@ -258,10 +259,9 @@ class _ProfileUserViewState extends State<ProfileUserView> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: _margenesDeTextos),
-                child: Row(children: <Widget>[Text("Country", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
+                child:Row(children: <Widget>[Text("City", style: TextStyle(fontSize: 16),), Text("", style: TextStyle(color: Colors.red),)],),
               ),
               TextFormField(
-                textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
