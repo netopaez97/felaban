@@ -85,31 +85,28 @@ class _FavoritosPageState extends State<FavoritosPage> {
           ),
         ),
       )
-      :ListView.builder(
-        shrinkWrap: true,
-        itemCount: eventosFavoritos.length,
-        itemBuilder: (context, item){
-          return Column(
+      :Column(
+        children: eventosFavoritos.map( (eventoFavorito) => Column(
             children: <Widget>[
               ListTile(
-                leading: Image.asset(eventosFavoritos[item].image),
-                title: Text(eventosFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                leading: Image.asset(eventoFavorito.image),
+                title: Text(eventoFavorito.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(eventosFavoritos[item].place, style: TextStyle(fontSize: 15, color: Colors.red)),
-                    Text(eventosFavoritos[item].sponsor, style: TextStyle(fontSize: 15, color: Colors.red)),
+                    Text(eventoFavorito.place, style: TextStyle(fontSize: 15, color: Colors.red)),
+                    Text(eventoFavorito.sponsor, style: TextStyle(fontSize: 15, color: Colors.red)),
                   ],
                 ),
                 onTap: (){
-                  eventosProvider.eventoEspecificoActual = eventosFavoritos[item];
+                  eventosProvider.eventoEspecificoActual = eventoFavorito;
                   Navigator.pushNamed(context, Routes.detalleAgenda);
                 },
               ),
               _divider(),
             ],
-          );
-        },
+          )
+        ).toList(),
       );
   }
 
@@ -127,25 +124,21 @@ class _FavoritosPageState extends State<FavoritosPage> {
           ),
         ),
       )
-      :ListView.builder(
-        shrinkWrap: true,
-        itemCount: attendeesFavoritos.length,
-        itemBuilder: (context, item){
-          return Column(
+      :Column(
+        children: attendeesFavoritos.map((attendee) => Column(
             children: <Widget>[
               ListTile(
-                leading: Image.asset(attendeesFavoritos[item].imageLocation),
-                title: Text(attendeesFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                subtitle: Text(attendeesFavoritos[item].company, style: TextStyle(fontSize: 15)),
+                leading: Image.asset(attendee.imageLocation),
+                title: Text(attendee.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Text(attendee.company, style: TextStyle(fontSize: 15)),
                 onTap: (){
-                  attendeesInfo.attendeeActual = attendeesFavoritos[item];
+                  attendeesInfo.attendeeActual = attendee;
                   Navigator.pushNamed(context, Routes.perfilUsuarioPublico);
                 },
               ),
               _divider(),
             ],
-          );
-        },
+          )).toList(),
       );
   }
 
@@ -163,27 +156,23 @@ class _FavoritosPageState extends State<FavoritosPage> {
           ),
         ),
       )
-      :ListView.builder(
-        shrinkWrap: true,
-        itemCount: speakersFavorito.length,
-        itemBuilder: (context, item){
-          return Column(
-            children: <Widget>[
-              ListTile(
-                leading: Image.asset(speakersFavorito[item].imageLocation),
-                title: Text(speakersFavorito[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                subtitle: Text(speakersFavorito[item].cargo, style: TextStyle(fontSize: 15)),
-                onTap: (){
-                  speakersInfo.speakerActual = speakersFavorito[item];
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (BuildContext context) => DetalleSpeakersView()
-                  ));
-                },
-              ),
-              _divider(),
-            ],
-          );
-        },
+      :Column(
+        children: speakersFavorito.map((speaker) => Column(
+          children: <Widget>[
+            ListTile(
+              leading: Image.asset(speaker.imageLocation),
+              title: Text(speaker.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              subtitle: Text(speaker.cargo, style: TextStyle(fontSize: 15)),
+              onTap: (){
+                speakersInfo.speakerActual = speaker;
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (BuildContext context) => DetalleSpeakersView()
+                ));
+              },
+            ),
+            _divider()
+          ],
+        ),).toList()
       );
   }
 
@@ -201,18 +190,15 @@ class _FavoritosPageState extends State<FavoritosPage> {
           ),
         ),
       )
-      :ListView.builder(
-        shrinkWrap: true,
-        itemCount: sponsorsFavoritos.length,
-        itemBuilder: (context, item){
-          return Column(
+      :Column(
+        children: sponsorsFavoritos.map((sponsor) => Column(
             children: <Widget>[
               ListTile(
-                leading: Image.asset(sponsorsFavoritos[item].imageLocation),
-                title: Text(sponsorsFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                subtitle: Text(sponsorsFavoritos[item].location, style: TextStyle(fontSize: 15)),
+                leading: Image.asset(sponsor.imageLocation),
+                title: Text(sponsor.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                subtitle: Text(sponsor.location, style: TextStyle(fontSize: 15)),
                 onTap: (){
-                  sponsorsInfo.sponsorActual = sponsorsFavoritos[item];
+                  sponsorsInfo.sponsorActual = sponsor;
                   print(sponsorsInfo.sponsorActual.favorite);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => DetalleSponsorView()
@@ -221,8 +207,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
               ),
               _divider(),
             ],
-          );
-        },
+          )).toList(),
       );
   }
 
@@ -240,17 +225,14 @@ class _FavoritosPageState extends State<FavoritosPage> {
           ),
         ),
       )
-      :ListView.builder(
-        shrinkWrap: true,
-        itemCount: exhibitorsFavoritos.length,
-        itemBuilder: (context, item){
-          return Column(
+      :Column(
+        children: exhibitorsFavoritos.map((exhibitor) => Column(
             children: <Widget>[
               ListTile(
-                leading: Image.asset(exhibitorsFavoritos[item].imageLocation),
-                title: Text(exhibitorsFavoritos[item].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                leading: Image.asset(exhibitor.imageLocation),
+                title: Text(exhibitor.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 onTap: (){
-                  exhibitorsInfo.exhibitorActual = exhibitorsFavoritos[item];
+                  exhibitorsInfo.exhibitorActual = exhibitor;
                   print(exhibitorsInfo.exhibitorActual.favorite);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (BuildContext context) => ExhibitorDetailPage(exhibitorsInfo.exhibitorActual)
@@ -259,8 +241,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
               ),
               Divider(color: Color(0xffC4C4C4),)
             ],
-          );
-        },
+          )).toList(),
       );
   }
 
