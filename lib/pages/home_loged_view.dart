@@ -1,7 +1,7 @@
 import 'package:felaban/components/app_drawer_loged.dart';
 import 'package:felaban/components/backgroundSuperiorPequeno.dart';
+import 'package:felaban/pages/menu_loged/attendees/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/exhibitor/exhibitor_list.dart';
-import 'package:felaban/pages/menu_loged/lista_attendees.dart';
 import 'package:felaban/pages/menu_loged/speakers/speakers.dart';
 import 'package:felaban/providers/attendees_provider.dart';
 import 'package:felaban/providers/exhibitor_provider.dart';
