@@ -17,7 +17,6 @@ class ExhibitorDetailPage extends StatefulWidget {
 class _ExhibitorDetailPageState extends State<ExhibitorDetailPage> {
   
   final double _margenHorizontal = 10;
-  bool _isFav = false;
   
   Widget _cuerpoDeLaPagina(){
     return ListView(

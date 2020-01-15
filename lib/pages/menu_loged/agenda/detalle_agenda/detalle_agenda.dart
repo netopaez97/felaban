@@ -21,8 +21,6 @@ class DetalleAgendaView extends StatefulWidget {
 
 class _DetalleAgendaViewState extends State<DetalleAgendaView> {
 
-  bool _favorite = false;
-
   final String _nombreAgenda = "Opening ceremony";
 
   final List<SpeakersModel> _listaDeSpeakers = [

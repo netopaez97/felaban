@@ -1,6 +1,5 @@
 import 'package:felaban/components/app_drawer_no_loged.dart';
 import 'package:felaban/components/backgroundSuperior.dart';
-import 'package:felaban/models/attendeesModel.dart';
 import 'package:felaban/models/eventosModel.dart';
 import 'package:felaban/pages/login/login_preview.dart';
 import 'package:felaban/providers/attendees_provider.dart';
