@@ -62,14 +62,8 @@ class _DetalleSponsorViewState extends State<DetalleSponsorView> {
       padding: EdgeInsets.symmetric(horizontal: _paddingGeneral),
       color: Color(0xff489ED2),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          IconButton(
-            iconSize: 28,
-            icon: Icon(IconData(0xF3AC, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white,),
-            onPressed: (){
-
-            },
-          ),
           IconButton(
             icon: sponsorActual.favorite==false
             ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
