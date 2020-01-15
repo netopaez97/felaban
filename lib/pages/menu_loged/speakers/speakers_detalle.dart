@@ -15,7 +15,6 @@ class DetalleSpeakersView extends StatefulWidget {
 }
 
 class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
-  bool _likeCorazon = false;
 
   Widget _cuerpoDeLaPagina(BuildContext context){
     return ListView(
@@ -36,97 +35,97 @@ class _DetalleSpeakersViewState extends State<DetalleSpeakersView> {
     final speakersInfo = Provider.of<SpeakersProvider>(context);
     final SpeakersModel speakerActual = speakersInfo.speakerActual;
 
-    return Stack(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              color: Colors.black,
-              height: MediaQuery.of(context).size.height*0.1,
-              width: double.infinity,
-              child: Image.asset("assets/background.png", fit: BoxFit.cover,)
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height*0.2,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                      color: Color(0xff489ED2)
+    return Container(
+      color: Color(0xff489ED2),
+      child: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Container(
+                color: Colors.black,
+                height: MediaQuery.of(context).size.height*0.1,
+                width: double.infinity,
+                child: Image.asset("assets/background.png", fit: BoxFit.cover,)
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height*0.1,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      decoration: BoxDecoration(
+                        color: Color(0xff489ED2)
+                      ),
                     ),
-                  ),
-                  Container(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: speakerActual.favorite==false
-                      ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
-                      : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
-                      onPressed: (){
-                        if(speakerActual.favorite==false)
-                          setState(() {
-                            speakersInfo.agregarSpeakerAFavoritos = speakerActual;
-                            speakerActual.favorite=!speakerActual.favorite;
-                          });
-                        else
-                          setState(() {
-                            speakersInfo.eliminarSpeakerAFavoritos = speakerActual;
-                            speakerActual.favorite=!speakerActual.favorite;
-                          });
-                      },
+                    Container(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        icon: speakerActual.favorite==false
+                        ? Icon(IconData(0xF442, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,)
+                        : Icon(IconData(0xF443, fontFamily: CupertinoIcons.iconFont, fontPackage: CupertinoIcons.iconFontPackage), color: Colors.white, size: 34,),
+                        onPressed: (){
+                          if(speakerActual.favorite==false)
+                            setState(() {
+                              speakersInfo.agregarSpeakerAFavoritos = speakerActual;
+                              speakerActual.favorite=!speakerActual.favorite;
+                            });
+                          else
+                            setState(() {
+                              speakersInfo.eliminarSpeakerAFavoritos = speakerActual;
+                              speakerActual.favorite=!speakerActual.favorite;
+                            });
+                        },
+                      ),
                     ),
+                  ],
+                )
+              ),
+              Container(
+                color: Color(0xff489ED2),
+                padding: EdgeInsets.all(10),
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text(speakerActual.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                      ),
+                      Container(
+                        child: Text(speakerActual.cargo, style: TextStyle(fontSize: 16, color: Colors.white),),
+                      )
+                    ],
                   ),
-                ],
-              )
-            ),
-          ],
-        ),
-        GestureDetector(
-          onTap: (){
-            print("Has oprimido la imagen del señor");
-          },
-          child: Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height*0.2,
-            alignment: Alignment.center,
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: (){
+              print("Has oprimido la imagen del señor");
+            },
             child: Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height*0.2,
               alignment: Alignment.center,
-              width: _sizeImage,
-              height: _sizeImage,
-              decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                image: new DecorationImage(
-                  fit: BoxFit.fill,
-                  image: new AssetImage(
-                    speakerActual.imageLocation,
-                  )
+              child: Container(
+                alignment: Alignment.center,
+                width: _sizeImage,
+                height: _sizeImage,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: new AssetImage(
+                      speakerActual.imageLocation,
+                    )
+                  ),
+                  border: Border.all(color: Colors.white)
                 ),
-                border: Border.all(color: Colors.white)
               ),
             ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.all(10),
-          height: MediaQuery.of(context).size.height*0.3,
-          child: Container(
-            alignment: Alignment.bottomCenter,
-            height: MediaQuery.of(context).size.height*0.1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(bottom: 5),
-                  child: Text(speakerActual.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
-                ),
-                Container(
-                  child: Text(speakerActual.cargo, style: TextStyle(fontSize: 16, color: Colors.white),),
-                )
-              ],
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
