@@ -1,13 +1,11 @@
 
 import 'dart:io';
 
-import 'package:esys_flutter_share/esys_flutter_share.dart' as share1;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:share/share.dart' as share2;
 import 'package:share_extend/share_extend.dart';
 
 class GalleryAgendaDetallesView extends StatefulWidget {
