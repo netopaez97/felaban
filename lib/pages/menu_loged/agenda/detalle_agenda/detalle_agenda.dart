@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:felaban/components/barraSuperiorBACK.dart';
 import 'package:felaban/models/eventoEspecificoModel.dart';
 import 'package:felaban/models/speakersModel.dart';
@@ -22,6 +24,7 @@ class DetalleAgendaView extends StatefulWidget {
 class _DetalleAgendaViewState extends State<DetalleAgendaView> {
 
   final String _nombreAgenda = "Opening ceremony";
+  List<File> imageFile = [];
 
   final List<SpeakersModel> _listaDeSpeakers = [
     SpeakersModel(
@@ -108,7 +111,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
     final EventosProvider _eventosInfo = Provider.of<EventosProvider>(context);
     final EventoEspecificoModel _eventoEspecificoActual = _eventosInfo.eventoEspecificoActual;
 
-    print(_eventoEspecificoActual.favorite);
+    print("favorite: ${_eventoEspecificoActual.favorite}");
 
     double anchoBotones = MediaQuery.of(context).size.width*0.22;
 
@@ -170,7 +173,7 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
                   IconButton(
                     icon: Image.asset("assets/detalleAgenda/camera.png"),
                     onPressed: (){
-                      ImagePicker.pickImage(source: ImageSource.camera);
+                      pickImageFromGallery(ImageSource.camera);
                     },
                   ),
                   Text("Photo", style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center,),
@@ -370,52 +373,49 @@ class _DetalleAgendaViewState extends State<DetalleAgendaView> {
   }
 
   Widget _photosDescripcion(){
-
-    List _direccionesImagenes = [
-      "assets/detalleAgenda/photo1.png",
-      "assets/detalleAgenda/photo2.png",
-      "assets/detalleAgenda/photo3.png",
-      "assets/detalleAgenda/photo4.png",
-      "assets/detalleAgenda/photo5.png",
-    ];
+    
+    if(imageFile.isEmpty)
+      return Container(
+        padding: EdgeInsets.all(15),
+        child: Text("There is not photos in this events", style: TextStyle(fontSize: 16),),
+      );
 
     return Container(
       margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),
       child: GridView.builder(
-        itemCount: _direccionesImagenes.length,
+        itemCount: imageFile.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 7),
         itemBuilder: (context,direccion){
           return GestureDetector(
-            child: Image.asset(_direccionesImagenes[direccion]),
+            child: Image.file(imageFile[direccion]),
             onTap: (){
               Navigator.push(context, 
                 MaterialPageRoute(
-                  builder: (BuildContext context) => GalleryAgendaDetallesView(_direccionesImagenes[direccion]),
+                  builder: (BuildContext context) => GalleryAgendaDetallesView(imageFile[direccion]),
                 )
               );
             },
           );
         },
         shrinkWrap: true,
-        /* crossAxisCount: 3,
-        children: <Widget>[
-          GestureDetector(
-            child: Image.asset("assets/detalleAgenda/photo1.png"),
-            onTap: (){
-              Navigator.push(context, 
-                MaterialPageRoute(
-                  builder: (BuildContext context) => GalleryAgendaDetallesView("assets/detalleAgenda/photo1.png"),
-                )
-              );
-            },
-          ),
-          Image.asset("assets/detalleAgenda/photo2.png"),
-          Image.asset("assets/detalleAgenda/photo3.png"),
-          Image.asset("assets/detalleAgenda/photo4.png"),
-          Image.asset("assets/detalleAgenda/photo5.png"),
-        ], */
       )
     );
+  }
+
+  void pickImageFromGallery(ImageSource source) async {
+
+      List<File> photos = imageFile;
+
+      await ImagePicker.pickImage(source: source).then((photo) {
+        photos.add(photo);
+        print(photos);
+        setState(() {
+          
+        });
+        return photos;  
+      });
+
+      print(imageFile);
   }
 
   @override

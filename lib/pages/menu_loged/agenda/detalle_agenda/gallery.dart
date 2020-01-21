@@ -10,7 +10,7 @@ import 'package:share_extend/share_extend.dart';
 
 class GalleryAgendaDetallesView extends StatefulWidget {
 
-  final String _imageLocation;
+  final File _imageLocation;
 
   GalleryAgendaDetallesView(this._imageLocation, {Key key}) : super(key:key);
 
@@ -34,9 +34,8 @@ class _GalleryAgendaDetallesViewState extends State<GalleryAgendaDetallesView> {
         padding: EdgeInsets.zero,
         child: Icon(CupertinoIcons.share),
         onPressed: () async {
-          final ByteData bytes1 = await rootBundle.load(widget._imageLocation);
 
-          await showDialog(
+          /* await showDialog(
             context: context,
             builder: (BuildContext context) => AlertDialog(
               title: Text("To share the specific image. We need them stored in the database."),
@@ -50,9 +49,9 @@ class _GalleryAgendaDetallesViewState extends State<GalleryAgendaDetallesView> {
                 )
               ],
             )
-          );
+          ); */
 
-          File file = await ImagePicker.pickImage(source: ImageSource.gallery);
+          File file = widget._imageLocation;
           
           if(file != null)
             ShareExtend.share(file.path, "file");
@@ -75,7 +74,7 @@ class _GalleryAgendaDetallesViewState extends State<GalleryAgendaDetallesView> {
           backgroundDecoration: BoxDecoration(
             color: Colors.white,
           ),
-          imageProvider: AssetImage(widget._imageLocation),
+          imageProvider: FileImage(widget._imageLocation),
         ),
       )
     );
